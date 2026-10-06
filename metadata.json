@@ -1,0 +1,6 @@
+{
+  "name": "MECEE QUICK",
+  "description": "Comprehensive MECEE-BL preparation app with full-length 200-mark mock exams, unit-wise practice, 2027 syllabus weightage, and in-depth performance analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
