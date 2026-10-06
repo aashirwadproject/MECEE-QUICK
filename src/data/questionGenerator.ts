@@ -736,7 +736,8 @@ export function generateSyllabusQuestions(): Question[] {
   for (const unit of syllabusUnitList) {
     const unitName = unit.name;
     const subject = unit.subject;
-    const countToGenerate = unit.priorityLevel >= 4 ? 35 : 20;
+    // Generate at least 50 questions per unit to meet comprehensive chapter requirement
+    const countToGenerate = 50;
 
     for (let i = 1; i <= countToGenerate; i++) {
       let qText = '';

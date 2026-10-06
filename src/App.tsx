@@ -7,6 +7,7 @@ import { ReviewModal } from './components/ReviewModal';
 import { Analytics } from './components/Analytics';
 import { SyllabusExplorer } from './components/SyllabusExplorer';
 import { QuestionManager } from './components/QuestionManager';
+import { MockTestsHub } from './components/MockTestsHub';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
@@ -40,16 +41,19 @@ export const App: React.FC = () => {
   const handleStartExam = (config: {
     title: string;
     type: 'FULL_200' | 'SUBJECT' | 'UNIT' | 'HIGH_YIELD' | 'PRACTICE';
+    questions?: Question[];
     subjectFilter?: SubjectType;
     unitFilter?: string;
-    questionCount: number;
+    questionCount?: number;
     durationMinutes: number;
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
   }) => {
     let selected: Question[] = [];
 
-    if (config.type === 'FULL_200') {
+    if (config.questions && config.questions.length > 0) {
+      selected = config.questions;
+    } else if (config.type === 'FULL_200') {
       // Official MECEE-BL 2027 Pattern:
       // Zoology (40), Botany (40), Chemistry (50), Physics (50), MAT (20)
       const zoo = allQuestions.filter(q => q.subject === 'ZOOLOGY').sort(() => 0.5 - Math.random()).slice(0, 40);
@@ -85,7 +89,7 @@ export const App: React.FC = () => {
 
       // Shuffle and pick questions
       const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-      selected = shuffled.slice(0, Math.max(1, config.questionCount));
+      selected = shuffled.slice(0, Math.max(1, config.questionCount || 20));
     }
 
     setActiveExamConfig({
@@ -187,6 +191,16 @@ export const App: React.FC = () => {
                 onNavigateTab={(tab) => setActiveTab(tab)}
                 allQuestions={allQuestions}
                 examAttempts={examAttempts}
+              />
+            )}
+
+            {activeTab === 'mocks' && (
+              <MockTestsHub
+                allQuestions={allQuestions}
+                examAttempts={examAttempts}
+                onStartExam={handleStartExam}
+                onOpenReview={(att) => setReviewAttempt(att)}
+                onBack={() => setActiveTab('dashboard')}
               />
             )}
 

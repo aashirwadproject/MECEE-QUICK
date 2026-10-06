@@ -5,10 +5,11 @@ import {
   BookOpen, 
   Flame, 
   BarChart3, 
-  FileUp 
+  FileUp,
+  Award
 } from 'lucide-react';
 
-export type NavTab = 'dashboard' | 'practice' | 'syllabus' | 'analytics' | 'import';
+export type NavTab = 'dashboard' | 'mocks' | 'practice' | 'syllabus' | 'analytics' | 'import';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -38,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
                   2027 MBBS
                 </span>
               </div>
-              <p className="text-xs text-slate-400 hidden sm:block">Official 200-Mark Entrance Simulator & Analytics</p>
+              <p className="text-xs text-slate-400 hidden sm:block">50 Full Mock Tests • 2027 Syllabus • Analytics</p>
             </div>
           </div>
 
@@ -57,6 +58,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
             </button>
 
             <button
+              onClick={() => onSelectTab('mocks')}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-colors relative ${
+                activeTab === 'mocks' 
+                  ? 'bg-teal-500 text-white shadow-sm' 
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <Award className="w-4 h-4 text-amber-400" />
+              <span>50 Full Mocks</span>
+              <span className="bg-amber-400 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
+                50
+              </span>
+            </button>
+
+            <button
               onClick={() => onSelectTab('practice')}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                 activeTab === 'practice' 
@@ -65,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
               }`}
             >
               <BookOpen className="w-4 h-4" />
-              Practice
+              Chapters (50+ Qs)
             </button>
 
             <button
@@ -77,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
               }`}
             >
               <Flame className="w-4 h-4 text-orange-400" />
-              Syllabus 2027
+              Syllabus
             </button>
 
             <button
@@ -115,10 +131,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
         </div>
 
         {/* Mobile Nav Bar */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-slate-800">
+        <div className="flex md:hidden items-center justify-around py-2 border-t border-slate-800 text-[11px]">
           <button
             onClick={() => onSelectTab('dashboard')}
-            className={`flex flex-col items-center py-1 text-xs font-medium ${
+            className={`flex flex-col items-center py-1 font-medium ${
               activeTab === 'dashboard' ? 'text-teal-400' : 'text-slate-400'
             }`}
           >
@@ -126,17 +142,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
             Home
           </button>
           <button
+            onClick={() => onSelectTab('mocks')}
+            className={`flex flex-col items-center py-1 font-medium ${
+              activeTab === 'mocks' ? 'text-teal-400' : 'text-slate-400'
+            }`}
+          >
+            <Award className="w-5 h-5 mb-0.5 text-amber-400" />
+            50 Mocks
+          </button>
+          <button
             onClick={() => onSelectTab('practice')}
-            className={`flex flex-col items-center py-1 text-xs font-medium ${
+            className={`flex flex-col items-center py-1 font-medium ${
               activeTab === 'practice' ? 'text-teal-400' : 'text-slate-400'
             }`}
           >
             <BookOpen className="w-5 h-5 mb-0.5" />
-            Practice
+            Chapters
           </button>
           <button
             onClick={() => onSelectTab('syllabus')}
-            className={`flex flex-col items-center py-1 text-xs font-medium ${
+            className={`flex flex-col items-center py-1 font-medium ${
               activeTab === 'syllabus' ? 'text-teal-400' : 'text-slate-400'
             }`}
           >
@@ -145,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
           </button>
           <button
             onClick={() => onSelectTab('analytics')}
-            className={`flex flex-col items-center py-1 text-xs font-medium ${
+            className={`flex flex-col items-center py-1 font-medium ${
               activeTab === 'analytics' ? 'text-teal-400' : 'text-slate-400'
             }`}
           >
@@ -154,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
           </button>
           <button
             onClick={() => onSelectTab('import')}
-            className={`flex flex-col items-center py-1 text-xs font-medium ${
+            className={`flex flex-col items-center py-1 font-medium ${
               activeTab === 'import' ? 'text-teal-400' : 'text-slate-400'
             }`}
           >
