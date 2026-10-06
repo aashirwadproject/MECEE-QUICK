@@ -47,24 +47,46 @@ export const App: React.FC = () => {
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
   }) => {
-    let filtered = [...allQuestions];
+    let selected: Question[] = [];
 
-    if (config.unitFilter) {
-      filtered = filtered.filter(q => q.unit.toLowerCase() === config.unitFilter?.toLowerCase());
-    } else if (config.subjectFilter) {
-      filtered = filtered.filter(q => q.subject === config.subjectFilter);
-    } else if (config.onlyHighYield) {
-      const topNames = BIG_PRIORITY_LIST.map(p => p.name.toLowerCase());
-      filtered = filtered.filter(q => topNames.includes(q.unit.toLowerCase()) || q.priority >= 4);
+    if (config.type === 'FULL_200') {
+      // Official MECEE-BL 2027 Pattern:
+      // Zoology (40), Botany (40), Chemistry (50), Physics (50), MAT (20)
+      const zoo = allQuestions.filter(q => q.subject === 'ZOOLOGY').sort(() => 0.5 - Math.random()).slice(0, 40);
+      const bot = allQuestions.filter(q => q.subject === 'BOTANY').sort(() => 0.5 - Math.random()).slice(0, 40);
+      const chem = allQuestions.filter(q => q.subject === 'CHEMISTRY').sort(() => 0.5 - Math.random()).slice(0, 50);
+      const phys = allQuestions.filter(q => q.subject === 'PHYSICS').sort(() => 0.5 - Math.random()).slice(0, 50);
+      const mat = allQuestions.filter(q => q.subject === 'MAT').sort(() => 0.5 - Math.random()).slice(0, 20);
+
+      selected = [...zoo, ...bot, ...chem, ...phys, ...mat];
+
+      // Fallback if total selected is somehow less than 200
+      if (selected.length < 200) {
+        const remainingNeeded = 200 - selected.length;
+        const remainingPool = allQuestions.filter(q => !selected.some(s => s.id === q.id));
+        const extra = remainingPool.sort(() => 0.5 - Math.random()).slice(0, remainingNeeded);
+        selected = [...selected, ...extra];
+      }
+    } else {
+      let filtered = [...allQuestions];
+
+      if (config.unitFilter) {
+        filtered = filtered.filter(q => q.unit.toLowerCase() === config.unitFilter?.toLowerCase());
+      } else if (config.subjectFilter) {
+        filtered = filtered.filter(q => q.subject === config.subjectFilter);
+      } else if (config.onlyHighYield) {
+        const topNames = BIG_PRIORITY_LIST.map(p => p.name.toLowerCase());
+        filtered = filtered.filter(q => topNames.includes(q.unit.toLowerCase()) || q.priority >= 4);
+      }
+
+      if (filtered.length === 0) {
+        filtered = [...allQuestions];
+      }
+
+      // Shuffle and pick questions
+      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+      selected = shuffled.slice(0, Math.max(1, config.questionCount));
     }
-
-    if (filtered.length === 0) {
-      filtered = [...allQuestions];
-    }
-
-    // Shuffle and pick questions
-    const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, Math.max(1, config.questionCount));
 
     setActiveExamConfig({
       title: config.title,

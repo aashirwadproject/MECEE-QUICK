@@ -1,0 +1,9 @@
+/app
+/.gradle
+/gradle
+/.build-outputs
+/build
+*.gradle.kts
+debug.keystore*
+*.apk
+*.aab
