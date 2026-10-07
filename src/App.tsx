@@ -8,6 +8,8 @@ import { Analytics } from './components/Analytics';
 import { SyllabusExplorer } from './components/SyllabusExplorer';
 import { QuestionManager } from './components/QuestionManager';
 import { MockTestsHub } from './components/MockTestsHub';
+import { NotificationBanner } from './components/NotificationBanner';
+import { NotificationModal } from './components/NotificationModal';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
@@ -16,6 +18,7 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [examAttempts, setExamAttempts] = useState<ExamAttempt[]>([]);
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState<boolean>(false);
 
   // Active Exam state
   const [activeExamConfig, setActiveExamConfig] = useState<{
@@ -151,6 +154,18 @@ export const App: React.FC = () => {
           setReviewAttempt(null);
         }}
         isExamActive={activeExamConfig !== null}
+        onOpenNotifications={() => setIsNotificationModalOpen(true)}
+      />
+
+      {/* Push Notification Opt-in Banner (shown when no active exam) */}
+      {!activeExamConfig && !reviewAttempt && (
+        <NotificationBanner />
+      )}
+
+      {/* Notification Preferences & Test Modal */}
+      <NotificationModal 
+        isOpen={isNotificationModalOpen} 
+        onClose={() => setIsNotificationModalOpen(false)} 
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -191,6 +206,7 @@ export const App: React.FC = () => {
                 onNavigateTab={(tab) => setActiveTab(tab)}
                 allQuestions={allQuestions}
                 examAttempts={examAttempts}
+                onOpenNotifications={() => setIsNotificationModalOpen(true)}
               />
             )}
 

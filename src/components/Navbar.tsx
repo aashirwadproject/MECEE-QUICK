@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   LayoutDashboard, 
@@ -6,8 +6,11 @@ import {
   Flame, 
   BarChart3, 
   FileUp,
-  Award
+  Award,
+  Bell,
+  BellRing
 } from 'lucide-react';
+import { NotificationManager, NotificationStatus } from '../utils/notification';
 
 export type NavTab = 'dashboard' | 'mocks' | 'practice' | 'syllabus' | 'analytics' | 'import';
 
@@ -15,9 +18,21 @@ interface NavbarProps {
   activeTab: NavTab;
   onSelectTab: (tab: NavTab) => void;
   isExamActive: boolean;
+  onOpenNotifications?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamActive }) => {
+export const Navbar: React.FC<NavbarProps> = ({ 
+  activeTab, 
+  onSelectTab, 
+  isExamActive,
+  onOpenNotifications 
+}) => {
+  const [notifStatus, setNotifStatus] = useState<NotificationStatus>('default');
+
+  useEffect(() => {
+    setNotifStatus(NotificationManager.getPermission());
+  }, []);
+
   if (isExamActive) return null;
 
   return (
@@ -121,12 +136,48 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
             </button>
           </nav>
 
-          {/* Right Marking scheme badge */}
-          <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono">
-            <span className="text-emerald-400 font-bold">+1.0</span>
-            <span className="text-slate-500">/</span>
-            <span className="text-rose-400 font-bold">-0.25</span>
-            <span className="text-slate-400 hidden sm:inline ml-1 font-sans">MECEE marking</span>
+          {/* Right items: Notifications & Marking scheme badge */}
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={onOpenNotifications}
+              className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
+                notifStatus === 'granted'
+                  ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/50'
+                  : notifStatus === 'denied'
+                  ? 'bg-rose-950/40 border-rose-500/40 text-rose-300 hover:bg-rose-900/50'
+                  : 'bg-teal-500/10 border-teal-500/30 text-teal-300 hover:bg-teal-500/20'
+              }`}
+              title={
+                notifStatus === 'granted'
+                  ? 'Notifications Active'
+                  : notifStatus === 'denied'
+                  ? 'Notifications Blocked'
+                  : 'Take Notification / Allow'
+              }
+            >
+              {notifStatus === 'granted' ? (
+                <Bell className="w-4 h-4 text-emerald-400" />
+              ) : (
+                <BellRing className="w-4 h-4 text-teal-400 animate-pulse" />
+              )}
+              <span className="hidden sm:inline">
+                {notifStatus === 'granted' ? 'Alerts On' : 'Allow Alerts'}
+              </span>
+              {notifStatus !== 'granted' && (
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                </span>
+              )}
+            </button>
+
+            {/* Marking scheme badge */}
+            <div className="hidden sm:flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono">
+              <span className="text-emerald-400 font-bold">+1.0</span>
+              <span className="text-slate-500">/</span>
+              <span className="text-rose-400 font-bold">-0.25</span>
+              <span className="text-slate-400 ml-1 font-sans">MECEE marking</span>
+            </div>
           </div>
         </div>
 

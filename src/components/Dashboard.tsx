@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Play, 
   Flame, 
@@ -7,13 +7,18 @@ import {
   ArrowRight, 
   AlertTriangle, 
   FileUp, 
-  Sparkles,
+  Sparkles, 
   TrendingUp,
-  Clock
+  Clock,
+  Bell,
+  BellRing,
+  CheckCircle2,
+  Send
 } from 'lucide-react';
 import { ExamAttempt, Question, SubjectType } from '../types';
 import { SUBJECT_INFO, BIG_PRIORITY_LIST } from '../data/syllabus';
 import { MOCK_TESTS_METADATA, getMockTestQuestions } from '../data/mockTestsData';
+import { NotificationManager, NotificationStatus } from '../utils/notification';
 
 interface DashboardProps {
   onStartExam: (config: {
@@ -31,6 +36,7 @@ interface DashboardProps {
   onNavigateTab: (tab: 'mocks' | 'practice' | 'syllabus' | 'analytics' | 'import') => void;
   allQuestions: Question[];
   examAttempts: ExamAttempt[];
+  onOpenNotifications?: () => void;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
@@ -38,8 +44,32 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onOpenReview,
   onNavigateTab,
   allQuestions,
-  examAttempts
+  examAttempts,
+  onOpenNotifications
 }) => {
+  const [notifStatus, setNotifStatus] = useState<NotificationStatus>('default');
+  const [testSent, setTestSent] = useState(false);
+  const [isRequestingNotif, setIsRequestingNotif] = useState(false);
+
+  useEffect(() => {
+    setNotifStatus(NotificationManager.getPermission());
+  }, []);
+
+  const handleAllowNotifications = async () => {
+    setIsRequestingNotif(true);
+    const newStatus = await NotificationManager.requestPermission();
+    setNotifStatus(newStatus);
+    setIsRequestingNotif(false);
+  };
+
+  const handleSendTestNotification = () => {
+    NotificationManager.sendNotification(
+      'MECEE 2027 Mock Test Alert 🎯',
+      'Daily Practice Alert: 50 full mock tests and 1,780+ questions are waiting for your practice!'
+    );
+    setTestSent(true);
+    setTimeout(() => setTestSent(false), 4000);
+  };
   const totalAttempts = examAttempts.length;
   const totalQsAnswered = examAttempts.reduce((acc, a) => acc + a.attemptedCount, 0);
   const avgScore = totalAttempts > 0 
@@ -119,6 +149,86 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <Award className="w-4 h-4 text-amber-400" />
               Browse 50 Full Mocks Series
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Notification Allow / Push Alert Bar */}
+      <div className={`p-4 rounded-2xl border transition-all ${
+        notifStatus === 'granted'
+          ? 'bg-emerald-950/20 border-emerald-500/30 text-emerald-200'
+          : notifStatus === 'denied'
+          ? 'bg-rose-950/20 border-rose-500/30 text-rose-200'
+          : 'bg-gradient-to-r from-teal-950/40 via-slate-900 to-indigo-950/40 border-teal-500/30 text-teal-200'
+      }`}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className={`p-2.5 rounded-xl border ${
+              notifStatus === 'granted'
+                ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
+                : notifStatus === 'denied'
+                ? 'bg-rose-500/20 border-rose-500/40 text-rose-400'
+                : 'bg-teal-500/20 border-teal-500/40 text-teal-300'
+            }`}>
+              {notifStatus === 'granted' ? (
+                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              ) : (
+                <BellRing className="w-5 h-5 animate-pulse text-teal-400" />
+              )}
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-sm text-white">
+                  {notifStatus === 'granted'
+                    ? 'Push Notifications Active 🔔'
+                    : notifStatus === 'denied'
+                    ? 'Push Notifications Blocked by Browser'
+                    : 'Get MECEE 2027 Mock Alerts & Daily MCQs'}
+                </h3>
+                {notifStatus === 'granted' && (
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold">
+                    Subscribed
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-300 mt-0.5">
+                {notifStatus === 'granted'
+                  ? 'You will receive reminders for new mock tests, syllabus tips, and official CEE notices.'
+                  : notifStatus === 'denied'
+                  ? 'Unblock notifications in your browser settings (URL bar icon -> Permissions -> Allow) to receive alerts.'
+                  : 'Enable instant push alerts powered by Webpushr for new tests, high-yield questions, and countdowns.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5 self-end sm:self-auto shrink-0">
+            {notifStatus !== 'granted' ? (
+              <button
+                onClick={handleAllowNotifications}
+                disabled={isRequestingNotif}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 active:scale-95 text-slate-950 font-bold text-xs shadow-md shadow-teal-500/20 transition-all"
+              >
+                <Bell className="w-4 h-4 fill-current" />
+                {isRequestingNotif ? 'Requesting...' : 'Take Notification / Allow'}
+              </button>
+            ) : (
+              <button
+                onClick={handleSendTestNotification}
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors shadow-sm"
+              >
+                <Send className="w-3.5 h-3.5" />
+                {testSent ? 'Alert Sent! 🚀' : 'Send Test Alert'}
+              </button>
+            )}
+
+            {onOpenNotifications && (
+              <button
+                onClick={onOpenNotifications}
+                className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-colors"
+              >
+                Settings
+              </button>
+            )}
           </div>
         </div>
       </div>
