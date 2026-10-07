@@ -9,7 +9,8 @@ import {
   FileUp, 
   Sparkles,
   TrendingUp,
-  Clock
+  Clock,
+  Trophy
 } from 'lucide-react';
 import { ExamAttempt, Question, SubjectType } from '../types';
 import { SUBJECT_INFO, BIG_PRIORITY_LIST } from '../data/syllabus';
@@ -27,14 +28,16 @@ interface DashboardProps {
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
   }) => void;
+  onRequestDailyMock: () => void;
   onOpenReview: (attempt: ExamAttempt) => void;
-  onNavigateTab: (tab: 'mocks' | 'practice' | 'syllabus' | 'analytics' | 'import') => void;
+  onNavigateTab: (tab: 'mocks' | 'leaderboard' | 'practice' | 'syllabus' | 'analytics' | 'import') => void;
   allQuestions: Question[];
   examAttempts: ExamAttempt[];
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
   onStartExam,
+  onRequestDailyMock,
   onOpenReview,
   onNavigateTab,
   allQuestions,
@@ -61,11 +64,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
             
             <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Full 200-Mark MECEE Grand Mock
+              Today's MECEE Daily Mock Test (200 Marks)
             </h1>
             
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Complete entrance exam simulation: <span className="text-rose-400 font-semibold">Zoology (40)</span>, <span className="text-emerald-400 font-semibold">Botany (40)</span>, <span className="text-purple-400 font-semibold">Chemistry (50)</span>, <span className="text-sky-400 font-semibold">Physics (50)</span>, and <span className="text-amber-400 font-semibold">MAT (20)</span>. Real +1.0 / -0.25 negative scoring.
+              Official Medical Education Commission daily simulation with live leaderboard rankings: <span className="text-rose-400 font-semibold">Zoology (40)</span>, <span className="text-emerald-400 font-semibold">Botany (40)</span>, <span className="text-purple-400 font-semibold">Chemistry (50)</span>, <span className="text-sky-400 font-semibold">Physics (50)</span>, and <span className="text-amber-400 font-semibold">MAT (20)</span>. Real +1.0 / -0.25 negative scoring.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-slate-400 font-medium">
@@ -86,35 +89,24 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[220px]">
             <button
-              onClick={() => onStartExam({
-                title: 'Full MECEE Grand Mock 200',
-                type: 'FULL_200',
-                questionCount: 200,
-                durationMinutes: 180
-              })}
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm shadow-lg shadow-teal-500/20 transition-all hover:scale-[1.02]"
+              onClick={onRequestDailyMock}
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-teal-500/20 transition-all hover:scale-[1.02]"
             >
               <Play className="w-4 h-4 fill-current" />
-              Start 200-Mark Mock
+              Start Daily Mock
             </button>
 
             <button
-              onClick={() => onStartExam({
-                title: 'High-Yield 50-Q Sprint',
-                type: 'HIGH_YIELD',
-                questionCount: 50,
-                durationMinutes: 45,
-                onlyHighYield: true
-              })}
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-colors"
+              onClick={() => onNavigateTab('leaderboard')}
+              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 font-bold text-sm border border-amber-500/40 transition-colors"
             >
-              <Flame className="w-4 h-4 text-orange-400" />
-              High-Yield 50 Sprint
+              <Trophy className="w-4 h-4 text-amber-400" />
+              Daily Leaderboard & Ranks
             </button>
 
             <button
               onClick={() => onNavigateTab('mocks')}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-teal-500/20 hover:from-amber-500/30 hover:to-teal-500/30 text-amber-300 font-bold text-xs border border-amber-500/40 transition-colors"
+              className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700 transition-colors"
             >
               <Award className="w-4 h-4 text-amber-400" />
               Browse 50 Full Mocks Series

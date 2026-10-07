@@ -6,10 +6,11 @@ import {
   Flame, 
   BarChart3, 
   FileUp,
-  Award
+  Award,
+  Trophy
 } from 'lucide-react';
 
-export type NavTab = 'dashboard' | 'mocks' | 'practice' | 'syllabus' | 'analytics' | 'import';
+export type NavTab = 'dashboard' | 'mocks' | 'leaderboard' | 'practice' | 'syllabus' | 'analytics' | 'import';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -69,6 +70,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
               <span>50 Full Mocks</span>
               <span className="bg-amber-400 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
                 50
+              </span>
+            </button>
+
+            <button
+              onClick={() => onSelectTab('leaderboard')}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-colors relative ${
+                activeTab === 'leaderboard' 
+                  ? 'bg-teal-500 text-white shadow-sm' 
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <Trophy className="w-4 h-4 text-amber-400" />
+              <span>Daily Leaderboard</span>
+              <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
+                Live
               </span>
             </button>
 
@@ -149,6 +165,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab, isExamAc
           >
             <Award className="w-5 h-5 mb-0.5 text-amber-400" />
             50 Mocks
+          </button>
+          <button
+            onClick={() => onSelectTab('leaderboard')}
+            className={`flex flex-col items-center py-1 font-medium ${
+              activeTab === 'leaderboard' ? 'text-amber-400' : 'text-slate-400'
+            }`}
+          >
+            <Trophy className="w-5 h-5 mb-0.5 text-amber-400" />
+            Ranks
           </button>
           <button
             onClick={() => onSelectTab('practice')}

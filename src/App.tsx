@@ -8,6 +8,8 @@ import { Analytics } from './components/Analytics';
 import { SyllabusExplorer } from './components/SyllabusExplorer';
 import { QuestionManager } from './components/QuestionManager';
 import { MockTestsHub } from './components/MockTestsHub';
+import { DailyLeaderboard } from './components/DailyLeaderboard';
+import { CandidateNameModal } from './components/CandidateNameModal';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
@@ -16,6 +18,16 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [examAttempts, setExamAttempts] = useState<ExamAttempt[]>([]);
+  const [candidateName, setCandidateName] = useState<string>('');
+  const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
+  const [userDailyScore, setUserDailyScore] = useState<{
+    score: number;
+    correct: number;
+    incorrect: number;
+    unattempted: number;
+    timeSpentSeconds: number;
+    accuracy: number;
+  } | null>(null);
 
   // Active Exam state
   const [activeExamConfig, setActiveExamConfig] = useState<{
@@ -36,7 +48,26 @@ export const App: React.FC = () => {
 
     const loadedAttempts = Storage.getExamAttempts();
     setExamAttempts(loadedAttempts);
+
+    setCandidateName(Storage.getCandidateName());
+    setUserDailyScore(Storage.getDailyMockScore());
   }, []);
+
+  const handleRequestDailyMock = () => {
+    setIsNameModalOpen(true);
+  };
+
+  const handleConfirmNameAndStartMock = (name: string) => {
+    Storage.saveCandidateName(name);
+    setCandidateName(name);
+    setIsNameModalOpen(false);
+    handleStartExam({
+      title: "Today's MECEE Daily Mock 200",
+      type: 'FULL_200',
+      questionCount: 200,
+      durationMinutes: 180
+    });
+  };
 
   const handleStartExam = (config: {
     title: string;
@@ -105,6 +136,21 @@ export const App: React.FC = () => {
   const handleFinishExam = (attempt: ExamAttempt) => {
     Storage.saveExamAttempt(attempt);
     setExamAttempts(prev => [attempt, ...prev]);
+
+    // If it's a 200-question or Daily Mock, update today's leaderboard score
+    if (attempt.totalQuestions === 200 || attempt.examType === 'FULL_200') {
+      const dailyScoreData = {
+        score: attempt.score,
+        correct: attempt.correctCount,
+        incorrect: attempt.incorrectCount,
+        unattempted: attempt.unattemptedCount,
+        timeSpentSeconds: attempt.timeSpentSeconds,
+        accuracy: attempt.accuracyPercentage
+      };
+      Storage.saveDailyMockScore(dailyScoreData);
+      setUserDailyScore(dailyScoreData);
+    }
+
     setActiveExamConfig(null);
     setReviewAttempt(attempt);
   };
@@ -187,6 +233,7 @@ export const App: React.FC = () => {
             {activeTab === 'dashboard' && (
               <Dashboard
                 onStartExam={handleStartExam}
+                onRequestDailyMock={handleRequestDailyMock}
                 onOpenReview={(att) => setReviewAttempt(att)}
                 onNavigateTab={(tab) => setActiveTab(tab)}
                 allQuestions={allQuestions}
@@ -201,6 +248,18 @@ export const App: React.FC = () => {
                 onStartExam={handleStartExam}
                 onOpenReview={(att) => setReviewAttempt(att)}
                 onBack={() => setActiveTab('dashboard')}
+              />
+            )}
+
+            {activeTab === 'leaderboard' && (
+              <DailyLeaderboard
+                candidateName={candidateName}
+                onUpdateCandidateName={(name) => {
+                  Storage.saveCandidateName(name);
+                  setCandidateName(name);
+                }}
+                onStartDailyMock={handleRequestDailyMock}
+                userExamScore={userDailyScore}
               />
             )}
 
@@ -240,6 +299,13 @@ export const App: React.FC = () => {
           </>
         )}
       </main>
+
+      <CandidateNameModal
+        initialName={candidateName}
+        isOpen={isNameModalOpen}
+        onClose={() => setIsNameModalOpen(false)}
+        onSubmit={handleConfirmNameAndStartMock}
+      />
     </div>
   );
 };

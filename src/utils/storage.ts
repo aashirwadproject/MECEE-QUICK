@@ -4,10 +4,55 @@ import { SEED_QUESTIONS } from '../data/seedQuestions';
 const STORAGE_KEYS = {
   CUSTOM_QUESTIONS: 'mecee_custom_questions',
   BOOKMARKS: 'mecee_bookmarked_ids',
-  ATTEMPTS: 'mecee_exam_attempts'
+  ATTEMPTS: 'mecee_exam_attempts',
+  CANDIDATE_NAME: 'mecee_candidate_name',
+  DAILY_MOCK_SCORE: 'mecee_daily_mock_score'
 };
 
 export const Storage = {
+  getCandidateName(): string {
+    return localStorage.getItem(STORAGE_KEYS.CANDIDATE_NAME) || '';
+  },
+
+  saveCandidateName(name: string) {
+    localStorage.setItem(STORAGE_KEYS.CANDIDATE_NAME, name.trim());
+  },
+
+  getDailyMockScore(): {
+    date: string;
+    score: number;
+    correct: number;
+    incorrect: number;
+    unattempted: number;
+    timeSpentSeconds: number;
+    accuracy: number;
+  } | null {
+    const raw = localStorage.getItem(STORAGE_KEYS.DAILY_MOCK_SCORE);
+    if (!raw) return null;
+    try {
+      const parsed = JSON.parse(raw);
+      const today = new Date().toISOString().split('T')[0];
+      if (parsed.date === today) return parsed;
+      return null;
+    } catch {
+      return null;
+    }
+  },
+
+  saveDailyMockScore(data: {
+    score: number;
+    correct: number;
+    incorrect: number;
+    unattempted: number;
+    timeSpentSeconds: number;
+    accuracy: number;
+  }) {
+    const today = new Date().toISOString().split('T')[0];
+    localStorage.setItem(
+      STORAGE_KEYS.DAILY_MOCK_SCORE,
+      JSON.stringify({ ...data, date: today })
+    );
+  },
   getAllQuestions(): Question[] {
     const raw = localStorage.getItem(STORAGE_KEYS.CUSTOM_QUESTIONS);
     const custom: Question[] = raw ? JSON.parse(raw) : [];
