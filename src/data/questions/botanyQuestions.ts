@@ -10,11 +10,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Biodiversity',
     priority: 5,
     questionText: 'Which characteristic feature of Gymnosperms distinguishes them from Angiosperms?',
-    optionA: 'Presence of vessels in xylem',
-    optionB: 'Naked seeds not enclosed within an ovary wall / fruit',
+    optionA: 'Naked seeds not enclosed within an ovary wall / fruit',
+    optionB: 'Presence of vessels in xylem',
     optionC: 'Triploid endosperm formed after fertilization',
     optionD: 'Presence of flowers with sepals and petals',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Gymnosperms (gymnos = naked, sperma = seed) possess naked ovules borne directly on megasporophylls without an enclosing ovary wall; thus, after fertilization, seeds remain uncovered without true fruit formation.'
   },
   {
@@ -37,10 +37,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Coralloid roots of Cycas exhibit a symbiotic association with which nitrogen-fixing cyanobacteria?',
     optionA: 'Rhizobium leguminosarum',
-    optionB: 'Anabaena cycadae and Nostoc punctiforme',
-    optionC: 'Spirulina and Chlorella',
+    optionB: 'Spirulina and Chlorella',
+    optionC: 'Anabaena cycadae and Nostoc punctiforme',
     optionD: 'Clostridium pasteurianum',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Dichotomously branched apogeotropic coralloid roots of Cycas contain a distinct blue-green algal zone in the middle cortex containing symbiotic nitrogen-fixing cyanobacteria (Anabaena cycadae and Nostoc punctiforme).'
   },
   {
@@ -50,10 +50,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Puccinia graminis tritici is an obligate heteroecious macrocyclic rust fungus. Its primary and alternate hosts are:',
     optionA: 'Wheat and Mustard',
-    optionB: 'Wheat (primary) and Barberry (alternate)',
+    optionB: 'Wheat and Maize',
     optionC: 'Barberry (primary) and Wheat (alternate)',
-    optionD: 'Wheat and Maize',
-    correctOptionIndex: 1,
+    optionD: 'Wheat (primary) and Barberry (alternate)',
+    correctOptionIndex: 3,
     explanation: 'Puccinia graminis produces urediniospores and teliospores on its primary cereal host (Wheat / Triticum aestivum), while pycniospores and aeciospores develop on its alternate barberry host (Berberis vulgaris).'
   },
   {
@@ -62,11 +62,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Biodiversity',
     priority: 5,
     questionText: 'In Bryophytes (such as Funaria and Marchantia), the dominant independent photosynthesizing generation is the:',
-    optionA: 'Sporophyte',
-    optionB: 'Gametophyte',
+    optionA: 'Gametophyte',
+    optionB: 'Sporophyte',
     optionC: 'Protonema only',
     optionD: 'Capsule',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Bryophytes are unique among land plants in possessing a dominant, free-living, haploid gametophyte phase. The diploid sporophyte is short-lived, nutritionally dependent, and physically attached to the gametophyte.'
   },
   {
@@ -89,10 +89,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Which family of Angiosperms is characterized by bicarpellary syncarpous superior ovary with an obliquely placed septum and swollen axile placenta?',
     optionA: 'Fabaceae',
-    optionB: 'Solanaceae',
-    optionC: 'Poaceae',
+    optionB: 'Poaceae',
+    optionC: 'Solanaceae',
     optionD: 'Brassicaceae',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Solanaceae (potato/nightshade family) is diagnostically recognized by bicarpellary, syncarpous, superior ovaries with an obliquely oriented septum, swollen axile placenta bearing numerous ovules, and persistent calyx.'
   },
 
@@ -106,10 +106,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'In a dihybrid cross involving independent assortment, what is the expected phenotypic ratio among F2 progeny?',
     optionA: '3 : 1',
-    optionB: '9 : 3 : 3 : 1',
+    optionB: '9 : 7',
     optionC: '1 : 2 : 1',
-    optionD: '9 : 7',
-    correctOptionIndex: 1,
+    optionD: '9 : 3 : 3 : 1',
+    correctOptionIndex: 3,
     explanation: 'According to Mendel Law of Independent Assortment, two pairs of alleles segregate independently during gametogenesis, resulting in a classical 9:3:3:1 phenotypic ratio (9 both dominant, 3 first dominant/second recessive, 3 first recessive/second dominant, 1 double recessive).'
   },
   {
@@ -118,11 +118,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Genetics',
     priority: 4,
     questionText: 'Incomplete dominance in Mirabilis jalapa (four o clock plant) produces pink flowers upon crossing red (RR) and white (rr). The F2 phenotypic and genotypic ratio is:',
-    optionA: '3 : 1 for both',
-    optionB: '1 : 2 : 1 for both phenotypic and genotypic ratios',
+    optionA: '1 : 2 : 1 for both phenotypic and genotypic ratios',
+    optionB: '3 : 1 for both',
     optionC: '9 : 3 : 3 : 1',
     optionD: '2 : 1 : 1',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'In incomplete dominance, neither allele is completely dominant over the other. The F1 heterozygote (Rr) is intermediate (pink). In F2, genotypes 1 RR : 2 Rr : 1 rr correspond precisely to 1 Red : 2 Pink : 1 White phenotypes (1:2:1).'
   },
   {
@@ -145,10 +145,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'The genetic code is degenerate because:',
     optionA: 'One codon codes for more than one amino acid',
-    optionB: 'More than one codon can specify the same amino acid',
-    optionC: 'Codons overlap during translation',
+    optionB: 'Codons overlap during translation',
+    optionC: 'More than one codon can specify the same amino acid',
     optionD: 'The third nucleotide is always identical',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Degeneracy of the genetic code refers to the fact that 61 sense codons specify 20 standard amino acids; consequently, most amino acids are coded by multiple synonymous codons (often differing at the wobble 3rd base).'
   },
 
@@ -162,10 +162,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'The primary CO2 acceptor in C4 plants (such as Zea mays and sugarcane) located in mesophyll chloroplasts is:',
     optionA: 'Ribulose-1,5-bisphosphate (RuBP)',
-    optionB: 'Phosphoenolpyruvate (PEP)',
+    optionB: '3-Phosphoglycerate (3-PGA)',
     optionC: 'Oxaloacetate (OAA)',
-    optionD: '3-Phosphoglycerate (3-PGA)',
-    correctOptionIndex: 1,
+    optionD: 'Phosphoenolpyruvate (PEP)',
+    correctOptionIndex: 3,
     explanation: 'In C4 plants, PEP carboxylase fixes atmospheric CO2 onto 3-carbon phosphoenolpyruvate (PEP) in mesophyll cells to form the initial 4-carbon acid oxaloacetate (OAA). RuBP acts as the CO2 acceptor inside bundle sheath chloroplasts where Rubisco operates.'
   },
   {
@@ -174,11 +174,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Plant Physiology',
     priority: 4,
     questionText: 'Kranz anatomy, characterized by wreath-like rings of chloroplast-dense bundle sheath cells, is an anatomical adaptation found in:',
-    optionA: 'C3 plants',
-    optionB: 'C4 plants',
+    optionA: 'C4 plants',
+    optionB: 'C3 plants',
     optionC: 'CAM plants',
     optionD: 'Submerged hydrophytes',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Kranz anatomy is unique to C4 plants (maize, sorghum, sugarcane). Large bundle sheath cells with agranal chloroplasts encircle vascular bundles to concentrate CO2 around Rubisco, effectively abolishing photorespiration.'
   },
   {
@@ -201,10 +201,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'Which phytohormone is gaseous in nature and promotes apical senescence, abscission, and rapid climacteric fruit ripening?',
     optionA: 'Indole-3-acetic acid (IAA)',
-    optionB: 'Ethylene (C2H4)',
-    optionC: 'Gibberellic acid (GA3)',
+    optionB: 'Gibberellic acid (GA3)',
+    optionC: 'Ethylene (C2H4)',
     optionD: 'Abscisic acid (ABA)',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Ethylene is the only volatile gaseous plant hormone. It stimulates climacteric fruit ripening (by inducing amylases, pectinases, and cellular respiration), leaf and flower senescence, and abscission zone formation.'
   },
 
@@ -218,10 +218,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'According to the Singer and Nicolson Fluid Mosaic Model (1972), the biological plasma membrane consists of:',
     optionA: 'A continuous outer protein layer and inner lipid core',
-    optionB: 'A quasi-fluid phospholipid bilayer in which globular proteins are embedded like icebergs in a lipid sea',
+    optionB: 'Static rigid glycoprotein sheets',
     optionC: 'Alternating sandwiches of lipid and cellulose',
-    optionD: 'Static rigid glycoprotein sheets',
-    correctOptionIndex: 1,
+    optionD: 'A quasi-fluid phospholipid bilayer in which globular proteins are embedded like icebergs in a lipid sea',
+    correctOptionIndex: 3,
     explanation: 'The Fluid Mosaic Model depicts the membrane as a dynamic, viscous two-dimensional liquid consisting of an amphipathic phospholipid bilayer with peripheral and integral (transmembrane) proteins capable of lateral diffusion.'
   },
   {
@@ -230,11 +230,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Cell Biology',
     priority: 4,
     questionText: 'Recombination nodules and crossing-over between non-sister chromatids of homologous chromosomes take place during which sub-stage of Prophase I of Meiosis?',
-    optionA: 'Leptotene',
-    optionB: 'Pachytene',
+    optionA: 'Pachytene',
+    optionB: 'Leptotene',
     optionC: 'Diplotene',
     optionD: 'Diakinesis',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'During Pachytene, the synaptonemal complex is fully formed between paired homologous bivalents, and the enzyme recombinase mediates reciprocal exchange of non-sister chromatid genetic material (crossing over).'
   },
   {
@@ -261,10 +261,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'An inverted ecological pyramid of biomass is characteristically observed in which ecosystem?',
     optionA: 'Temperate grassland',
-    optionB: 'Open ocean / aquatic marine ecosystem',
-    optionC: 'Tropical rainforest',
+    optionB: 'Tropical rainforest',
+    optionC: 'Open ocean / aquatic marine ecosystem',
     optionD: 'Desert shrubland',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'In open aquatic marine ecosystems, microscopic phytoplankton have extremely rapid turnover rates and low standing biomass at any single moment, yet support a far greater standing crop of zooplankton and predatory fish, resulting in an inverted biomass pyramid.'
   },
   {
@@ -274,10 +274,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'Rhizophora and other mangrove halophytes growing in salt marshes exhibit which specialized breathing root adaptation?',
     optionA: 'Haustoria',
-    optionB: 'Pneumatophores (respiratory roots with lenticels)',
+    optionB: 'Epiphytic velamen',
     optionC: 'Stilt roots only',
-    optionD: 'Epiphytic velamen',
-    correctOptionIndex: 1,
+    optionD: 'Pneumatophores (respiratory roots with lenticels)',
+    correctOptionIndex: 3,
     explanation: 'Pneumatophores are negatively geotropic roots that grow vertically upward out of waterlogged, anaerobic salt-marsh soils, possessing open lenticels/pneumathodes for atmospheric oxygen exchange.'
   },
 
@@ -290,11 +290,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Plant Anatomy',
     priority: 2,
     questionText: 'Casparian strips containing suberin and lignin are characteristic anatomical features found in the radial and transverse walls of:',
-    optionA: 'Hypodermis',
-    optionB: 'Endodermis of roots',
+    optionA: 'Endodermis of roots',
+    optionB: 'Hypodermis',
     optionC: 'Pericycle',
     optionD: 'Pith ray parenchyma',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Casparian strips in root endodermal cells block the apoplastic diffusion pathway of water and dissolved minerals, forcing radial water movement through the selectively permeable symplast into the vascular cylinder.'
   },
   {
@@ -321,10 +321,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 2,
     questionText: 'Yarsagumba, an invaluable medicinal entity collected in the alpine Himalayan meadows of Nepal, represents:',
     optionA: 'A subterranean angiospermic root tuber',
-    optionB: 'An entomopathogenic ascomycete fungus (Ophiocordyceps sinensis) parasitizing a ghost moth caterpillar (Thitarodes)',
-    optionC: 'A lichenized symbiotic green alga',
+    optionB: 'A lichenized symbiotic green alga',
+    optionC: 'An entomopathogenic ascomycete fungus (Ophiocordyceps sinensis) parasitizing a ghost moth caterpillar (Thitarodes)',
     optionD: 'A high-altitude gymnosperm cone',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Yarsagumba (Cordyceps / Ophiocordyceps sinensis) is a parasitic fungus whose ascospores infect subterraneous caterpillars of the ghost moth (genus Thitarodes) in Himalayan alpine grasslands (3,000–5,000 m). The fungal stroma emerges from the caterpillar head in spring.'
   },
   {
@@ -334,10 +334,10 @@ export const BOTANY_QUESTIONS: Question[] = [
     priority: 2,
     questionText: 'The capability of an isolated somatic plant cell to regenerate into an entire functional fertile plant under sterile in vitro tissue culture conditions is defined as:',
     optionA: 'Pluripotency',
-    optionB: 'Cellular Totipotency',
+    optionB: 'Somatic embryogenesis',
     optionC: 'Micropropagation',
-    optionD: 'Somatic embryogenesis',
-    correctOptionIndex: 1,
+    optionD: 'Cellular Totipotency',
+    correctOptionIndex: 3,
     explanation: 'Cellular totipotency, demonstrated by Haberlandt and proved by Steward with carrot explants, is the intrinsic capacity of any nucleated plant vegetative cell to regenerate into a complete organism when supplied with appropriate nutrients and auxin/cytokinin ratios.'
   },
 
@@ -350,11 +350,11 @@ export const BOTANY_QUESTIONS: Question[] = [
     unit: 'Basic Components of Life',
     priority: 1,
     questionText: 'The Michaelis constant (Km) of an enzyme represents:',
-    optionA: 'The maximum velocity (Vmax) of the reaction',
-    optionB: 'The substrate concentration at which the reaction velocity reaches half of Vmax',
+    optionA: 'The substrate concentration at which the reaction velocity reaches half of Vmax',
+    optionB: 'The maximum velocity (Vmax) of the reaction',
     optionC: 'The turnover number of enzyme active sites',
     optionD: 'The activation energy in kilojoules per mole',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Km (Michaelis constant) is defined as the substrate concentration [S] at which initial reaction velocity v = 1/2 Vmax. A low Km indicates high enzyme affinity for its substrate, whereas a high Km indicates low substrate affinity.'
   },
 

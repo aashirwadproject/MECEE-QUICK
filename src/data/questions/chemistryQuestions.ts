@@ -50,10 +50,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'What is the pH of a buffer solution prepared by mixing equal volumes of 0.1 M CH3COOH (pKa = 4.74) and 0.1 M CH3COONa?',
     optionA: '3.74',
-    optionB: '4.74',
+    optionB: '7.00',
     optionC: '5.74',
-    optionD: '7.00',
-    correctOptionIndex: 1,
+    optionD: '4.74',
+    correctOptionIndex: 3,
     explanation: 'Henderson-Hasselbalch equation: pH = pKa + log([Conjugate Base] / [Acid]). When [CH3COO-] = [CH3COOH], the ratio is 1, and log(1) = 0; hence pH = pKa = 4.74.'
   },
   {
@@ -62,11 +62,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Physical Chemistry',
     priority: 5,
     questionText: 'For a first-order chemical reaction, if the rate constant k is 0.0693 min^-1, what is the half-life (t1/2) of the reaction?',
-    optionA: '1 min',
-    optionB: '10 min',
+    optionA: '10 min',
+    optionB: '1 min',
     optionC: '6.93 min',
     optionD: '100 min',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'For a first-order reaction, t1/2 = ln(2) / k = 0.693 / k. Substituting k = 0.0693 min^-1 gives t1/2 = 0.693 / 0.0693 = 10 minutes.'
   },
   {
@@ -76,10 +76,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'How many coulombs of electricity are required to deposit 1 mole of aluminium from molten Al2O3 via electrolysis? (F = 96,500 C)',
     optionA: '96,500 C',
-    optionB: '193,000 C',
-    optionC: '289,500 C',
+    optionB: '289,500 C',
+    optionC: '193,000 C',
     optionD: '48,250 C',
-    correctOptionIndex: 2,
+    correctOptionIndex: 1,
     explanation: 'Al^3+ + 3e^- -> Al(s). Reduction of 1 mol of Al^3+ requires 3 moles of electrons. Q = n * F = 3 * 96,500 C = 289,500 C (3 Faradays).'
   },
   {
@@ -89,10 +89,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Which colligative property is most suitably employed for determining the molecular weight of high polymers, proteins, and biomolecules?',
     optionA: 'Relative lowering of vapor pressure',
-    optionB: 'Osmotic pressure (π)',
-    optionC: 'Elevation in boiling point',
+    optionB: 'Elevation in boiling point',
+    optionC: 'Osmotic pressure (π)',
     optionD: 'Depression in freezing point',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Osmotic pressure (π = CRT) yields substantial, easily measurable pressure readings even at room temperature with extremely dilute polymer solutions, preventing thermal denaturation of labile macromolecules.'
   },
 
@@ -106,10 +106,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'When phenol is heated with chloroform in the presence of aqueous NaOH, followed by acidification, salicylaldehyde is formed. This reaction is known as:',
     optionA: 'Kolbe reaction',
-    optionB: 'Reimer-Tiemann reaction',
+    optionB: 'Cannizzaro reaction',
     optionC: 'Friedel-Crafts acylation',
-    optionD: 'Cannizzaro reaction',
-    correctOptionIndex: 1,
+    optionD: 'Reimer-Tiemann reaction',
+    correctOptionIndex: 3,
     explanation: 'The Reimer-Tiemann reaction involves electrophilic attack of dichlorocarbene (:CCl2) on phenoxide at the ortho position, producing an ortho-formyl derivative (salicylaldehyde).'
   },
   {
@@ -118,11 +118,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Organic Chemistry',
     priority: 5,
     questionText: 'Which of the following organic compounds will NOT undergo the Cannizzaro reaction when treated with concentrated alkali?',
-    optionA: 'Formaldehyde (HCHO)',
+    optionA: 'Acetaldehyde (CH3CHO)',
     optionB: 'Benzaldehyde (C6H5CHO)',
-    optionC: 'Acetaldehyde (CH3CHO)',
+    optionC: 'Formaldehyde (HCHO)',
     optionD: 'Trimethylacetaldehyde (pivaldehyde)',
-    correctOptionIndex: 2,
+    correctOptionIndex: 0,
     explanation: 'The Cannizzaro reaction (disproportionation into alcohol and carboxylate) is given only by aldehydes lacking alpha-hydrogens (HCHO, C6H5CHO, (CH3)3CCHO). Acetaldehyde contains three alpha-hydrogens and instead undergoes Aldol condensation.'
   },
   {
@@ -145,10 +145,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'In an SN2 nucleophilic substitution reaction on an asymmetric chiral alkyl halide, the stereochemical outcome is:',
     optionA: 'Complete retention of configuration',
-    optionB: 'Complete inversion of configuration (Walden inversion)',
-    optionC: 'Racemization (50% retention, 50% inversion)',
+    optionB: 'Racemization (50% retention, 50% inversion)',
+    optionC: 'Complete inversion of configuration (Walden inversion)',
     optionD: 'Formation of meso compound',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'SN2 proceeds via a concerted backside nucleophilic attack on the carbon atom opposite to the leaving group through a trigonal bipyramidal transition state, causing complete 100% Walden inversion of spatial configuration.'
   },
   {
@@ -157,11 +157,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Organic Chemistry',
     priority: 5,
     questionText: 'Lucas reagent, used to distinguish primary, secondary, and tertiary alcohols based on turbidity time, consists of:',
-    optionA: 'Conc. HCl and anhydrous ZnCl2',
+    optionA: 'Bromine in carbon tetrachloride',
     optionB: 'Conc. HNO3 and conc. H2SO4',
     optionC: 'Alkaline KMnO4 solution',
-    optionD: 'Bromine in carbon tetrachloride',
-    correctOptionIndex: 0,
+    optionD: 'Conc. HCl and anhydrous ZnCl2',
+    correctOptionIndex: 3,
     explanation: 'Lucas reagent is equimolar anhydrous ZnCl2 in concentrated HCl. 3° alcohols produce instant turbidity of insoluble alkyl chloride; 2° alcohols produce turbidity within 5 minutes; 1° alcohols produce no turbidity at room temperature.'
   },
 
@@ -174,11 +174,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Inorganic Chemistry',
     priority: 4,
     questionText: 'According to VSEPR theory, the molecular geometry and hybridization of Xenon tetrafluoride (XeF4) are:',
-    optionA: 'Tetrahedral, sp3',
-    optionB: 'Square planar, sp3d2',
+    optionA: 'Square planar, sp3d2',
+    optionB: 'Tetrahedral, sp3',
     optionC: 'Trigonal bipyramidal, sp3d',
     optionD: 'See-saw, sp3d',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Xe has 8 valence electrons. With 4 bond pairs to F and 2 lone pairs, total steric number is 6 (sp3d2 hybridization, octahedral electron geometry). The two lone pairs occupy trans axial positions to minimize repulsions, producing a square planar molecular shape.'
   },
   {
@@ -187,11 +187,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Inorganic Chemistry',
     priority: 4,
     questionText: 'Lanthanoid contraction is primarily caused by which phenomenon?',
-    optionA: 'Imperfect shielding of 4f electrons due to their diffuse, spatial shapes',
-    optionB: 'High shielding ability of 5d orbitals',
+    optionA: 'High shielding ability of 5d orbitals',
+    optionB: 'Imperfect shielding of 4f electrons due to their diffuse, spatial shapes',
     optionC: 'Decreasing nuclear charge across the series',
     optionD: 'Presence of relativistic inert pair effect',
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'The 4f electrons have diffuse spatial geometry and poor shielding capability. As nuclear charge increases by one unit with each successive lanthanoid element, the effective nuclear charge Z_eff increases markedly, pulling the outer electron shells closer and causing a steady contraction in atomic and ionic radii.'
   },
   {
@@ -201,10 +201,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'Which of the following complex ions is diamagnetic (possesses zero unpaired d-electrons)?',
     optionA: '[Fe(H2O)6]^2+',
-    optionB: '[Fe(CN)6]^4-',
-    optionC: '[FeF6]^3-',
+    optionB: '[FeF6]^3-',
+    optionC: '[Fe(CN)6]^4-',
     optionD: '[Mn(H2O)6]^2+',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'In [Fe(CN)6]^4-, iron is in Fe^2+ (d6) state. Cyanide (CN-) is a strong-field ligand that causes low-spin pairing in the t2g orbitals: t2g^6 eg^0. All 6 d-electrons are paired, rendering the complex completely diamagnetic.'
   },
 
@@ -218,10 +218,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 2,
     questionText: 'Portland cement contains gypsum (CaSO4 · 2H2O, approx. 2–3%) added during final clinker grinding for which specific purpose?',
     optionA: 'To accelerate early hardening',
-    optionB: 'To retard the initial setting time of cement',
+    optionB: 'To increase the heat of hydration',
     optionC: 'To impart white color to concrete',
-    optionD: 'To increase the heat of hydration',
-    correctOptionIndex: 1,
+    optionD: 'To retard the initial setting time of cement',
+    correctOptionIndex: 3,
     explanation: 'Gypsum reacts with tricalcium aluminate (C3A) to form insoluble calcium sulfoaluminate (ettringite), which retards flash setting and extends the workable setting time so concrete can be poured and shaped.'
   },
   {
@@ -230,11 +230,11 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     unit: 'Applied Chemistry',
     priority: 2,
     questionText: 'Aspirin (acetylsalicylic acid), a widely used non-steroidal anti-inflammatory and antipyretic drug, is synthesized by acetylating:',
-    optionA: 'Benzoic acid',
-    optionB: 'Salicylic acid with acetic anhydride in presence of acid catalyst',
+    optionA: 'Salicylic acid with acetic anhydride in presence of acid catalyst',
+    optionB: 'Benzoic acid',
     optionC: 'Methyl salicylate with methanol',
     optionD: 'Phthalic acid',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Salicylic acid (2-hydroxybenzoic acid) reacts with acetic anhydride ((CH3CO)2O) in the presence of concentrated sulfuric acid catalyst to acetylate the phenolic -OH group, yielding 2-acetoxybenzoic acid (aspirin).'
   },
 
@@ -261,10 +261,10 @@ export const CHEMISTRY_QUESTIONS: Question[] = [
     priority: 2,
     questionText: 'In thin layer chromatography (TLC), the retardation factor (Rf value) is defined as:',
     optionA: 'Distance moved by solvent front divided by distance moved by solute spot',
-    optionB: 'Distance traveled by solute spot divided by distance traveled by the mobile phase solvent front',
-    optionC: 'Time taken for elution through the stationary column',
+    optionB: 'Time taken for elution through the stationary column',
+    optionC: 'Distance traveled by solute spot divided by distance traveled by the mobile phase solvent front',
     optionD: 'Ratio of molecular weight to charge',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Rf = (Distance traveled by substance from origin) / (Distance traveled by solvent front from origin). Because the solute cannot advance beyond the solvent front, the Rf value is a unitless ratio strictly between 0 and 1.'
   }
 ];

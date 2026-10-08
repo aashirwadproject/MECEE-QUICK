@@ -10,11 +10,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Human Biology & Physiology',
     priority: 5,
     questionText: 'Brunner glands are specialized branched submucosal glands located characteristically in which part of the human alimentary canal?',
-    optionA: 'Stomach fundus',
-    optionB: 'Duodenum',
+    optionA: 'Duodenum',
+    optionB: 'Stomach fundus',
     optionC: 'Ileum',
     optionD: 'Esophagus',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Brunner glands are located exclusively in the submucosa of the duodenum. They secrete alkaline mucus (rich in bicarbonate, pH 8.1–9.3) that protects the duodenal mucosa from gastric acid and provides an alkaline environment for pancreatic enzymes.'
   },
   {
@@ -37,10 +37,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'The absorption of digested fats into the intestinal lymph vessels (lacteals) occurs predominantly in the form of droplets called:',
     optionA: 'Micelles',
-    optionB: 'Chylomicrons',
-    optionC: 'Free fatty acids',
+    optionB: 'Free fatty acids',
+    optionC: 'Chylomicrons',
     optionD: 'Liposomes',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Inside intestinal enterocytes, fatty acids and monoglycerides are resynthesized into triglycerides, packaged with cholesterol and coated with apolipoproteins to form water-soluble chylomicrons. Chylomicrons exit enterocytes via exocytosis and enter lacteals.'
   },
   {
@@ -50,10 +50,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'The dental formula of adult human permanent dentition is correctly represented as:',
     optionA: '2102 / 2102',
-    optionB: '2123 / 2123',
+    optionB: '2122 / 2122',
     optionC: '2133 / 2133',
-    optionD: '2122 / 2122',
-    correctOptionIndex: 1,
+    optionD: '2123 / 2123',
+    correctOptionIndex: 3,
     explanation: 'The adult human permanent dental formula is 2123/2123 in each quadrant of the jaw (2 Incisors, 1 Canine, 2 Premolars, 3 Molars), giving a total of 32 teeth. The deciduous (milk) dental formula is 2102/2102 (20 teeth, lacking premolars).'
   },
   {
@@ -62,11 +62,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Human Biology & Physiology',
     priority: 5,
     questionText: 'Which cells of the gastric mucosa secrete Intrinsic Factor of Castle, indispensable for absorption of Vitamin B12?',
-    optionA: 'Peptic (Chief) cells',
-    optionB: 'Parietal (Oxyntic) cells',
+    optionA: 'Parietal (Oxyntic) cells',
+    optionB: 'Peptic (Chief) cells',
     optionC: 'Goblet cells',
     optionD: 'Enteroendocrine G cells',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Parietal (oxyntic) cells of gastric glands secrete hydrochloric acid (HCl) and Intrinsic Factor of Castle. Intrinsic factor binds cyanocobalamin (Vitamin B12) and facilitates its receptor-mediated endocytosis in the terminal ileum. Autoimmune destruction leads to pernicious anemia.'
   },
   {
@@ -76,10 +76,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'The volume of air inspired or expired during an unforced restful respiration cycle is known as:',
     optionA: 'Inspiratory Reserve Volume',
-    optionB: 'Residual Volume',
-    optionC: 'Tidal Volume',
+    optionB: 'Tidal Volume',
+    optionC: 'Residual Volume',
     optionD: 'Vital Capacity',
-    correctOptionIndex: 2,
+    correctOptionIndex: 1,
     explanation: 'Tidal Volume (TV) is the volume of air inspired or expired with each resting breath (approx. 500 mL in a healthy adult male; about 350 mL reaches alveoli while 150 mL remains in anatomical dead space).'
   },
   {
@@ -89,10 +89,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'The chloride shift (Hamburger phenomenon) occurs in systemic capillary beds to maintain electrical neutrality between:',
     optionA: 'Plasma and lymph',
-    optionB: 'RBC interior and plasma',
-    optionC: 'Tissue interstitial fluid and lymph',
+    optionB: 'Tissue interstitial fluid and lymph',
+    optionC: 'RBC interior and plasma',
     optionD: 'Alveoli and capillary endothelium',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'In systemic capillaries, CO2 enters erythrocytes and is converted to H2CO3 by carbonic anhydrase. H2CO3 dissociates into H+ and HCO3-. As bicarbonate diffuses out of RBCs into blood plasma via the band-3 anion exchanger, chloride ions (Cl-) diffuse from plasma into RBCs to maintain electrochemical neutrality.'
   },
   {
@@ -102,10 +102,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'A rightward shift of the Oxygen-Hemoglobin Dissociation Curve (Bohr Effect) is promoted by which physiological condition?',
     optionA: 'Decreased temperature and increased pH',
-    optionB: 'Increased pCO2, increased H+ (acidosis), and increased 2,3-BPG',
+    optionB: 'Elevated fetal hemoglobin (HbF) levels',
     optionC: 'Decreased pCO2 and decreased 2,3-BPG',
-    optionD: 'Elevated fetal hemoglobin (HbF) levels',
-    correctOptionIndex: 1,
+    optionD: 'Increased pCO2, increased H+ (acidosis), and increased 2,3-BPG',
+    correctOptionIndex: 3,
     explanation: 'A rightward shift lowers hemoglobin affinity for O2, promoting oxygen unloading to respiring tissues. It is caused by high pCO2, low pH (increased H+), elevated temperature, and high 2,3-bisphosphoglycerate (2,3-BPG).'
   },
   {
@@ -114,11 +114,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Human Biology & Physiology',
     priority: 5,
     questionText: 'The primary pacemaker of the human heart, responsible for rhythmic intrinsic electrical impulse generation, is the:',
-    optionA: 'Atrioventricular (AV) node',
-    optionB: 'Sinoatrial (SA) node',
+    optionA: 'Sinoatrial (SA) node',
+    optionB: 'Atrioventricular (AV) node',
     optionC: 'Bundle of His',
     optionD: 'Purkinje fiber network',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The Sinoatrial (SA) node, situated in the upper lateral wall of the right atrium near the opening of the superior vena cava, generates spontaneous action potentials at 70–80 beats/min due to hyperpolarization-activated cyclic nucleotide-gated (HCN) funny currents.'
   },
   {
@@ -141,10 +141,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Erythroblastosis fetalis occurs when:',
     optionA: 'Rh-positive mother carries an Rh-negative fetus',
-    optionB: 'Rh-negative mother carries a second Rh-positive fetus',
-    optionC: 'Rh-negative mother carries an Rh-negative fetus',
+    optionB: 'Rh-negative mother carries an Rh-negative fetus',
+    optionC: 'Rh-negative mother carries a second Rh-positive fetus',
     optionD: 'Rh-positive father marries an Rh-positive mother',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'During the birth of a first Rh+ fetus, fetal RBCs leak into the Rh- mother, sensitizing her immune system to produce anti-Rh (anti-D) IgG antibodies. In subsequent pregnancies with an Rh+ fetus, maternal IgG crosses the placenta and lyses fetal red blood cells, causing severe hemolytic anemia and kernicterus.'
   },
   {
@@ -154,10 +154,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Which blood clotting factor is known as Christmas factor?',
     optionA: 'Factor VIII',
-    optionB: 'Factor IX',
+    optionB: 'Factor XI',
     optionC: 'Factor X',
-    optionD: 'Factor XI',
-    correctOptionIndex: 1,
+    optionD: 'Factor IX',
+    correctOptionIndex: 3,
     explanation: 'Factor IX is Christmas factor (Plasma Thromboplastin Component). Its deficiency causes Hemophilia B (Christmas disease), which is an X-linked recessive bleeding disorder. Factor VIII deficiency causes classical Hemophilia A.'
   },
   {
@@ -166,11 +166,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Human Biology & Physiology',
     priority: 5,
     questionText: 'Podocytes are specialized epithelial cells with interdigitating pedicels that line which layer of the kidney nephron?',
-    optionA: 'Parietal layer of Bowman capsule',
-    optionB: 'Visceral layer of Bowman capsule',
+    optionA: 'Visceral layer of Bowman capsule',
+    optionB: 'Parietal layer of Bowman capsule',
     optionC: 'Endothelium of afferent arteriole',
     optionD: 'Proximal convoluted tubule brush border',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Podocytes form the visceral layer of Bowman capsule in the renal corpuscle. Their interdigitating foot processes (pedicels) form filtration slits bridged by slit diaphragms (nephrin), creating a selective size and charge barrier for ultrafiltration.'
   },
   {
@@ -193,10 +193,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Renin is an aspartic protease secreted in response to decreased renal arterial pressure or hyponatremia by the:',
     optionA: 'Macula densa cells of the DCT',
-    optionB: 'Juxtaglomerular (JG) granular cells of afferent arteriole',
-    optionC: 'Podocytes of Bowman capsule',
+    optionB: 'Podocytes of Bowman capsule',
+    optionC: 'Juxtaglomerular (JG) granular cells of afferent arteriole',
     optionD: 'Mesangial cells of glomerulus',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Juxtaglomerular (JG) granular cells, modified smooth muscle cells of the afferent arteriole, synthesize and secrete renin. Renin cleaves circulating angiotensinogen into angiotensin I, initiating the RAAS cascade.'
   },
   {
@@ -207,9 +207,9 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     questionText: 'During skeletal muscle contraction, which band or zone within the sarcomere remains constant in length?',
     optionA: 'I-band',
     optionB: 'H-zone',
-    optionC: 'A-band',
-    optionD: 'Distance between adjacent Z-lines',
-    correctOptionIndex: 2,
+    optionC: 'Distance between adjacent Z-lines',
+    optionD: 'A-band',
+    correctOptionIndex: 3,
     explanation: 'According to the Huxley sliding filament theory, actin filaments slide over stationary myosin filaments. The A-band (anisotropic band), representing the full length of the thick myosin filaments, remains unchanged in length, whereas the I-band and central H-zone shorten.'
   },
   {
@@ -218,11 +218,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Human Biology & Physiology',
     priority: 5,
     questionText: 'The resting membrane potential of a typical mammalian motor neuron (-70 mV) is primarily maintained by the activity of:',
-    optionA: 'Voltage-gated calcium channels',
-    optionB: 'Electrogenic Na+/K+ ATPase pump (3 Na+ pumped out, 2 K+ pumped in)',
+    optionA: 'Electrogenic Na+/K+ ATPase pump (3 Na+ pumped out, 2 K+ pumped in)',
+    optionB: 'Voltage-gated calcium channels',
     optionC: 'Voltage-gated sodium channels',
     optionD: 'Chloride-bicarbonate exchanger',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The resting potential is maintained by high membrane resting permeability to K+ via potassium leak channels, coupled with the primary active transport of the Na+/K+ ATPase pump, which expels 3 Na+ ions for every 2 K+ ions imported per ATP hydrolyzed.'
   },
   {
@@ -232,10 +232,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'The auditory sensory receptors (hair cells) responding to sound vibrations are situated upon the basilar membrane in the:',
     optionA: 'Macula of the utricle',
-    optionB: 'Crista ampullaris of semicircular canals',
-    optionC: 'Organ of Corti in the cochlea',
+    optionB: 'Organ of Corti in the cochlea',
+    optionC: 'Crista ampullaris of semicircular canals',
     optionD: 'Saccule',
-    correctOptionIndex: 2,
+    correctOptionIndex: 1,
     explanation: 'The Organ of Corti rests on the basilar membrane within the scala media of the cochlea. Stereocilia of inner hair cells shear against the tectorial membrane in response to fluid waves, opening mechanically gated K+ channels that trigger auditory nerve impulses.'
   },
   {
@@ -245,10 +245,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Ovulation in the human female menstrual cycle is directly triggered by an acute mid-cycle surge of which hormone?',
     optionA: 'Progesterone',
-    optionB: 'Luteinizing Hormone (LH)',
-    optionC: 'Human Chorionic Gonadotropin (hCG)',
+    optionB: 'Human Chorionic Gonadotropin (hCG)',
+    optionC: 'Luteinizing Hormone (LH)',
     optionD: 'Inhibin B',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'High levels of 17β-estradiol from the mature Graafian follicle exert positive feedback on the anterior pituitary, causing an acute LH surge approximately 24–36 hours prior to rupture of the follicle and release of the secondary oocyte.'
   },
   {
@@ -258,10 +258,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 5,
     questionText: 'Sertoli (sustentacular) cells of the human testes are stimulated by which pituitary gonadotropin, and secrete which peptide hormone that regulates negative feedback?',
     optionA: 'LH; Testosterone',
-    optionB: 'FSH; Inhibin',
+    optionB: 'TSH; Oxytocin',
     optionC: 'Prolactin; Relaxin',
-    optionD: 'TSH; Oxytocin',
-    correctOptionIndex: 1,
+    optionD: 'FSH; Inhibin',
+    correctOptionIndex: 3,
     explanation: 'FSH binds receptors on Sertoli cells in the seminiferous tubules to promote spermatogenesis and androgen-binding protein (ABP) synthesis. Sertoli cells simultaneously produce inhibin B, which feeds back to inhibit FSH secretion from the anterior pituitary.'
   },
   {
@@ -301,10 +301,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'In the common Indian earthworm (Pheretima posthuma), the glandular clitellum extends over which body segments?',
     optionA: 'Segments 9 to 11',
-    optionB: 'Segments 14, 15, and 16',
-    optionC: 'Segments 17 to 19',
+    optionB: 'Segments 17 to 19',
+    optionC: 'Segments 14, 15, and 16',
     optionD: 'Segments 26 to 35',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'In adult Pheretima posthuma, segments 14, 15, and 16 are fused into a prominent dark-banded glandular girdle termed the clitellum, which secretes albumen and the cocoon wall during reproduction.'
   },
   {
@@ -315,9 +315,9 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     questionText: 'The typhlosole of the earthworm intestine, which functions to increase the absorptive surface area, is present between segments:',
     optionA: '1 to 14',
     optionB: '15 to 26',
-    optionC: '26 to the 23rd segment in front of the anus',
-    optionD: '9 to 14',
-    correctOptionIndex: 2,
+    optionC: '9 to 14',
+    optionD: '26 to the 23rd segment in front of the anus',
+    correctOptionIndex: 3,
     explanation: 'The intestine begins at segment 15. A longitudinal dorsal fold called the typhlosole is prominent from segment 26 onwards up to approximately the last 23–25 segments, markedly augmenting the nutrient absorption surface.'
   },
   {
@@ -326,11 +326,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Study of Selected Animals',
     priority: 4,
     questionText: 'In cockroach (Periplaneta americana), mouthparts are of which functional type?',
-    optionA: 'Piercing and sucking',
-    optionB: 'Chewing and biting (mandibulate)',
+    optionA: 'Chewing and biting (mandibulate)',
+    optionB: 'Piercing and sucking',
     optionC: 'Siphoning',
     optionD: 'Sponging',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Periplaneta possesses primitive biting and chewing (mandibulate) mouthparts, comprising a labrum (upper lip), heavily chitinized toothed mandibles for mastication, paired first maxillae for handling food, a labium (lower lip), and a hypopharynx (tongue).'
   },
   {
@@ -340,10 +340,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 4,
     questionText: 'In the cockroach, the primary excretory organs are Malpighian tubules, which are located at the junction of:',
     optionA: 'Pharynx and crop',
-    optionB: 'Crop and gizzard',
-    optionC: 'Midgut (mesenteron) and hindgut (ileum)',
+    optionB: 'Midgut (mesenteron) and hindgut (ileum)',
+    optionC: 'Crop and gizzard',
     optionD: 'Colon and rectum',
-    correctOptionIndex: 2,
+    correctOptionIndex: 1,
     explanation: 'About 100–150 fine, yellow, blind-ended thread-like Malpighian tubules lie at the junction between the midgut (mesenteron) and hindgut (ileum), extracting potassium urate and water from haemolymph to excrete uric acid crystals.'
   },
   {
@@ -367,9 +367,9 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     questionText: 'In the frog (Rana tigrina), cutaneous respiration takes place:',
     optionA: 'Only during hibernation and aestivation',
     optionB: 'Only while swimming in water',
-    optionC: 'Throughout life both in water and on land',
-    optionD: 'Only during the larval tadpole stage',
-    correctOptionIndex: 2,
+    optionC: 'Only during the larval tadpole stage',
+    optionD: 'Throughout life both in water and on land',
+    correctOptionIndex: 3,
     explanation: 'Cutaneous respiration occurs through the moist, richly vascularized, mucus-covered skin at all times — on land, in water, and exclusively during winter sleep (hibernation) and summer sleep (aestivation).'
   },
   {
@@ -378,11 +378,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Study of Selected Animals',
     priority: 4,
     questionText: 'In the life cycle of Plasmodium vivax, the toxic pigment granules that accumulate in erythrocytes and cause periodic fever and chills are:',
-    optionA: 'Schuffner dots',
-    optionB: 'Haemozoin',
+    optionA: 'Haemozoin',
+    optionB: 'Schuffner dots',
     optionC: 'Maurer clefts',
     optionD: 'Ziemann dots',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Plasmodium digests hemoglobin in host erythrocytes, converting toxic ferriprotoporphyrin into insoluble biocrystalline haemozoin. Upon erythrocyte rupture at schizogony completion, release of haemozoin along with merozoites and pyrogens triggers paroxysmal chills and rigor every 48 hours.'
   },
   {
@@ -409,10 +409,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'Which phylum is characterized by canal systems, ostia, oscula, and flagellated collar cells (choanocytes)?',
     optionA: 'Cnidaria',
-    optionB: 'Porifera',
-    optionC: 'Platyhelminthes',
+    optionB: 'Platyhelminthes',
+    optionC: 'Porifera',
     optionD: 'Echinodermata',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Phylum Porifera (sponges) is characterized by cellular grade of organization, water canal systems, inhalant ostia, exhalant osculum, and interior flagellated choanocytes that generate water currents and filter nutrients.'
   },
   {
@@ -422,10 +422,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'Flame cells (protonephridia with solenocytes) are the characteristic excretory and osmoregulatory structures of:',
     optionA: 'Annelida',
-    optionB: 'Platyhelminthes (Flatworms)',
+    optionB: 'Arthropoda',
     optionC: 'Aschelminthes (Roundworms)',
-    optionD: 'Arthropoda',
-    correctOptionIndex: 1,
+    optionD: 'Platyhelminthes (Flatworms)',
+    correctOptionIndex: 3,
     explanation: 'Platyhelminthes (e.g. Planaria, Fasciola hepatica, Taenia solium) possess protonephridial systems bearing terminal flame cells that contain flickering tufts of cilia resembling candle flames.'
   },
   {
@@ -434,11 +434,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Animal Diversity & Classification',
     priority: 3,
     questionText: 'The presence of a true enterocoelom, water vascular (ambulacral) system, and secondary pentamerous radial symmetry in adults is unique to:',
-    optionA: 'Mollusca',
-    optionB: 'Echinodermata',
+    optionA: 'Echinodermata',
+    optionB: 'Mollusca',
     optionC: 'Hemichordata',
     optionD: 'Chordata',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Phylum Echinodermata (e.g., Asterias sea star, Echinus sea urchin) exhibits deuterostomic development with enterocoely, a unique water vascular system with tube feet, and bilateral symmetry in larvae transforming into pentaradial symmetry in adults.'
   },
   {
@@ -447,11 +447,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Animal Diversity & Classification',
     priority: 3,
     questionText: 'Peripatus is widely regarded as a phylogenetic "connecting link" between which two invertebrate phyla?',
-    optionA: 'Annelida and Arthropoda',
-    optionB: 'Mollusca and Echinodermata',
+    optionA: 'Mollusca and Echinodermata',
+    optionB: 'Annelida and Arthropoda',
     optionC: 'Platyhelminthes and Nematoda',
     optionD: 'Porifera and Coelenterata',
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'Peripatus (phylum Onychophora) shares annelidan characteristics (segmented body, non-jointed parapodia-like lobopods, nephridia in each segment) and arthropodan traits (tracheal respiration, open circulatory system with dorsal haemolymph vessel, chitinous cuticle).'
   },
 
@@ -465,10 +465,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'Transitional epithelium (urothelium) is characterized by its stretchability and is found lining the:',
     optionA: 'Thyroid follicles',
-    optionB: 'Urinary bladder and ureters',
-    optionC: 'Trachea and bronchi',
+    optionB: 'Trachea and bronchi',
+    optionC: 'Urinary bladder and ureters',
     optionD: 'Stomach and duodenum',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'Transitional epithelium (urothelium) lines hollow distensible urinary passages (renal pelvis, ureters, and urinary bladder). Its umbrella/facet cells can slide and flatten when the organ expands without tearing the epithelial barrier.'
   },
   {
@@ -479,9 +479,9 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     questionText: 'Intercalated discs with gap junctions and desmosomes are histological hallmarks of:',
     optionA: 'Skeletal muscle',
     optionB: 'Smooth visceral muscle',
-    optionC: 'Cardiac muscle',
-    optionD: 'Myoepithelial cells',
-    correctOptionIndex: 2,
+    optionC: 'Myoepithelial cells',
+    optionD: 'Cardiac muscle',
+    correctOptionIndex: 3,
     explanation: 'Cardiac muscle fibers feature transverse junctions termed intercalated discs that anchor adjacent myocytes (fascia adherens and desmosomes) and provide low-resistance gap junctions (connexons), enabling the heart to act as an electrical syncytium.'
   },
   {
@@ -490,11 +490,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Animal Tissues & Histology',
     priority: 3,
     questionText: 'The Haversian system (osteon) with concentric lamellae and canaliculi surrounding a central vascular canal is found in:',
-    optionA: 'Hyaline cartilage',
-    optionB: 'Compact mammalian bone',
+    optionA: 'Compact mammalian bone',
+    optionB: 'Hyaline cartilage',
     optionC: 'Spongy cancellous bone trabeculae',
     optionD: 'Fibrocartilage',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'The Haversian system (osteon) is the basic structural unit of mammalian compact cortical bone, comprising a central Haversian canal containing neurovascular bundles, concentric bony lamellae, lacunae housing osteocytes, and radiating canaliculi.'
   },
 
@@ -507,11 +507,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Microbial Diseases & Immunology',
     priority: 3,
     questionText: 'The diagnostic serological test that detects anti-O and anti-H agglutinins for Salmonella enterica serotype Typhi is the:',
-    optionA: 'Widal test',
-    optionB: 'Mantoux tuberculin test',
+    optionA: 'Mantoux tuberculin test',
+    optionB: 'Widal test',
     optionC: 'VDRL test',
     optionD: 'Western blot',
-    correctOptionIndex: 0,
+    correctOptionIndex: 1,
     explanation: 'The Widal agglutination test measures diagnostic titer against lipopolysaccharide O (somatic) and flagellar H antigens of Salmonella typhi in patients suspected of having typhoid (enteric) fever.'
   },
   {
@@ -534,10 +534,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 3,
     questionText: 'Kala-azar (Visceral Leishmaniasis) is caused by Leishmania donovani and is transmitted to humans through the bite of:',
     optionA: 'Tsetse fly (Glossina)',
-    optionB: 'Female Sandfly (Phlebotomus argentipes)',
+    optionB: 'Blackfly (Simulium)',
     optionC: 'Culex mosquito',
-    optionD: 'Blackfly (Simulium)',
-    correctOptionIndex: 1,
+    optionD: 'Female Sandfly (Phlebotomus argentipes)',
+    correctOptionIndex: 3,
     explanation: 'Visceral Leishmaniasis (Kala-azar / black sickness) is transmitted by the female Phlebotomus argentipes sandfly, which inoculates flagellated promastigotes into the bloodstream, where they transform into amastigotes inside macrophages.'
   },
 
@@ -550,11 +550,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Evolutionary Biology',
     priority: 2,
     questionText: 'Homologous organs, such as the forelimb of a human, flipper of a whale, and wing of a bat, illustrate:',
-    optionA: 'Convergent evolution',
-    optionB: 'Divergent evolution (Adaptive radiation)',
+    optionA: 'Divergent evolution (Adaptive radiation)',
+    optionB: 'Convergent evolution',
     optionC: 'Parallel evolution',
     optionD: 'Saltatory speciation',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Homologous organs share fundamental anatomical and embryological architecture derived from a common ancestor, but have adapted for divergent functions (divergent evolution), unlike analogous organs which arise from convergent evolution.'
   },
   {
@@ -581,10 +581,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 1,
     questionText: 'Magnetic Resonance Imaging (MRI) produces detailed cross-sectional tomographic images of soft human tissues by utilizing:',
     optionA: 'Ionizing gamma radiation and radioactive tracers',
-    optionB: 'Strong magnetic fields and radiofrequency pulses to reorient hydrogen proton spins',
-    optionC: 'High-energy collimated X-ray beams',
+    optionB: 'High-energy collimated X-ray beams',
+    optionC: 'Strong magnetic fields and radiofrequency pulses to reorient hydrogen proton spins',
     optionD: 'Piezoelectric high-frequency ultrasound waves',
-    correctOptionIndex: 1,
+    correctOptionIndex: 2,
     explanation: 'MRI utilizes superconducting magnetic fields to align nuclear spins of abundant hydrogen protons (1H in water and fat). Radiofrequency pulses excite these protons, and the emitted radio waves during relaxation are detected and computed into high-contrast soft-tissue images without ionizing radiation.'
   },
   {
@@ -594,10 +594,10 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     priority: 1,
     questionText: 'Enzyme-Linked Immunosorbent Assay (ELISA) is fundamentally based on the principle of:',
     optionA: 'Density gradient centrifugation',
-    optionB: 'Specific antigen-antibody interaction linked with enzymatic chromogenic color production',
+    optionB: 'Electrophoretic mobility of proteins on polyacrylamide gel',
     optionC: 'DNA polymerization by heat-stable Taq polymerase',
-    optionD: 'Electrophoretic mobility of proteins on polyacrylamide gel',
-    correctOptionIndex: 1,
+    optionD: 'Specific antigen-antibody interaction linked with enzymatic chromogenic color production',
+    correctOptionIndex: 3,
     explanation: 'ELISA detects and quantifies specific proteins (antigens or antibodies) in serum via epitope-paratope recognition. An enzyme (e.g., horseradish peroxidase or alkaline phosphatase) conjugated to the antibody converts a chromogenic substrate to produce a measurable optical color change.'
   },
 
@@ -610,11 +610,11 @@ export const ZOOLOGY_QUESTIONS: Question[] = [
     unit: 'Biota, Environment & Conservation',
     priority: 1,
     questionText: 'The Wild Water Buffalo (Bubarna / Bubalus arnee, locally known as Arna) in Nepal is preserved in which protected wildlife reserve?',
-    optionA: 'Chitwan National Park',
-    optionB: 'Koshi Tappu Wildlife Reserve',
+    optionA: 'Koshi Tappu Wildlife Reserve',
+    optionB: 'Chitwan National Park',
     optionC: 'Bardia National Park',
     optionD: 'Shey Phoksundo National Park',
-    correctOptionIndex: 1,
+    correctOptionIndex: 0,
     explanation: 'Koshi Tappu Wildlife Reserve in eastern Terai (Sunsari/Saptari/Udayapur) is a famous Ramsar wetland site dedicated primarily to the conservation of the last remaining indigenous wild water buffalo (Bubalus arnee / Arna) population in Nepal.'
   },
   {

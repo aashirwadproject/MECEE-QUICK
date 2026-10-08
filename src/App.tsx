@@ -13,11 +13,11 @@ import { CandidateNameModal } from './components/CandidateNameModal';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
-import { getDailyMockQuestions } from './data/mockTestsData';
+import { getDailyMockQuestions, getMockTestQuestions } from './data/mockTestsData';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
-  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  const [allQuestions, setAllQuestions] = useState<Question[]>(() => Storage.getAllQuestions());
   const [examAttempts, setExamAttempts] = useState<ExamAttempt[]>([]);
   const [candidateName, setCandidateName] = useState<string>('');
   const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
@@ -44,7 +44,7 @@ export const App: React.FC = () => {
   const [reviewAttempt, setReviewAttempt] = useState<ExamAttempt | null>(null);
 
   useEffect(() => {
-    // Load from local storage
+    // Refresh from storage on mount
     const loadedQuestions = Storage.getAllQuestions();
     setAllQuestions(loadedQuestions);
 
@@ -78,7 +78,7 @@ export const App: React.FC = () => {
       questions: dailyQuestions,
       questionCount: 200,
       durationMinutes: 180,
-      isInstantFeedback: true
+      isInstantFeedback: false
     });
   };
 
@@ -98,23 +98,9 @@ export const App: React.FC = () => {
     if (config.questions && config.questions.length > 0) {
       selected = config.questions;
     } else if (config.type === 'FULL_200') {
-      // Official MECEE-BL 2027 Pattern:
-      // Zoology (40), Botany (40), Chemistry (50), Physics (50), MAT (20)
-      const zoo = allQuestions.filter(q => q.subject === 'ZOOLOGY').sort(() => 0.5 - Math.random()).slice(0, 40);
-      const bot = allQuestions.filter(q => q.subject === 'BOTANY').sort(() => 0.5 - Math.random()).slice(0, 40);
-      const chem = allQuestions.filter(q => q.subject === 'CHEMISTRY').sort(() => 0.5 - Math.random()).slice(0, 50);
-      const phys = allQuestions.filter(q => q.subject === 'PHYSICS').sort(() => 0.5 - Math.random()).slice(0, 50);
-      const mat = allQuestions.filter(q => q.subject === 'MAT').sort(() => 0.5 - Math.random()).slice(0, 20);
-
-      selected = [...zoo, ...bot, ...chem, ...phys, ...mat];
-
-      // Fallback if total selected is somehow less than 200
-      if (selected.length < 200) {
-        const remainingNeeded = 200 - selected.length;
-        const remainingPool = allQuestions.filter(q => !selected.some(s => s.id === q.id));
-        const extra = remainingPool.sort(() => 0.5 - Math.random()).slice(0, remainingNeeded);
-        selected = [...selected, ...extra];
-      }
+      // Official MECEE-BL 2027 Pattern with strict deduplication:
+      // Zoology (40), Botany (40), Chemistry (50), Physics (50), MAT (20) = exactly 200
+      selected = getMockTestQuestions(Math.floor(Math.random() * 50) + 1, allQuestions);
     } else {
       let filtered = [...allQuestions];
 

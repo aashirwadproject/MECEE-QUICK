@@ -139,17 +139,17 @@ export const Practice: React.FC<PracticeProps> = ({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onStartExam({
-                      title: `${unit.name} Instant Practice (${countInBank} Qs)`,
+                      title: `${unit.name} Practice Quiz (${countInBank} Qs)`,
                       type: 'UNIT',
                       unitFilter: unit.name,
                       questionCount: countInBank,
                       durationMinutes: Math.max(30, Math.round(countInBank * 1.2)),
-                      isInstantFeedback: true
+                      isInstantFeedback: false
                     })}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
                   >
                     <Zap className="w-3.5 h-3.5 text-amber-400" />
-                    Instant ({countInBank})
+                    Practice ({countInBank})
                   </button>
 
                   <button

@@ -1,3 +1,6 @@
+import { Question } from '../types';
+import { SEED_QUESTIONS } from './seedQuestions';
+
 export interface MockTestMeta {
   id: string;
   mockNumber: number;
@@ -531,39 +534,63 @@ function shuffleWithSeed<T>(array: T[], seed: number): T[] {
   return arr;
 }
 
+function getStem(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 45);
+}
+
 // Generates the official 200 questions for Mock #N
-export function getMockTestQuestions(mockNumber: number, allQuestions: any[]): any[] {
+export function getMockTestQuestions(mockNumber: number, allQuestions?: any[]): Question[] {
+  const pool = (allQuestions && allQuestions.length >= 200) ? allQuestions : SEED_QUESTIONS;
   const seed = mockNumber * 7919 + 104729;
 
   // Filter subject pools
-  const zooPool = allQuestions.filter(q => q.subject === 'ZOOLOGY');
-  const botPool = allQuestions.filter(q => q.subject === 'BOTANY');
-  const chemPool = allQuestions.filter(q => q.subject === 'CHEMISTRY');
-  const physPool = allQuestions.filter(q => q.subject === 'PHYSICS');
-  const matPool = allQuestions.filter(q => q.subject === 'MAT');
+  const zooPool = pool.filter(q => q.subject === 'ZOOLOGY');
+  const botPool = pool.filter(q => q.subject === 'BOTANY');
+  const chemPool = pool.filter(q => q.subject === 'CHEMISTRY');
+  const physPool = pool.filter(q => q.subject === 'PHYSICS');
+  const matPool = pool.filter(q => q.subject === 'MAT');
 
-  // Shuffle each pool deterministically with unique offset
-  const zoo = shuffleWithSeed(zooPool, seed + 101).slice(0, 40);
-  const bot = shuffleWithSeed(botPool, seed + 202).slice(0, 40);
-  const chem = shuffleWithSeed(chemPool, seed + 303).slice(0, 50);
-  const phys = shuffleWithSeed(physPool, seed + 404).slice(0, 50);
-  const mat = shuffleWithSeed(matPool, seed + 505).slice(0, 20);
-
-  const rawCombined = [...zoo, ...bot, ...chem, ...phys, ...mat];
-
-  // Guarantee strict uniqueness of question IDs
   const seenIds = new Set<string>();
-  const combined: any[] = [];
-  for (const q of rawCombined) {
-    if (!seenIds.has(q.id)) {
-      seenIds.add(q.id);
-      combined.push(q);
-    }
-  }
+  const seenStems = new Set<string>();
+  const combined: Question[] = [];
 
-  // If pool count is short of 200, fill from remaining questions without duplicating
+  const pickSubject = (subPool: Question[], targetCount: number, seedOffset: number) => {
+    const shuffled = shuffleWithSeed(subPool, seed + seedOffset);
+    let count = 0;
+    // Pass 1: Strict ID and stem uniqueness
+    for (const q of shuffled) {
+      if (count >= targetCount) break;
+      const stem = getStem(q.questionText);
+      if (!seenIds.has(q.id) && !seenStems.has(stem)) {
+        seenIds.add(q.id);
+        seenStems.add(stem);
+        combined.push(q);
+        count++;
+      }
+    }
+    // Pass 2: Fallback on ID uniqueness if stem was overly strict
+    if (count < targetCount) {
+      for (const q of shuffled) {
+        if (count >= targetCount) break;
+        if (!seenIds.has(q.id)) {
+          seenIds.add(q.id);
+          combined.push(q);
+          count++;
+        }
+      }
+    }
+  };
+
+  // Official MECEE-BL Pattern: 40 Zoology, 40 Botany, 50 Chemistry, 50 Physics, 20 MAT = 200
+  pickSubject(zooPool, 40, 101);
+  pickSubject(botPool, 40, 202);
+  pickSubject(chemPool, 50, 303);
+  pickSubject(physPool, 50, 404);
+  pickSubject(matPool, 20, 505);
+
+  // Safety fill if any subject pool was short
   if (combined.length < 200) {
-    const remaining = allQuestions.filter(q => !seenIds.has(q.id));
+    const remaining = pool.filter(q => !seenIds.has(q.id));
     const extras = shuffleWithSeed(remaining, seed + 999);
     for (const extra of extras) {
       if (combined.length >= 200) break;
@@ -578,7 +605,8 @@ export function getMockTestQuestions(mockNumber: number, allQuestions: any[]): a
 }
 
 // Generates the official 200 questions for the Daily Mock Test based on date + version offset
-export function getDailyMockQuestions(dateStr: string, version: number, allQuestions: any[]): any[] {
+export function getDailyMockQuestions(dateStr: string, version: number, allQuestions?: any[]): Question[] {
+  const pool = (allQuestions && allQuestions.length >= 200) ? allQuestions : SEED_QUESTIONS;
   let hash = 0;
   for (let i = 0; i < dateStr.length; i++) {
     hash = (hash << 5) - hash + dateStr.charCodeAt(i);
@@ -587,31 +615,49 @@ export function getDailyMockQuestions(dateStr: string, version: number, allQuest
   const dateSeed = Math.abs(hash);
   const seed = dateSeed + (version * 8831) + 54321;
 
-  const zooPool = allQuestions.filter(q => q.subject === 'ZOOLOGY');
-  const botPool = allQuestions.filter(q => q.subject === 'BOTANY');
-  const chemPool = allQuestions.filter(q => q.subject === 'CHEMISTRY');
-  const physPool = allQuestions.filter(q => q.subject === 'PHYSICS');
-  const matPool = allQuestions.filter(q => q.subject === 'MAT');
-
-  const zoo = shuffleWithSeed(zooPool, seed + 111).slice(0, 40);
-  const bot = shuffleWithSeed(botPool, seed + 222).slice(0, 40);
-  const chem = shuffleWithSeed(chemPool, seed + 333).slice(0, 50);
-  const phys = shuffleWithSeed(physPool, seed + 444).slice(0, 50);
-  const mat = shuffleWithSeed(matPool, seed + 555).slice(0, 20);
-
-  const rawCombined = [...zoo, ...bot, ...chem, ...phys, ...mat];
+  const zooPool = pool.filter(q => q.subject === 'ZOOLOGY');
+  const botPool = pool.filter(q => q.subject === 'BOTANY');
+  const chemPool = pool.filter(q => q.subject === 'CHEMISTRY');
+  const physPool = pool.filter(q => q.subject === 'PHYSICS');
+  const matPool = pool.filter(q => q.subject === 'MAT');
 
   const seenIds = new Set<string>();
-  const combined: any[] = [];
-  for (const q of rawCombined) {
-    if (!seenIds.has(q.id)) {
-      seenIds.add(q.id);
-      combined.push(q);
+  const seenStems = new Set<string>();
+  const combined: Question[] = [];
+
+  const pickSubject = (subPool: Question[], targetCount: number, seedOffset: number) => {
+    const shuffled = shuffleWithSeed(subPool, seed + seedOffset);
+    let count = 0;
+    for (const q of shuffled) {
+      if (count >= targetCount) break;
+      const stem = getStem(q.questionText);
+      if (!seenIds.has(q.id) && !seenStems.has(stem)) {
+        seenIds.add(q.id);
+        seenStems.add(stem);
+        combined.push(q);
+        count++;
+      }
     }
-  }
+    if (count < targetCount) {
+      for (const q of shuffled) {
+        if (count >= targetCount) break;
+        if (!seenIds.has(q.id)) {
+          seenIds.add(q.id);
+          combined.push(q);
+          count++;
+        }
+      }
+    }
+  };
+
+  pickSubject(zooPool, 40, 111);
+  pickSubject(botPool, 40, 222);
+  pickSubject(chemPool, 50, 333);
+  pickSubject(physPool, 50, 444);
+  pickSubject(matPool, 20, 555);
 
   if (combined.length < 200) {
-    const remaining = allQuestions.filter(q => !seenIds.has(q.id));
+    const remaining = pool.filter(q => !seenIds.has(q.id));
     const extras = shuffleWithSeed(remaining, seed + 999);
     for (const extra of extras) {
       if (combined.length >= 200) break;

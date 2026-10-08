@@ -96,7 +96,7 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
       type: 'FULL_200',
       questions: questionsForThisMock,
       durationMinutes: 180,
-      isInstantFeedback: true
+      isInstantFeedback: false
     });
   };
 

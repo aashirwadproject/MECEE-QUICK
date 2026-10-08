@@ -47,8 +47,6 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
   const [showPalette, setShowPalette] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
-  // Default instantMode to true so right answer turns green and wrong turns red immediately
-  const [instantMode, setInstantMode] = useState<boolean>(isInstantFeedback !== undefined ? isInstantFeedback : true);
   const [bookmarkedSet, setBookmarkedSet] = useState<Set<string>>(
     new Set(questions.filter(q => q.isBookmarked).map(q => q.id))
   );
@@ -190,21 +188,6 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
             {timeFormatted}
           </div>
 
-          {/* Instant Check Mode Toggle */}
-          <button
-            onClick={() => setInstantMode(!instantMode)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
-              instantMode
-                ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 ring-1 ring-emerald-500/40 shadow-sm'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-400 border-slate-700'
-            }`}
-            title="Toggle Instant Check: Right answer turns green, Wrong turns red"
-          >
-            <span className={`w-2 h-2 rounded-full ${instantMode ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
-            <span className="hidden sm:inline">Instant Check:</span>
-            <span>{instantMode ? 'ON (Green/Red)' : 'OFF'}</span>
-          </button>
-
           {/* Palette button */}
           <button
             onClick={() => setShowPalette(true)}
@@ -279,28 +262,14 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
             { label: 'D', text: currentQ.optionD, index: 3 }
           ].map(opt => {
             const isSelected = selectedOption === opt.index;
-            const isCorrectOption = opt.index === currentQ.correctOptionIndex;
-            const showFeedback = instantMode && selectedOption !== undefined;
 
             let optionStyle = 'bg-slate-800/60 border-slate-700 hover:border-slate-600 text-slate-200';
             let badgeStyle = 'bg-slate-800 text-slate-400';
 
-            if (showFeedback) {
-              if (isCorrectOption) {
-                // Right answer ALWAYS turns vivid GREEN
-                optionStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-100 ring-2 ring-emerald-500 shadow-md shadow-emerald-500/10 font-medium';
-                badgeStyle = 'bg-emerald-500 text-slate-950 font-black';
-              } else if (isSelected) {
-                // User-selected wrong answer turns vivid RED
-                optionStyle = 'bg-rose-500/20 border-rose-500 text-rose-100 ring-2 ring-rose-500 shadow-md shadow-rose-500/10 font-medium';
-                badgeStyle = 'bg-rose-500 text-white font-black';
-              } else {
-                optionStyle = 'bg-slate-800/30 border-slate-800/60 text-slate-400 opacity-60';
-                badgeStyle = 'bg-slate-800 text-slate-500';
-              }
-            } else if (isSelected) {
-              optionStyle = 'bg-teal-500/15 border-teal-500 text-teal-200 ring-1 ring-teal-500';
-              badgeStyle = 'bg-teal-500 text-slate-950 font-bold';
+            if (isSelected) {
+              // Tapped / Selected answer is strictly ONLY GREEN (no red/green right/wrong reveal during exam)
+              optionStyle = 'bg-emerald-500/15 border-emerald-500 text-emerald-100 ring-2 ring-emerald-500/80 font-medium shadow-md shadow-emerald-500/10';
+              badgeStyle = 'bg-emerald-500 text-slate-950 font-black';
             }
 
             return (
@@ -316,41 +285,16 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
                   <span className="text-sm font-medium">{opt.text}</span>
                 </div>
 
-                {showFeedback && (
-                  <div className="flex items-center gap-2">
-                    {isCorrectOption && (
-                      <span className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold animate-in fade-in">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        {isSelected ? 'Correct (+1.0)' : 'Right Answer'}
-                      </span>
-                    )}
-                    {isSelected && !isCorrectOption && (
-                      <span className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold animate-in fade-in">
-                        <XCircle className="w-4 h-4 text-rose-400" />
-                        Wrong (-0.25)
-                      </span>
-                    )}
+                {isSelected && (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold animate-in fade-in">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    Selected
                   </div>
                 )}
               </div>
             );
           })}
         </div>
-
-        {/* Instant Feedback Explanation Block */}
-        {instantMode && selectedOption !== undefined && (
-          <div className="bg-slate-800/90 border border-slate-700/80 rounded-xl p-4 sm:p-5 space-y-2 mt-4 shadow-lg animate-in fade-in duration-200">
-            <div className="flex items-center gap-2">
-              <Lightbulb className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">
-                Concept & Scientific Explanation
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-              {currentQ.explanation}
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Bottom Sticky Controls */}
@@ -376,7 +320,7 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
             <span className="hidden sm:inline">Mark for Review</span>
           </button>
 
-          {selectedOption !== undefined && !isInstantFeedback && (
+          {selectedOption !== undefined && (
             <button
               onClick={handleClearOption}
               className="flex items-center gap-1 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-semibold transition-colors"

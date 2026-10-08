@@ -234,7 +234,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                       type: 'FULL_200',
                       questions: qs,
                       durationMinutes: 180,
-                      isInstantFeedback: true
+                      isInstantFeedback: false
                     });
                   }}
                   className="px-2.5 py-1 rounded bg-teal-500/10 hover:bg-teal-500 hover:text-slate-950 text-teal-400 font-bold text-xs transition-colors flex items-center gap-1"

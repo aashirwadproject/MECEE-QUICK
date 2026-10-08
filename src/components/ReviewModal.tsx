@@ -257,12 +257,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
                       {isCorrectAnswer && (
                         <span className="text-[11px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-emerald-400" /> Correct Answer
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          {isUserSelection ? 'Correct (+1.0 Mark)' : 'Correct Answer'}
                         </span>
                       )}
                       {isUserSelection && !isCorrectAnswer && (
                         <span className="text-[11px] font-bold text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/40 flex items-center gap-1">
-                          <X className="w-3.5 h-3.5 text-rose-400" /> Your Choice (Incorrect)
+                          <X className="w-3.5 h-3.5 text-rose-400" /> Your Choice (Incorrect -0.25)
                         </span>
                       )}
                     </div>
