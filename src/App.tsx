@@ -77,7 +77,8 @@ export const App: React.FC = () => {
       type: 'FULL_200',
       questions: dailyQuestions,
       questionCount: 200,
-      durationMinutes: 180
+      durationMinutes: 180,
+      isInstantFeedback: true
     });
   };
 

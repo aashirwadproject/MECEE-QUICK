@@ -234,7 +234,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                       type: 'FULL_200',
                       questions: qs,
                       durationMinutes: 180,
-                      isInstantFeedback: false
+                      isInstantFeedback: true
                     });
                   }}
                   className="px-2.5 py-1 rounded bg-teal-500/10 hover:bg-teal-500 hover:text-slate-950 text-teal-400 font-bold text-xs transition-colors flex items-center gap-1"
@@ -288,7 +288,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 onClick={() => onStartExam({
                   title: `${item.name} Chapter Test`,
                   type: 'UNIT',
-                  unitFilter: item.name
+                  unitFilter: item.name,
+                  isInstantFeedback: true
                 })}
                 className="p-2.5 rounded-lg bg-teal-500/10 text-teal-400 hover:bg-teal-500 hover:text-slate-950 transition-colors"
                 title="Practice Unit (All Questions)"

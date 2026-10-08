@@ -549,17 +549,32 @@ export function getMockTestQuestions(mockNumber: number, allQuestions: any[]): a
   const phys = shuffleWithSeed(physPool, seed + 404).slice(0, 50);
   const mat = shuffleWithSeed(matPool, seed + 505).slice(0, 20);
 
-  let combined = [...zoo, ...bot, ...chem, ...phys, ...mat];
+  const rawCombined = [...zoo, ...bot, ...chem, ...phys, ...mat];
 
-  // If pool count in any category is short, fill from remaining questions
-  if (combined.length < 200) {
-    const remaining = allQuestions.filter(q => !combined.some(c => c.id === q.id));
-    const extraNeeded = 200 - combined.length;
-    const extras = shuffleWithSeed(remaining, seed + 999).slice(0, extraNeeded);
-    combined = [...combined, ...extras];
+  // Guarantee strict uniqueness of question IDs
+  const seenIds = new Set<string>();
+  const combined: any[] = [];
+  for (const q of rawCombined) {
+    if (!seenIds.has(q.id)) {
+      seenIds.add(q.id);
+      combined.push(q);
+    }
   }
 
-  return combined;
+  // If pool count is short of 200, fill from remaining questions without duplicating
+  if (combined.length < 200) {
+    const remaining = allQuestions.filter(q => !seenIds.has(q.id));
+    const extras = shuffleWithSeed(remaining, seed + 999);
+    for (const extra of extras) {
+      if (combined.length >= 200) break;
+      if (!seenIds.has(extra.id)) {
+        seenIds.add(extra.id);
+        combined.push(extra);
+      }
+    }
+  }
+
+  return combined.slice(0, 200);
 }
 
 // Generates the official 200 questions for the Daily Mock Test based on date + version offset
@@ -584,14 +599,28 @@ export function getDailyMockQuestions(dateStr: string, version: number, allQuest
   const phys = shuffleWithSeed(physPool, seed + 444).slice(0, 50);
   const mat = shuffleWithSeed(matPool, seed + 555).slice(0, 20);
 
-  let combined = [...zoo, ...bot, ...chem, ...phys, ...mat];
+  const rawCombined = [...zoo, ...bot, ...chem, ...phys, ...mat];
 
-  if (combined.length < 200) {
-    const remaining = allQuestions.filter(q => !combined.some(c => c.id === q.id));
-    const extraNeeded = 200 - combined.length;
-    const extras = shuffleWithSeed(remaining, seed + 999).slice(0, extraNeeded);
-    combined = [...combined, ...extras];
+  const seenIds = new Set<string>();
+  const combined: any[] = [];
+  for (const q of rawCombined) {
+    if (!seenIds.has(q.id)) {
+      seenIds.add(q.id);
+      combined.push(q);
+    }
   }
 
-  return combined;
+  if (combined.length < 200) {
+    const remaining = allQuestions.filter(q => !seenIds.has(q.id));
+    const extras = shuffleWithSeed(remaining, seed + 999);
+    for (const extra of extras) {
+      if (combined.length >= 200) break;
+      if (!seenIds.has(extra.id)) {
+        seenIds.add(extra.id);
+        combined.push(extra);
+      }
+    }
+  }
+
+  return combined.slice(0, 200);
 }

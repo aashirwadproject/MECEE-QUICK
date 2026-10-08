@@ -236,10 +236,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                   const isUserSelection = userChoice === opt.index;
 
                   let optClass = 'bg-slate-800/40 border-slate-800 text-slate-300';
+                  let badgeClass = 'bg-slate-800 text-slate-400';
                   if (isCorrectAnswer) {
-                    optClass = 'bg-emerald-500/15 border-emerald-500 text-emerald-200 font-semibold';
+                    optClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-100 ring-1 ring-emerald-500/50 font-semibold';
+                    badgeClass = 'bg-emerald-500 text-slate-950 font-black';
                   } else if (isUserSelection) {
-                    optClass = 'bg-rose-500/15 border-rose-500 text-rose-200 line-through';
+                    optClass = 'bg-rose-500/20 border-rose-500 text-rose-100 ring-1 ring-rose-500/50 font-semibold';
+                    badgeClass = 'bg-rose-500 text-white font-black';
                   }
 
                   return (
@@ -248,18 +251,18 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       className={`p-3 rounded-lg border flex items-center justify-between text-xs sm:text-sm ${optClass}`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className="font-bold font-mono">{opt.label}.</span>
+                        <span className={`w-6 h-6 rounded flex items-center justify-center font-bold text-xs ${badgeClass}`}>{opt.label}</span>
                         <span>{opt.text}</span>
                       </div>
 
                       {isCorrectAnswer && (
-                        <span className="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5" /> Correct Answer
+                        <span className="text-[11px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40 flex items-center gap-1">
+                          <Check className="w-3.5 h-3.5 text-emerald-400" /> Correct Answer
                         </span>
                       )}
                       {isUserSelection && !isCorrectAnswer && (
-                        <span className="text-[11px] font-bold text-rose-400 flex items-center gap-1">
-                          <X className="w-3.5 h-3.5" /> Your Choice
+                        <span className="text-[11px] font-bold text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/40 flex items-center gap-1">
+                          <X className="w-3.5 h-3.5 text-rose-400" /> Your Choice (Incorrect)
                         </span>
                       )}
                     </div>
