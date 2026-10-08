@@ -561,3 +561,37 @@ export function getMockTestQuestions(mockNumber: number, allQuestions: any[]): a
 
   return combined;
 }
+
+// Generates the official 200 questions for the Daily Mock Test based on date + version offset
+export function getDailyMockQuestions(dateStr: string, version: number, allQuestions: any[]): any[] {
+  let hash = 0;
+  for (let i = 0; i < dateStr.length; i++) {
+    hash = (hash << 5) - hash + dateStr.charCodeAt(i);
+    hash |= 0;
+  }
+  const dateSeed = Math.abs(hash);
+  const seed = dateSeed + (version * 8831) + 54321;
+
+  const zooPool = allQuestions.filter(q => q.subject === 'ZOOLOGY');
+  const botPool = allQuestions.filter(q => q.subject === 'BOTANY');
+  const chemPool = allQuestions.filter(q => q.subject === 'CHEMISTRY');
+  const physPool = allQuestions.filter(q => q.subject === 'PHYSICS');
+  const matPool = allQuestions.filter(q => q.subject === 'MAT');
+
+  const zoo = shuffleWithSeed(zooPool, seed + 111).slice(0, 40);
+  const bot = shuffleWithSeed(botPool, seed + 222).slice(0, 40);
+  const chem = shuffleWithSeed(chemPool, seed + 333).slice(0, 50);
+  const phys = shuffleWithSeed(physPool, seed + 444).slice(0, 50);
+  const mat = shuffleWithSeed(matPool, seed + 555).slice(0, 20);
+
+  let combined = [...zoo, ...bot, ...chem, ...phys, ...mat];
+
+  if (combined.length < 200) {
+    const remaining = allQuestions.filter(q => !combined.some(c => c.id === q.id));
+    const extraNeeded = 200 - combined.length;
+    const extras = shuffleWithSeed(remaining, seed + 999).slice(0, extraNeeded);
+    combined = [...combined, ...extras];
+  }
+
+  return combined;
+}

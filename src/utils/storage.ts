@@ -6,10 +6,20 @@ const STORAGE_KEYS = {
   BOOKMARKS: 'mecee_bookmarked_ids',
   ATTEMPTS: 'mecee_exam_attempts',
   CANDIDATE_NAME: 'mecee_candidate_name',
-  DAILY_MOCK_SCORE: 'mecee_daily_mock_score'
+  DAILY_MOCK_SCORE: 'mecee_daily_mock_score',
+  DAILY_MOCK_VERSION: 'mecee_daily_mock_version'
 };
 
 export const Storage = {
+  getDailyMockVersion(): number {
+    const raw = localStorage.getItem(STORAGE_KEYS.DAILY_MOCK_VERSION);
+    return raw ? parseInt(raw, 10) || 1 : 1;
+  },
+
+  saveDailyMockVersion(version: number) {
+    localStorage.setItem(STORAGE_KEYS.DAILY_MOCK_VERSION, version.toString());
+  },
+
   getCandidateName(): string {
     return localStorage.getItem(STORAGE_KEYS.CANDIDATE_NAME) || '';
   },

@@ -38,17 +38,22 @@ interface DailyLeaderboardProps {
     timeSpentSeconds: number;
     accuracy: number;
   } | null;
+  dailyMockVersion?: number;
+  onUpdateDailyQuestions?: () => void;
 }
 
 export const DailyLeaderboard: React.FC<DailyLeaderboardProps> = ({
   candidateName,
   onUpdateCandidateName,
   onStartDailyMock,
-  userExamScore
+  userExamScore,
+  dailyMockVersion = 1,
+  onUpdateDailyQuestions
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterMode, setFilterMode] = useState<'ALL' | 'TOP_10' | 'TOP_25' | 'NEPALI' | 'INDIAN'>('ALL');
   const [isNameModalOpen, setIsNameModalOpen] = useState(false);
+  const [updatedAlert, setUpdatedAlert] = useState(false);
 
   // Today's formatted date
   const todayFormatted = useMemo(() => {
@@ -158,6 +163,26 @@ export const DailyLeaderboard: React.FC<DailyLeaderboardProps> = ({
               <Play className="w-4 h-4 fill-current" />
               Start Daily Mock
             </button>
+
+            <button
+              onClick={() => {
+                onUpdateDailyQuestions?.();
+                setUpdatedAlert(true);
+                setTimeout(() => setUpdatedAlert(false), 3000);
+              }}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 font-semibold text-xs border border-teal-500/30 transition-colors active:scale-95"
+              title="Quick Update Daily Test Mock Questions"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              Quick Update Questions (Set #{dailyMockVersion})
+            </button>
+
+            {updatedAlert && (
+              <div className="flex items-center gap-1.5 text-xs text-emerald-300 bg-emerald-500/20 border border-emerald-500/40 px-3 py-1.5 rounded-lg animate-in fade-in">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>Paper #{dailyMockVersion} questions loaded!</span>
+              </div>
+            )}
 
             <button
               onClick={() => setIsNameModalOpen(true)}

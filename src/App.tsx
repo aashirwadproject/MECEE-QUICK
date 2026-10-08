@@ -13,6 +13,7 @@ import { CandidateNameModal } from './components/CandidateNameModal';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
+import { getDailyMockQuestions } from './data/mockTestsData';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
@@ -20,6 +21,7 @@ export const App: React.FC = () => {
   const [examAttempts, setExamAttempts] = useState<ExamAttempt[]>([]);
   const [candidateName, setCandidateName] = useState<string>('');
   const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
+  const [dailyMockVersion, setDailyMockVersion] = useState<number>(1);
   const [userDailyScore, setUserDailyScore] = useState<{
     score: number;
     correct: number;
@@ -51,7 +53,14 @@ export const App: React.FC = () => {
 
     setCandidateName(Storage.getCandidateName());
     setUserDailyScore(Storage.getDailyMockScore());
+    setDailyMockVersion(Storage.getDailyMockVersion());
   }, []);
+
+  const handleUpdateDailyMockQuestions = () => {
+    const nextVer = dailyMockVersion + 1;
+    Storage.saveDailyMockVersion(nextVer);
+    setDailyMockVersion(nextVer);
+  };
 
   const handleRequestDailyMock = () => {
     setIsNameModalOpen(true);
@@ -61,9 +70,12 @@ export const App: React.FC = () => {
     Storage.saveCandidateName(name);
     setCandidateName(name);
     setIsNameModalOpen(false);
+    const todayStr = new Date().toISOString().split('T')[0];
+    const dailyQuestions = getDailyMockQuestions(todayStr, dailyMockVersion, allQuestions);
     handleStartExam({
-      title: "Today's MECEE Daily Mock 200",
+      title: `Today's MECEE Daily Mock 200 (Paper #${dailyMockVersion})`,
       type: 'FULL_200',
+      questions: dailyQuestions,
       questionCount: 200,
       durationMinutes: 180
     });
@@ -249,6 +261,8 @@ export const App: React.FC = () => {
                 onNavigateTab={(tab) => setActiveTab(tab)}
                 allQuestions={allQuestions}
                 examAttempts={examAttempts}
+                dailyMockVersion={dailyMockVersion}
+                onUpdateDailyQuestions={handleUpdateDailyMockQuestions}
               />
             )}
 
@@ -271,6 +285,8 @@ export const App: React.FC = () => {
                 }}
                 onStartDailyMock={handleRequestDailyMock}
                 userExamScore={userDailyScore}
+                dailyMockVersion={dailyMockVersion}
+                onUpdateDailyQuestions={handleUpdateDailyMockQuestions}
               />
             )}
 
@@ -316,6 +332,8 @@ export const App: React.FC = () => {
         isOpen={isNameModalOpen}
         onClose={() => setIsNameModalOpen(false)}
         onSubmit={handleConfirmNameAndStartMock}
+        dailyMockVersion={dailyMockVersion}
+        onUpdateDailyQuestions={handleUpdateDailyMockQuestions}
       />
     </div>
   );

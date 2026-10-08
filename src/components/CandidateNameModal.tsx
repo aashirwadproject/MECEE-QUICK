@@ -9,6 +9,8 @@ interface CandidateNameModalProps {
   title?: string;
   subtitle?: string;
   actionButtonText?: string;
+  dailyMockVersion?: number;
+  onUpdateDailyQuestions?: () => void;
 }
 
 export const CandidateNameModal: React.FC<CandidateNameModalProps> = ({
@@ -18,7 +20,9 @@ export const CandidateNameModal: React.FC<CandidateNameModalProps> = ({
   onSubmit,
   title = 'Register for Daily Mock Test',
   subtitle = 'Enter your name to appear on today\'s Live Daily Leaderboard and track your official rank against pre-medical aspirants.',
-  actionButtonText = 'Proceed to Daily Mock (200 Qs)'
+  actionButtonText = 'Proceed to Daily Mock (200 Qs)',
+  dailyMockVersion = 1,
+  onUpdateDailyQuestions
 }) => {
   const [name, setName] = useState(initialName);
   const [error, setError] = useState('');
@@ -61,9 +65,20 @@ export const CandidateNameModal: React.FC<CandidateNameModalProps> = ({
             <Award className="w-5 h-5" />
           </div>
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-[11px] font-bold uppercase tracking-wider mb-1">
-              <Sparkles className="w-3 h-3" />
-              Daily Mock Examination
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-[11px] font-bold uppercase tracking-wider">
+                <Sparkles className="w-3 h-3" />
+                Daily Mock Examination • Paper Set #{dailyMockVersion}
+              </span>
+              {onUpdateDailyQuestions && (
+                <button
+                  type="button"
+                  onClick={onUpdateDailyQuestions}
+                  className="text-[11px] text-teal-400 hover:text-teal-300 underline font-semibold transition-colors"
+                >
+                  Quick Update Questions
+                </button>
+              )}
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-white">{title}</h2>
           </div>
