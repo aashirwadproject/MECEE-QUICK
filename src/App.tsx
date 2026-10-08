@@ -76,7 +76,7 @@ export const App: React.FC = () => {
     subjectFilter?: SubjectType;
     unitFilter?: string;
     questionCount?: number;
-    durationMinutes: number;
+    durationMinutes?: number;
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
   }) => {
@@ -118,16 +118,27 @@ export const App: React.FC = () => {
         filtered = [...allQuestions];
       }
 
-      // Shuffle and pick questions
-      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-      selected = shuffled.slice(0, Math.max(1, config.questionCount || 20));
+      // If it's a chapter/unit test or unitFilter is specified, remove the 15/20 question limit
+      // and provide ALL questions available for that chapter!
+      if (config.type === 'UNIT' || config.unitFilter) {
+        selected = [...filtered].sort(() => 0.5 - Math.random());
+      } else {
+        const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+        selected = shuffled.slice(0, Math.max(1, config.questionCount || filtered.length));
+      }
     }
+
+    // Allocate sufficient duration based on question count:
+    // For unit tests with all questions, provide ~1 minute per question or at least 30 minutes
+    const examDurationMinutes = (config.type === 'UNIT' || config.unitFilter)
+      ? Math.max(config.durationMinutes || 30, Math.round(selected.length * 1.0))
+      : (config.durationMinutes || Math.max(20, Math.round(selected.length * 0.9)));
 
     setActiveExamConfig({
       title: config.title,
       type: config.type,
       questions: selected,
-      durationMinutes: config.durationMinutes,
+      durationMinutes: examDurationMinutes,
       isInstantFeedback: config.isInstantFeedback
     });
     setReviewAttempt(null);

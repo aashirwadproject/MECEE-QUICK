@@ -17,7 +17,7 @@ interface PracticeProps {
     type: 'FULL_200' | 'SUBJECT' | 'UNIT' | 'HIGH_YIELD';
     subjectFilter?: SubjectType;
     unitFilter?: string;
-    questionCount: number;
+    questionCount?: number;
     durationMinutes: number;
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
@@ -139,32 +139,32 @@ export const Practice: React.FC<PracticeProps> = ({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onStartExam({
-                      title: `${unit.name} Practice`,
+                      title: `${unit.name} Instant Practice (${countInBank} Qs)`,
                       type: 'UNIT',
                       unitFilter: unit.name,
-                      questionCount: 15,
-                      durationMinutes: 20,
+                      questionCount: countInBank,
+                      durationMinutes: Math.max(30, Math.round(countInBank * 1.2)),
                       isInstantFeedback: true
                     })}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
                   >
                     <Zap className="w-3.5 h-3.5 text-amber-400" />
-                    Instant
+                    Instant ({countInBank})
                   </button>
 
                   <button
                     onClick={() => onStartExam({
-                      title: `${unit.name} Timed Quiz`,
+                      title: `${unit.name} Chapter Quiz (All ${countInBank} Qs)`,
                       type: 'UNIT',
                       unitFilter: unit.name,
-                      questionCount: 20,
-                      durationMinutes: 25,
+                      questionCount: countInBank,
+                      durationMinutes: Math.max(30, Math.round(countInBank * 1.0)),
                       isInstantFeedback: false
                     })}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold transition-colors"
                   >
                     <Timer className="w-3.5 h-3.5" />
-                    Timed
+                    Timed (All {countInBank})
                   </button>
                 </div>
               </div>

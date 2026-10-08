@@ -24,7 +24,7 @@ interface DashboardProps {
     subjectFilter?: SubjectType;
     unitFilter?: string;
     questionCount?: number;
-    durationMinutes: number;
+    durationMinutes?: number;
     isInstantFeedback?: boolean;
     onlyHighYield?: boolean;
   }) => void;
@@ -253,14 +253,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
               <button
                 onClick={() => onStartExam({
-                  title: `${item.name} Sprint`,
+                  title: `${item.name} Chapter Test`,
                   type: 'UNIT',
-                  unitFilter: item.name,
-                  questionCount: 15,
-                  durationMinutes: 20
+                  unitFilter: item.name
                 })}
                 className="p-2.5 rounded-lg bg-teal-500/10 text-teal-400 hover:bg-teal-500 hover:text-slate-950 transition-colors"
-                title="Practice Unit"
+                title="Practice Unit (All Questions)"
               >
                 <Play className="w-4 h-4 fill-current" />
               </button>

@@ -16,8 +16,8 @@ interface SyllabusExplorerProps {
     type: 'FULL_200' | 'SUBJECT' | 'UNIT' | 'HIGH_YIELD';
     subjectFilter?: SubjectType;
     unitFilter?: string;
-    questionCount: number;
-    durationMinutes: number;
+    questionCount?: number;
+    durationMinutes?: number;
   }) => void;
   onBack: () => void;
 }
@@ -122,14 +122,12 @@ export const SyllabusExplorer: React.FC<SyllabusExplorerProps> = ({
 
                     <button
                       onClick={() => onStartExam({
-                        title: `${item.name} Priority Test`,
+                        title: `${item.name} Unit Test (All Questions)`,
                         type: 'UNIT',
-                        unitFilter: item.name,
-                        questionCount: 15,
-                        durationMinutes: 20
+                        unitFilter: item.name
                       })}
                       className="p-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 transition-colors"
-                      title="Practice this unit"
+                      title="Practice this unit (All questions)"
                     >
                       <Play className="w-3.5 h-3.5 fill-current" />
                     </button>
@@ -200,15 +198,13 @@ export const SyllabusExplorer: React.FC<SyllabusExplorerProps> = ({
 
                   <button
                     onClick={() => onStartExam({
-                      title: `${unit.name} Quiz`,
+                      title: `${unit.name} Chapter Test (All Questions)`,
                       type: 'UNIT',
-                      unitFilter: unit.name,
-                      questionCount: 15,
-                      durationMinutes: 20
+                      unitFilter: unit.name
                     })}
                     className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-teal-500 hover:text-slate-950 text-slate-200 text-xs font-bold border border-slate-700 transition-colors"
                   >
-                    Practice Unit
+                    Practice All Questions
                   </button>
                 </div>
               </div>
