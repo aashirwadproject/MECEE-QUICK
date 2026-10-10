@@ -4,6 +4,7 @@ import { BOTANY_QUESTIONS } from './questions/botanyQuestions';
 import { CHEMISTRY_QUESTIONS } from './questions/chemistryQuestions';
 import { PHYSICS_QUESTIONS } from './questions/physicsQuestions';
 import { MAT_QUESTIONS } from './questions/matQuestions';
+import { CEE_PAST_YEAR_QUESTIONS } from './questions/ceePastYearQuestions';
 import { generateSyllabusQuestions } from './questionGenerator';
 
 // Ensures all questions have their correct option evenly distributed across A, B, C, D (25% each)
@@ -40,6 +41,7 @@ const rawSeedPool: Question[] = [
   ...CHEMISTRY_QUESTIONS,
   ...PHYSICS_QUESTIONS,
   ...MAT_QUESTIONS,
+  ...CEE_PAST_YEAR_QUESTIONS,
   ...generateSyllabusQuestions()
 ];
 

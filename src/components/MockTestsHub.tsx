@@ -40,7 +40,7 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
   onBack
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filterCategory, setFilterCategory] = useState<'ALL' | 'ATTEMPTED' | 'UNATTEMPTED' | 'PAST_PAPERS' | 'INSTITUTE'>('ALL');
+  const [filterCategory, setFilterCategory] = useState<'ALL' | 'CEE_PAST' | 'ONLINE_MOCKS' | 'INSTITUTE' | 'ATTEMPTED' | 'UNATTEMPTED'>('ALL');
 
   // Map attempted mock exams by title or mock number
   const attemptedMap: Record<number, ExamAttempt> = {};
@@ -75,9 +75,15 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
     const isAttempted = !!attemptedMap[mock.mockNumber];
     if (filterCategory === 'ATTEMPTED' && !isAttempted) return false;
     if (filterCategory === 'UNATTEMPTED' && isAttempted) return false;
-    if (filterCategory === 'PAST_PAPERS') {
-      const isPast = mock.tags.some(t => t.toLowerCase().includes('past') || t.toLowerCase().includes('iom') || t.toLowerCase().includes('bpkihs') || t.toLowerCase().includes('ku') || t.toLowerCase().includes('moe'));
+    if (filterCategory === 'CEE_PAST') {
+      const isPast = mock.series.toLowerCase().includes('past') || 
+        mock.tags.some(t => t.toLowerCase().includes('past') || t.toLowerCase().includes('iom') || t.toLowerCase().includes('bpkihs') || t.toLowerCase().includes('ku') || t.toLowerCase().includes('moe') || t.toLowerCase().includes('pahs'));
       if (!isPast) return false;
+    }
+    if (filterCategory === 'ONLINE_MOCKS') {
+      const isOnline = mock.series.toLowerCase().includes('online') || mock.series.toLowerCase().includes('efficient') ||
+        mock.tags.some(t => t.toLowerCase().includes('online') || t.toLowerCase().includes('cbt') || t.toLowerCase().includes('high-efficiency'));
+      if (!isOnline) return false;
     }
     if (filterCategory === 'INSTITUTE') {
       const isInst = mock.tags.some(t => t.toLowerCase().includes('name') || t.toLowerCase().includes('vibrant') || t.toLowerCase().includes('meditech') || t.toLowerCase().includes('apex') || t.toLowerCase().includes('orbit'));
@@ -184,14 +190,24 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
             All (50)
           </button>
           <button
-            onClick={() => setFilterCategory('PAST_PAPERS')}
+            onClick={() => setFilterCategory('CEE_PAST')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-              filterCategory === 'PAST_PAPERS'
-                ? 'bg-teal-500 text-slate-950'
-                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
+              filterCategory === 'CEE_PAST'
+                ? 'bg-amber-500 text-slate-950'
+                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-300'
             }`}
           >
-            Past Papers (IOM/BPKIHS/KU)
+            CEE Past Papers (2020-2024 & IOM)
+          </button>
+          <button
+            onClick={() => setFilterCategory('ONLINE_MOCKS')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+              filterCategory === 'ONLINE_MOCKS'
+                ? 'bg-cyan-500 text-slate-950'
+                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-300'
+            }`}
+          >
+            Online High-Efficiency Mocks
           </button>
           <button
             onClick={() => setFilterCategory('INSTITUTE')}
@@ -231,6 +247,8 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
         {filteredMocks.map((mock) => {
           const attempt = attemptedMap[mock.mockNumber];
           const hasAttempted = !!attempt;
+          const isCeePast = mock.series.toLowerCase().includes('past') || mock.tags.some(t => t.toLowerCase().includes('past') || t.toLowerCase().includes('2024') || t.toLowerCase().includes('2023') || t.toLowerCase().includes('2022'));
+          const isOnlineCbt = mock.series.toLowerCase().includes('online') || mock.tags.some(t => t.toLowerCase().includes('online') || t.toLowerCase().includes('cbt') || t.toLowerCase().includes('high-efficiency'));
 
           return (
             <div
@@ -242,16 +260,30 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
               }`}
             >
               <div className="space-y-3">
-                {/* Header Badge */}
-                <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/30 text-teal-400 font-mono font-bold text-xs">
-                    MOCK #{String(mock.mockNumber).padStart(2, '0')}
-                  </span>
+                {/* Header Badges */}
+                <div className="flex items-center justify-between gap-1 flex-wrap">
+                  <div className="flex items-center gap-1.5">
+                    <span className="px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/30 text-teal-400 font-mono font-bold text-xs">
+                      MOCK #{String(mock.mockNumber).padStart(2, '0')}
+                    </span>
+                    {isCeePast && (
+                      <span className="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold text-[10px]">
+                        CEE Past Paper
+                      </span>
+                    )}
+                    {isOnlineCbt && !isCeePast && (
+                      <span className="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold text-[10px]">
+                        Online High-Efficiency
+                      </span>
+                    )}
+                  </div>
 
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                     mock.difficulty === 'Challenging' 
                       ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                      : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                      : mock.difficulty === 'Past Paper Standard'
+                        ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                        : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                   }`}>
                     {mock.difficulty}
                   </span>

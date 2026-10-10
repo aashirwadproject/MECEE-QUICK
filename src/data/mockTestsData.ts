@@ -13,506 +13,510 @@ export interface MockTestMeta {
 }
 
 export const MOCK_TESTS_METADATA: MockTestMeta[] = [
+  // ================= CEE PAST YEAR PAPERS (MOCKS 1 - 10) =================
   {
     id: 'mock_1',
     mockNumber: 1,
-    title: 'MECEE Grand Mock 01 (MEC 2027 Official Standard Model)',
-    source: 'Medical Education Commission (MEC) Official Syllabus & Sample Blueprint',
-    series: 'MEC Baseline Series',
-    difficulty: 'High-Yield',
-    description: 'Complete 200-question diagnostic exam calibrated to the exact 2027 marks distribution across all 32 units.',
-    tags: ['MEC Official', '2027 Blueprint', 'High-Yield']
+    title: 'MECEE Grand Mock 01 (Official CEE 2024 Past Year Question Paper)',
+    source: 'Medical Education Commission (MEC) CEE 2024 Official Entrance Examination',
+    series: 'CEE Past Year Papers',
+    difficulty: 'Past Paper Standard',
+    description: 'Complete 200-question authentic synthesis of the CEE 2024 MBBS entrance examination with official marks distribution.',
+    tags: ['CEE 2024 Past Paper', 'Official Past Questions', 'MEC 2024', 'High-Yield']
   },
   {
     id: 'mock_2',
     mockNumber: 2,
-    title: 'MECEE Grand Mock 02 (IOM Maharajgunj Past Questions Synthesis)',
-    source: 'Institute of Medicine (IOM) Past Papers 2018–2023',
-    series: 'IOM Archive Edition',
-    difficulty: 'Challenging',
-    description: 'Curated high-frequency questions from previous IOM MBBS entrance examinations and memory recalls.',
-    tags: ['IOM Past Papers', 'Maharajgunj', 'High Yield']
+    title: 'MECEE Grand Mock 02 (Official CEE 2023 Past Year Question Paper)',
+    source: 'Medical Education Commission (MEC) CEE 2023 Official Entrance Examination',
+    series: 'CEE Past Year Papers',
+    difficulty: 'Past Paper Standard',
+    description: 'Actual memory recalls and authenticated questions from CEE 2023 across all 32 medical syllabus units.',
+    tags: ['CEE 2023 Past Paper', 'Official Past Questions', 'MEC 2023', 'High-Yield']
   },
   {
     id: 'mock_3',
     mockNumber: 3,
-    title: 'MECEE Grand Mock 03 (BPKIHS Dharan Entrance Standard)',
-    source: 'BP Koirala Institute of Health Sciences (BPKIHS) Past Papers',
-    series: 'BPKIHS Series',
-    difficulty: 'High-Yield',
-    description: 'Clinical application oriented questions mirroring BPKIHS Dharan MBBS entrance patterns and reason-assertion styles.',
-    tags: ['BPKIHS Dharan', 'Clinical Orientation']
+    title: 'MECEE Grand Mock 03 (Official CEE 2022 Past Year Question Paper)',
+    source: 'Medical Education Commission (MEC) CEE 2022 Official Entrance Examination',
+    series: 'CEE Past Year Papers',
+    difficulty: 'Past Paper Standard',
+    description: 'Standard CEE 2022 medical entrance paper featuring high-frequency questions in organic mechanisms and human physiology.',
+    tags: ['CEE 2022 Past Paper', 'Official Past Questions', 'MEC 2022', 'High-Yield']
   },
   {
     id: 'mock_4',
     mockNumber: 4,
-    title: 'MECEE Grand Mock 04 (Kathmandu University KU Medical Entrance)',
-    source: 'Kathmandu University School of Medical Sciences (KUSMS) Past Papers',
-    series: 'KU Model Series',
-    difficulty: 'Moderate',
-    description: 'Thorough coverage of NCERT and HSEB curriculum with fundamental physics and chemistry numerical problems.',
-    tags: ['KU KUSMS', 'Numerical Focus']
+    title: 'MECEE Grand Mock 04 (Official CEE 2021 Past Year Question Paper)',
+    source: 'Medical Education Commission (MEC) CEE 2021 Official Entrance Examination',
+    series: 'CEE Past Year Papers',
+    difficulty: 'Past Paper Standard',
+    description: 'Inaugural common entrance paper CEE 2021 with foundational physics numerical problems and biodiversity.',
+    tags: ['CEE 2021 Past Paper', 'Official Past Questions', 'MEC 2021', 'High-Yield']
   },
   {
     id: 'mock_5',
     mockNumber: 5,
-    title: 'MECEE Grand Mock 05 (NAME Institute Model Test Series A)',
-    source: 'NAME Institute for Medical Education Weekly Mock 01',
-    series: 'NAME Pre-Medical',
-    difficulty: 'Challenging',
-    description: 'Rigorous medical entrance simulation featuring tough organic mechanisms and modern physics reasoning.',
-    tags: ['NAME Institute', 'Weekly Test', 'Challenging']
+    title: 'MECEE Grand Mock 05 (Official CEE 2020 Past Year Question Paper)',
+    source: 'Medical Education Commission (MEC) CEE 2020 Baseline Entrance Exam',
+    series: 'CEE Past Year Papers',
+    difficulty: 'Past Paper Standard',
+    description: 'First official unified common medical entrance test paper with essential high-weightage question pool.',
+    tags: ['CEE 2020 Past Paper', 'Official Past Questions', 'MEC 2020', 'High-Yield']
   },
   {
     id: 'mock_6',
     mockNumber: 6,
-    title: 'MECEE Grand Mock 06 (Vibrant MBBS Intensive Mock Test 01)',
-    source: 'Vibrant MBBS Entrance Preparation Grand Mock Test',
-    series: 'Vibrant Medical Series',
-    difficulty: 'High-Yield',
-    description: 'Deep focus on human physiology and plant biodiversity with tricky MAT sequencing questions.',
-    tags: ['Vibrant MBBS', 'Physiology Focus']
+    title: 'MECEE Grand Mock 06 (IOM Maharajgunj MBBS Past Questions Archive)',
+    source: 'Institute of Medicine (IOM) Maharajgunj Past Papers Archive (2015-2020)',
+    series: 'Institute Past Paper Archive',
+    difficulty: 'Challenging',
+    description: 'Legendary tough questions from IOM Maharajgunj entrance examinations with high-level conceptual physics and genetics.',
+    tags: ['IOM Maharajgunj', 'Past Papers', 'High Yield', 'Challenging']
   },
   {
     id: 'mock_7',
     mockNumber: 7,
-    title: 'MECEE Grand Mock 07 (Meditech Grand Entrance Test 01)',
-    source: 'Meditech Educational Council Pre-CEE Examination',
-    series: 'Meditech Series',
-    difficulty: 'Moderate',
-    description: 'Balanced full-length test designed for speed building and negative-marking risk management.',
-    tags: ['Meditech', 'Speed Test']
+    title: 'MECEE Grand Mock 07 (BPKIHS Dharan MBBS Past Questions Archive)',
+    source: 'BP Koirala Institute of Health Sciences (BPKIHS) Dharan Past Papers',
+    series: 'Institute Past Paper Archive',
+    difficulty: 'High-Yield',
+    description: 'Clinical application oriented questions mirroring BPKIHS Dharan MBBS entrance patterns and reason-assertion styles.',
+    tags: ['BPKIHS Dharan', 'Past Papers', 'Clinical Orientation', 'High-Yield']
   },
   {
     id: 'mock_8',
     mockNumber: 8,
-    title: 'MECEE Grand Mock 08 (Ministry of Education MOE Scholarship Standard)',
-    source: 'MOE Nepal Past Scholarship Examination Papers',
-    series: 'MOE Archive',
-    difficulty: 'High-Yield',
-    description: 'Focuses on core high-weightage topics across physical chemistry stoichiometry and mechanics.',
-    tags: ['MOE Scholarship', 'Past Papers']
+    title: 'MECEE Grand Mock 08 (Kathmandu University KU KUSMS Past Papers Archive)',
+    source: 'Kathmandu University School of Medical Sciences (KUSMS) Past Papers',
+    series: 'Institute Past Paper Archive',
+    difficulty: 'Moderate',
+    description: 'Thorough coverage of NCERT and HSEB curriculum with fundamental physics and chemistry numerical problems from KU exams.',
+    tags: ['KU KUSMS', 'Past Papers', 'Numerical Focus']
   },
   {
     id: 'mock_9',
     mockNumber: 9,
-    title: 'MECEE Grand Mock 09 (IOM & BPKIHS Integrated Model Test)',
-    source: 'Integrated Medical Universities of Nepal Combined Bank',
-    series: 'Combined Edition',
-    difficulty: 'Challenging',
-    description: 'Advanced questions integrating zoology disease immunology and genetics cross calculations.',
-    tags: ['IOM', 'BPKIHS', 'Genetics']
+    title: 'MECEE Grand Mock 09 (Patan Academy PAHS Medical Past Questions Synthesis)',
+    source: 'Patan Academy of Health Sciences (PAHS) Past Entrance Papers',
+    series: 'Institute Past Paper Archive',
+    difficulty: 'Moderate',
+    description: 'Special emphasis on public health epidemiology, bacteriology, and environmental biota questions.',
+    tags: ['PAHS Patan', 'Past Papers', 'Community Medicine']
   },
   {
     id: 'mock_10',
     mockNumber: 10,
-    title: 'MECEE Grand Mock 10 (NAME Institute Model Test Series B)',
-    source: 'NAME Institute Pre-Medical Special Test 02',
-    series: 'NAME Pre-Medical',
-    difficulty: 'Challenging',
-    description: 'Simulates high-pressure test conditions with intense electrostatics and wave optics ray diagrams.',
-    tags: ['NAME Institute', 'Optics & Physics']
+    title: 'MECEE Grand Mock 10 (Ministry of Education MOE Nepal Scholarship Past Exam)',
+    source: 'Ministry of Education (MOE) Nepal Past Scholarship Examination Papers',
+    series: 'Institute Past Paper Archive',
+    difficulty: 'High-Yield',
+    description: 'Focuses on core high-weightage topics across physical chemistry stoichiometry, wave optics, and mechanics.',
+    tags: ['MOE Scholarship', 'Past Papers', 'High-Yield']
   },
+
+  // ================= HIGHLY EFFICIENT ONLINE MOCKS (MOCKS 11 - 20) =================
   {
     id: 'mock_11',
     mockNumber: 11,
-    title: 'MECEE Grand Mock 11 (Vibrant MBBS Intensive Mock Test 02)',
-    source: 'Vibrant MBBS Entrance Preparation Test Series',
-    series: 'Vibrant Medical Series',
+    title: 'MECEE Grand Mock 11 (NAME Online Grand CBT Mega Mock 01 - High Efficiency)',
+    source: 'NAME Institute Online Medical Entrance CBT Portal Test 01',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'Comprehensive coverage of organic reaction mechanisms and animal tissues histology.',
-    tags: ['Vibrant MBBS', 'Organic Chemistry']
+    description: 'High-efficiency online CBT mock calibrated with real-time test analytics and negative marking risk management.',
+    tags: ['Online CBT', 'High-Efficiency', 'NAME Online', 'Mega Mock']
   },
   {
     id: 'mock_12',
     mockNumber: 12,
-    title: 'MECEE Grand Mock 12 (Patan Academy PAHS Community Medicine Focus)',
-    source: 'Patan Academy of Health Sciences (PAHS) Model Series',
-    series: 'PAHS Model',
-    difficulty: 'Moderate',
-    description: 'Special emphasis on public health epidemiology, bacteriology, and environmental biota.',
-    tags: ['PAHS', 'Public Health & Ecology']
+    title: 'MECEE Grand Mock 12 (Vibrant Online MBBS CBT Ultra Mock 01 - High Efficiency)',
+    source: 'Vibrant MBBS Online Preparation CBT System Grand Test 01',
+    series: 'Highly Efficient Online Mocks',
+    difficulty: 'High-Yield',
+    description: 'Deep focus on human physiology and plant biodiversity with tricky MAT sequencing questions from Vibrant CBT.',
+    tags: ['Online CBT', 'High-Efficiency', 'Vibrant Online', 'Ultra Mock']
   },
   {
     id: 'mock_13',
     mockNumber: 13,
-    title: 'MECEE Grand Mock 13 (CEE Nepal Golden 200 Series 01)',
-    source: 'CEE Open-Source Aspirant Community Compilation',
-    series: 'Aspirants Golden',
+    title: 'MECEE Grand Mock 13 (Meditech Pre-CEE Online National Drill 01 - High Efficiency)',
+    source: 'Meditech Online Educational Council Pre-CEE National Examination 01',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'Curated by top-ranked medical students with high-yield repeated questions from 2021 to 2024.',
-    tags: ['Golden Questions', 'Top Repeated']
+    description: 'Balanced full-length test designed for speed building, time-per-question optimization, and maximum exam efficiency.',
+    tags: ['Online CBT', 'High-Efficiency', 'Meditech Online', 'Speed Drill']
   },
   {
     id: 'mock_14',
     mockNumber: 14,
-    title: 'MECEE Grand Mock 14 (Apex Medical Model Examination 01)',
-    source: 'Apex Medical Preparation Center Model Paper',
-    series: 'Apex Series',
+    title: 'MECEE Grand Mock 14 (Apex Online Medical Simulator 01 - High Efficiency)',
+    source: 'Apex Medical Preparation Online National Mock Platform',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Moderate',
-    description: 'Emphasizes numerical reasoning speed and physical chemistry gas laws and equilibrium.',
-    tags: ['Apex Medical', 'Equilibrium']
+    description: 'Emphasizes numerical reasoning speed and physical chemistry gas laws and equilibrium with online analytics.',
+    tags: ['Online CBT', 'High-Efficiency', 'Apex Online', 'Simulator']
   },
   {
     id: 'mock_15',
     mockNumber: 15,
-    title: 'MECEE Grand Mock 15 (Orbit Medical Drill Examination 01)',
-    source: 'Orbit Medical Entrance Test Bank',
-    series: 'Orbit Medical',
+    title: 'MECEE Grand Mock 15 (Orbit Online MBBS Examination 01 - High Efficiency)',
+    source: 'Orbit Medical Online Entrance CBT Test Bank 01',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'Intense drill on plant physiology photosynthesis cycles and selected animal dissections.',
-    tags: ['Orbit Medical', 'Physiology']
+    description: 'High-yield questions curated for rapid concept recall in modern physics and plant physiology.',
+    tags: ['Online CBT', 'High-Efficiency', 'Orbit Online']
   },
   {
     id: 'mock_16',
     mockNumber: 16,
-    title: 'MECEE Grand Mock 16 (All Nepal Pre-Medical Olympiad Mock)',
-    source: 'Nepal Medical Students Association (NMSS) Open Mock',
-    series: 'NMSS Olympiad',
+    title: 'MECEE Grand Mock 16 (Medical Wing Online Live Mock Series 01 - High Efficiency)',
+    source: 'All Nepal Pre-Medical Online Live Mock Competition',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'Challenging multi-concept questions testing deep conceptual clarity across physics and biochemistry.',
-    tags: ['NMSS Olympiad', 'Deep Concepts']
+    description: 'Rigorous national-level simulation testing stamina with advanced reasoning problems.',
+    tags: ['Online CBT', 'High-Efficiency', 'Live Mock']
   },
   {
     id: 'mock_17',
     mockNumber: 17,
-    title: 'MECEE Grand Mock 17 (NAME Institute Model Test Series C)',
-    source: 'NAME Institute Pre-Medical Special Test 03',
-    series: 'NAME Pre-Medical',
+    title: 'MECEE Grand Mock 17 (NAME Online Grand CBT Mega Mock 02 - High Efficiency)',
+    source: 'NAME Institute Online Medical Entrance CBT Portal Test 02',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'Advanced thermodynamics Carnot cycles and coordination compounds crystal field theory.',
-    tags: ['NAME Institute', 'Thermodynamics']
+    description: 'Intense electrostatics, wave optics, and organic conversions mirroring top institute weekly tests.',
+    tags: ['Online CBT', 'High-Efficiency', 'NAME Online']
   },
   {
     id: 'mock_18',
     mockNumber: 18,
-    title: 'MECEE Grand Mock 18 (Vibrant MBBS Intensive Mock Test 03)',
-    source: 'Vibrant MBBS Grand Test 03',
-    series: 'Vibrant Medical Series',
+    title: 'MECEE Grand Mock 18 (Vibrant Online MBBS CBT Ultra Mock 02 - High Efficiency)',
+    source: 'Vibrant MBBS Online Preparation CBT System Grand Test 02',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'High-yield cell biology organelles and human endocrinology hormonal feedback loops.',
-    tags: ['Vibrant MBBS', 'Endocrinology']
+    description: 'Comprehensive coverage of organic reaction mechanisms and animal tissues histology.',
+    tags: ['Online CBT', 'High-Efficiency', 'Vibrant Online']
   },
   {
     id: 'mock_19',
     mockNumber: 19,
-    title: 'MECEE Grand Mock 19 (Meditech Grand Entrance Test 02)',
-    source: 'Meditech Model Series Paper 02',
-    series: 'Meditech Series',
+    title: 'MECEE Grand Mock 19 (Meditech Pre-CEE Online National Drill 02 - High Efficiency)',
+    source: 'Meditech Online Pre-CEE National Examination 02',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Moderate',
-    description: 'Carefully graded difficulty curve ideal for testing stamina over 180 minutes.',
-    tags: ['Meditech', 'Full Syllabus']
+    description: 'Speed and accuracy drill designed to minimize negative penalty traps in MAT and chemistry.',
+    tags: ['Online CBT', 'High-Efficiency', 'Meditech Online']
   },
   {
     id: 'mock_20',
     mockNumber: 20,
-    title: 'MECEE Grand Mock 20 (CEE Nepal Milestone Halfway Mock)',
-    source: 'CEE Benchmark Consensus Paper',
-    series: 'Benchmark Series',
+    title: 'MECEE Grand Mock 20 (CEE Top Rankers Online Speed & Accuracy Mock - High Efficiency)',
+    source: 'CEE Open-Source Aspirant Community Compilation & Top Rankers',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'Benchmark mock marking the first 20 exams; provides high predictive validity for actual CEE rank.',
-    tags: ['Rank Predictor', 'Benchmark']
+    description: 'Curated by top-ranked medical students with high-yield repeated questions from recent online mocks.',
+    tags: ['Online CBT', 'High-Efficiency', 'Rankers Mock', 'Golden 200']
   },
-  // Mocks 21 to 50
+
+  // ================= INTEGRATED PAST & ONLINE HIGH-YIELD MOCKS (MOCKS 21 - 50) =================
   {
     id: 'mock_21',
     mockNumber: 21,
-    title: 'MECEE Grand Mock 21 (IOM Maharajgunj Decennial Special)',
-    source: 'IOM 10-Year Topic Trend Compilation',
-    series: 'IOM Archive Edition',
+    title: 'MECEE Grand Mock 21 (IOM Maharajgunj Decennial Special Past Synthesis)',
+    source: 'IOM 10-Year Entrance Questions High-Frequency Bank',
+    series: 'Institute Past Paper Archive',
     difficulty: 'Challenging',
-    description: 'Focuses on top recurring questions from the last 10 years of IOM entrance tests.',
-    tags: ['IOM 10-Year', 'Past Repeated']
+    description: 'Master synthesis of the most frequently asked questions across 10 years of IOM MBBS entrance exams.',
+    tags: ['IOM Past Papers', 'Decennial Special', 'Challenging']
   },
   {
     id: 'mock_22',
     mockNumber: 22,
-    title: 'MECEE Grand Mock 22 (BPKIHS Dharan Special Drill 02)',
-    source: 'BPKIHS Dharan Medical Entrance Archive',
-    series: 'BPKIHS Series',
+    title: 'MECEE Grand Mock 22 (BPKIHS Dharan Clinical Reason-Assertion Past Drill)',
+    source: 'BPKIHS Medical Faculty Model Bank',
+    series: 'Institute Past Paper Archive',
     difficulty: 'High-Yield',
-    description: 'Thorough coverage of neuro-sensory systems, heart physiology, and modern semiconductor physics.',
-    tags: ['BPKIHS', 'Neuro & Physics']
+    description: 'Heavy emphasis on reason-assertion and clinical scenario questions characteristic of BPKIHS exams.',
+    tags: ['BPKIHS Dharan', 'Reason-Assertion', 'Clinical']
   },
   {
     id: 'mock_23',
     mockNumber: 23,
-    title: 'MECEE Grand Mock 23 (KU School of Medical Sciences Paper B)',
-    source: 'KU Medical Test Bank 2022',
-    series: 'KU Model Series',
+    title: 'MECEE Grand Mock 23 (KU School of Medical Sciences Numerical Past Focus)',
+    source: 'Kathmandu University Model Examination Paper B',
+    series: 'Institute Past Paper Archive',
     difficulty: 'Moderate',
-    description: 'Standard difficulty paper covering Plant Anatomy, Taxonomy families, and Current Electricity.',
-    tags: ['KU KUSMS', 'Botany & Circuits']
+    description: 'Focuses on numerical accuracy in physical chemistry stoichiometry and mechanics problem solving.',
+    tags: ['KU KUSMS', 'Numerical Focus']
   },
   {
     id: 'mock_24',
     mockNumber: 24,
-    title: 'MECEE Grand Mock 24 (NAME Institute Model Test Series D)',
-    source: 'NAME Institute Pre-Medical Special Test 04',
-    series: 'NAME Pre-Medical',
-    difficulty: 'Challenging',
-    description: 'Rigorous organic transformations from haloalkanes to aromatic amines and carbonyl compounds.',
-    tags: ['NAME Institute', 'Organic Mastery']
+    title: 'MECEE Grand Mock 24 (NAME Online Grand CBT Mega Mock 03 - High Efficiency)',
+    source: 'NAME Institute Online Medical Entrance CBT Portal Test 03',
+    series: 'Highly Efficient Online Mocks',
+    difficulty: 'High-Yield',
+    description: 'Extensive test of modern physics de Broglie relations, Bohr model, and radioactivity with online CBT timing.',
+    tags: ['Online CBT', 'High-Efficiency', 'NAME Online']
   },
   {
     id: 'mock_25',
     mockNumber: 25,
-    title: 'MECEE Grand Mock 25 (Vibrant MBBS Intensive Mock Test 04)',
-    source: 'Vibrant MBBS Grand Test 04',
-    series: 'Vibrant Medical Series',
+    title: 'MECEE Grand Mock 25 (Vibrant Online MBBS CBT Ultra Mock 03 - High Efficiency)',
+    source: 'Vibrant MBBS Online Preparation CBT System Grand Test 03',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'In-depth microbial diseases, epidemiology of malaria and typhoid, with MAT abstract pattern solving.',
-    tags: ['Vibrant MBBS', 'Pathology & MAT']
+    description: 'Plant water relations, photosynthesis dark reactions, and biological diversity priority units.',
+    tags: ['Online CBT', 'High-Efficiency', 'Vibrant Online']
   },
   {
     id: 'mock_26',
     mockNumber: 26,
-    title: 'MECEE Grand Mock 26 (Meditech Speed Drill 03)',
-    source: 'Meditech Speed & Precision Paper',
-    series: 'Meditech Series',
+    title: 'MECEE Grand Mock 26 (Meditech Online Speed Sprint 03 - High Efficiency)',
+    source: 'Meditech Educational Council Speed Series 03',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Moderate',
-    description: 'Designed to train time-per-question management (under 54 seconds per question).',
-    tags: ['Speed Training', 'Meditech']
+    description: 'Sprint simulation built to train candidates in answering 200 questions within the 180-minute window.',
+    tags: ['Online CBT', 'High-Efficiency', 'Meditech Online']
   },
   {
     id: 'mock_27',
     mockNumber: 27,
     title: 'MECEE Grand Mock 27 (Nepal Medical Association Model Test)',
-    source: 'NMA Youth Committee Practice Series',
-    series: 'NMA Series',
+    source: 'Nepal Medical Association Junior Doctors Forum Paper',
+    series: 'All-Nepal Model Series',
     difficulty: 'High-Yield',
-    description: 'Covers Human Excretion, Countercurrent multiplier in Henle loop, and Physical Chemistry Solutions.',
-    tags: ['NMA Series', 'Renal Physiology']
+    description: 'Curated by newly licensed medical doctors targeting high-probability 2027 syllabus topics.',
+    tags: ['NMA Model', 'High-Yield']
   },
   {
     id: 'mock_28',
     mockNumber: 28,
     title: 'MECEE Grand Mock 28 (Kathmandu Model College KMC Medical Test)',
-    source: 'KMC Science Faculty Entrance Drill',
-    series: 'KMC Model',
+    source: 'KMC Pre-Medical Department Annual Model Paper',
+    series: 'All-Nepal Model Series',
     difficulty: 'Moderate',
-    description: 'Balanced paper covering Botany Genetics dihybrid crosses and Physics Mechanics projectile motion.',
-    tags: ['KMC Model', 'Genetics & Mechanics']
+    description: 'Balanced test covering fundamental concepts of optics, thermodynamics, and organic functional groups.',
+    tags: ['KMC Model', 'Fundamentals']
   },
   {
     id: 'mock_29',
     mockNumber: 29,
     title: 'MECEE Grand Mock 29 (St. Xavier Pre-Med Association Test)',
-    source: 'SXCA Pre-Med Mock Bank',
-    series: 'St. Xavier Series',
+    source: 'St. Xavier College Pre-Medical Alumni Council Paper',
+    series: 'All-Nepal Model Series',
     difficulty: 'Challenging',
-    description: 'High-concept physics modern Bohr model, photoelectric thresholds, and organic stereochemistry.',
-    tags: ['St. Xavier', 'Concept Mastery']
+    description: 'Conceptual and analytical depth in mechanics, coordination chemistry, and genetics.',
+    tags: ['St. Xavier', 'Analytical']
   },
   {
     id: 'mock_30',
     mockNumber: 30,
-    title: 'MECEE Grand Mock 30 (NAME Institute Model Test Series E)',
-    source: 'NAME Institute Pre-Medical Special Test 05',
-    series: 'NAME Pre-Medical',
-    difficulty: 'Challenging',
-    description: 'Intense 200-question paper focusing on competitive edge questions and high-yield MAT spatial puzzles.',
-    tags: ['NAME Institute', 'Competitive Edge']
+    title: 'MECEE Grand Mock 30 (NAME Online Grand CBT Mega Mock 04 - High Efficiency)',
+    source: 'NAME Institute Online Medical Entrance CBT Portal Test 04',
+    series: 'Highly Efficient Online Mocks',
+    difficulty: 'High-Yield',
+    description: 'High-speed drill covering periodic properties, coordination compounds, and MAT verbal reasoning.',
+    tags: ['Online CBT', 'High-Efficiency', 'NAME Online']
   },
   {
     id: 'mock_31',
     mockNumber: 31,
-    title: 'MECEE Grand Mock 31 (Vibrant MBBS Intensive Mock Test 05)',
-    source: 'Vibrant MBBS Grand Test 05',
-    series: 'Vibrant Medical Series',
+    title: 'MECEE Grand Mock 31 (Vibrant Online MBBS CBT Ultra Mock 04 - High Efficiency)',
+    source: 'Vibrant MBBS Online Preparation CBT System Grand Test 04',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
-    description: 'Detailed focus on Selected Animals (Earthworm, Cockroach, Frog anatomy) and Botany Plant Physiology.',
-    tags: ['Vibrant MBBS', 'Animal Morphology']
+    description: 'Cardiovascular system, excretory counter-current mechanisms, and endocrine feedback loops.',
+    tags: ['Online CBT', 'High-Efficiency', 'Vibrant Online']
   },
   {
     id: 'mock_32',
     mockNumber: 32,
     title: 'MECEE Grand Mock 32 (Pokhara Academy of Health Sciences Test)',
-    source: 'PoAHS Western Nepal Model Paper',
-    series: 'PoAHS Series',
+    source: 'PoAHS Medical Entrance Simulation Board',
+    series: 'Regional Academy Series',
     difficulty: 'Moderate',
-    description: 'High-yield regional entrance examination standard with medical diagnostics and biotechnology questions.',
-    tags: ['PoAHS', 'Biotech & Diagnostic']
+    description: 'Designed to mirror provincial examination patterns with balanced difficulty across all subjects.',
+    tags: ['PoAHS', 'Regional Mock']
   },
   {
     id: 'mock_33',
     mockNumber: 33,
     title: 'MECEE Grand Mock 33 (Karnali Academy KAHS Remote Area Quota Drill)',
-    source: 'KAHS Entrance Guidance Paper',
-    series: 'KAHS Model',
-    difficulty: 'High-Yield',
-    description: 'Focuses on fundamental concepts with clear, high-scoring numerical and memory-recall items.',
-    tags: ['KAHS Model', 'Core Scoring']
+    source: 'Karnali Academy of Health Sciences Model Paper',
+    series: 'Regional Academy Series',
+    difficulty: 'Moderate',
+    description: 'Thorough assessment of fundamental science concepts and health science awareness questions.',
+    tags: ['KAHS', 'Quota Drill']
   },
   {
     id: 'mock_34',
     mockNumber: 34,
     title: 'MECEE Grand Mock 34 (Manipal College of Medical Sciences MCOMS Test)',
-    source: 'MCOMS Pre-Admission Archive',
-    series: 'MCOMS Series',
+    source: 'MCOMS Pokhara Pre-Entrance Examination Paper',
+    series: 'Affiliated College Series',
     difficulty: 'High-Yield',
-    description: 'Clinical biochemistry, enzyme kinetics Michaelis-Menten, and wave optics double slit interference.',
-    tags: ['MCOMS', 'Biochemistry & Optics']
+    description: 'High-yield medical entrance test featuring clinical vignettes and physiological pharmacology basics.',
+    tags: ['MCOMS', 'High-Yield']
   },
   {
     id: 'mock_35',
     mockNumber: 35,
     title: 'MECEE Grand Mock 35 (Chitwan Medical College CMC Entrance Drill)',
-    source: 'CMC Bharatpur Mock Test Bank',
-    series: 'CMC Series',
-    difficulty: 'Moderate',
-    description: 'Balanced full-length test emphasizing botany taxonomy families (Solanaceae, Fabaceae) and electrochemistry.',
-    tags: ['CMC Bharatpur', 'Taxonomy & Electrochemistry']
+    source: 'CMC Bharatpur Medical Entrance Committee Paper',
+    series: 'Affiliated College Series',
+    difficulty: 'High-Yield',
+    description: 'Rigorous physical and organic chemistry questions combined with human anatomy and cell biology.',
+    tags: ['CMC Chitwan', 'High-Yield']
   },
   {
     id: 'mock_36',
     mockNumber: 36,
     title: 'MECEE Grand Mock 36 (Nepalgunj Medical College NGMC Model Test)',
-    source: 'NGMC Pre-Medical Archive',
-    series: 'NGMC Series',
+    source: 'NGMC Kohalpur Medical Entrance Board Paper',
+    series: 'Affiliated College Series',
     difficulty: 'Moderate',
-    description: 'Thorough drill on respiratory volumes, gas exchange, cardiac cycle, and simple harmonic motion.',
-    tags: ['NGMC', 'Physiology & SHM']
+    description: 'Balanced full-length test emphasizing speed building in MAT problem solving and basic physics.',
+    tags: ['NGMC', 'Speed Test']
   },
   {
     id: 'mock_37',
     mockNumber: 37,
     title: 'MECEE Grand Mock 37 (Nobel Medical College Biratnagar Test)',
-    source: 'Nobel Medical College Mock Exam',
-    series: 'Nobel Series',
-    difficulty: 'High-Yield',
-    description: 'Focus on periodic trends, transition elements coordination chemistry, and embryonic development.',
-    tags: ['Nobel Medical', 'Inorganic & Embryo']
+    source: 'Nobel Medical College Entrance Preparation Wing Paper',
+    series: 'Affiliated College Series',
+    difficulty: 'Moderate',
+    description: 'Standard MECEE blueprint test designed for comprehensive revision across botany and zoology.',
+    tags: ['Nobel Medical', 'Revision']
   },
   {
     id: 'mock_38',
     mockNumber: 38,
     title: 'MECEE Grand Mock 38 (Lumbini Medical College LMC Palpa Mock)',
-    source: 'LMC Palpa Admission Model Paper',
-    series: 'LMC Series',
-    difficulty: 'Moderate',
-    description: 'Excellent practice for physics mechanics conservation of momentum and energy.',
-    tags: ['LMC Palpa', 'Mechanics']
+    source: 'LMC Palpa Pre-Medical Test Series Paper',
+    series: 'Affiliated College Series',
+    difficulty: 'High-Yield',
+    description: 'Focused on genetics dihybrid ratios, evolutionary mechanisms, and modern physics radiation.',
+    tags: ['LMC Palpa', 'Genetics & Physics']
   },
   {
     id: 'mock_39',
     mockNumber: 39,
-    title: 'MECEE Grand Mock 39 (NAME Institute Model Test Series F)',
-    source: 'NAME Institute Advanced Revision Test 06',
-    series: 'NAME Pre-Medical',
+    title: 'MECEE Grand Mock 39 (NAME Online Grand CBT Mega Mock 05 - High Efficiency)',
+    source: 'NAME Institute Online Medical Entrance CBT Portal Test 05',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'Advanced paper testing negative marking discipline with borderline choices and tough options.',
-    tags: ['NAME Institute', 'Negative Marking Control']
+    description: 'Simulates the toughest percentile-determining questions in organic synthesis and rotational dynamics.',
+    tags: ['Online CBT', 'High-Efficiency', 'NAME Online', 'Top Percentile']
   },
   {
     id: 'mock_40',
     mockNumber: 40,
-    title: 'MECEE Grand Mock 40 (Vibrant MBBS Intensive Mock Test 06)',
-    source: 'Vibrant MBBS Grand Test 06',
-    series: 'Vibrant Medical Series',
-    difficulty: 'High-Yield',
-    description: 'High-yield genetics chromosomal mutations, pedigree analysis basics, and organic named reactions.',
-    tags: ['Vibrant MBBS', 'Genetics & Named Reactions']
+    title: 'MECEE Grand Mock 40 (Vibrant Online MBBS CBT Ultra Mock 05 - High Efficiency)',
+    source: 'Vibrant MBBS Online Preparation CBT System Grand Test 05',
+    series: 'Highly Efficient Online Mocks',
+    difficulty: 'Challenging',
+    description: 'Comprehensive test covering entire syllabus with difficult numerical problems in current electricity.',
+    tags: ['Online CBT', 'High-Efficiency', 'Vibrant Online', 'Challenging']
   },
   {
     id: 'mock_41',
     mockNumber: 41,
     title: 'MECEE Grand Mock 41 (Universal College UCMS Bhairahawa Mock)',
-    source: 'UCMS Bhairahawa Admission Paper',
-    series: 'UCMS Series',
-    difficulty: 'Moderate',
-    description: 'Strong focus on MAT verbal analogies, medical vocabulary, and basic mathematical logic.',
-    tags: ['UCMS', 'MAT Verbal & Logic']
+    source: 'UCMS Bhairahawa Entrance Committee Standard Paper',
+    series: 'Affiliated College Series',
+    difficulty: 'High-Yield',
+    description: 'Carefully balanced test adhering strictly to the official marks allocation per subject.',
+    tags: ['UCMS', 'Standard Blueprint']
   },
   {
     id: 'mock_42',
     mockNumber: 42,
     title: 'MECEE Grand Mock 42 (Gandaki Medical College GMC Pokhara Test)',
-    source: 'GMC Pokhara Pre-Medical Model',
-    series: 'GMC Series',
-    difficulty: 'High-Yield',
-    description: 'Covers Plant Ecology succession, nepalese flora conservation, and thermodynamics entropy.',
-    tags: ['GMC Pokhara', 'Ecology & Entropy']
+    source: 'GMC Pokhara Academic Council Paper',
+    series: 'Affiliated College Series',
+    difficulty: 'Moderate',
+    description: 'Covers plant morphology, embryology, and equilibrium constant thermodynamics problems.',
+    tags: ['GMC Pokhara', 'Thermodynamics']
   },
   {
     id: 'mock_43',
     mockNumber: 43,
     title: 'MECEE Grand Mock 43 (KIST Medical College Lalitpur Paper)',
-    source: 'KIST Medical College Entrance Bank',
-    series: 'KIST Series',
-    difficulty: 'Moderate',
-    description: 'Focuses on analytical chemistry titrations, indicators pH range, and animal epithelial histology.',
-    tags: ['KIST Lalitpur', 'Analytical & Histology']
+    source: 'KIST Medical College Entrance Examination Board',
+    series: 'Valley College Series',
+    difficulty: 'High-Yield',
+    description: 'Emphasizes neurological pathways, sensory organs, and wave optics interference patterns.',
+    tags: ['KIST', 'Neurology & Optics']
   },
   {
     id: 'mock_44',
     mockNumber: 44,
     title: 'MECEE Grand Mock 44 (Nepal Medical College NMCTH Jorpati Mock)',
-    source: 'NMCTH Jorpati Model Paper',
-    series: 'NMCTH Series',
+    source: 'NMCTH Pre-Medical Examination Division',
+    series: 'Valley College Series',
     difficulty: 'High-Yield',
-    description: 'Covers human reproductive hormonal control, spermatogenesis, oogenesis, and AC circuit resonance.',
-    tags: ['NMCTH', 'Reproduction & AC Circuits']
+    description: 'Features comprehensive review questions across biochemistry, biomolecules, and organic named reactions.',
+    tags: ['NMCTH', 'Biochemistry']
   },
   {
     id: 'mock_45',
     mockNumber: 45,
     title: 'MECEE Grand Mock 45 (Kathmandu National Medical College Mock)',
-    source: 'NMC Birgunj / Kathmandu Model Paper',
-    series: 'National Series',
+    source: 'National Medical Entrance Resource Bank',
+    series: 'Valley College Series',
     difficulty: 'Moderate',
-    description: 'Thorough coverage of optics lens maker formula, microscope magnification, and cell division meiosis.',
-    tags: ['National Series', 'Optics & Meiosis']
+    description: 'Standardized full-length simulation for final confidence building and pacing practice.',
+    tags: ['KNMC', 'Full Simulation']
   },
   {
     id: 'mock_46',
     mockNumber: 46,
-    title: 'MECEE Grand Mock 46 (CEE All Nepal Mega Mock Finale 01)',
-    source: 'All Nepal Pre-Medical Mega Mock Alliance',
-    series: 'Finale Series',
+    title: 'MECEE Grand Mock 46 (Online Pre-CEE All Nepal Mega Mock Finale 01 - High Efficiency)',
+    source: 'Combined All Nepal Medical Entrance Coaching Forum CBT',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'High-stakes pre-exam simulation mirroring the full psychological challenge of exam day.',
-    tags: ['Mega Mock', 'Exam Simulator']
+    description: 'First of the five supreme final revision tests curated by national faculty toppers for maximum efficiency.',
+    tags: ['Online CBT', 'High-Efficiency', 'Mega Finale']
   },
   {
     id: 'mock_47',
     mockNumber: 47,
-    title: 'MECEE Grand Mock 47 (CEE All Nepal Mega Mock Finale 02)',
-    source: 'All Nepal Pre-Medical Mega Mock Alliance',
-    series: 'Finale Series',
+    title: 'MECEE Grand Mock 47 (Online Pre-CEE All Nepal Mega Mock Finale 02 - High Efficiency)',
+    source: 'Combined All Nepal Medical Entrance Coaching Forum CBT',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'Deep diagnostic questions across physical chemistry rate kinetics Arrhenius equation and radioactivity.',
-    tags: ['Mega Mock', 'Kinetics & Radioactivity']
+    description: 'Second supreme finale test with maximum weightage on high-yield human physiology and organic chemistry.',
+    tags: ['Online CBT', 'High-Efficiency', 'Mega Finale']
   },
   {
     id: 'mock_48',
     mockNumber: 48,
-    title: 'MECEE Grand Mock 48 (CEE All Nepal Mega Mock Finale 03)',
-    source: 'All Nepal Pre-Medical Mega Mock Alliance',
-    series: 'Finale Series',
+    title: 'MECEE Grand Mock 48 (Online Pre-CEE All Nepal Mega Mock Finale 03 - High Efficiency)',
+    source: 'Combined All Nepal Medical Entrance Coaching Forum CBT',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'Challenging',
-    description: 'Intense focus on modern physics X-rays Duane-Hunt law, Bohr transitions, and botany developmental double fertilization.',
-    tags: ['Mega Mock', 'Modern Physics & Botany']
+    description: 'Third supreme finale test featuring high-precision numericals and critical MAT decision-making scenarios.',
+    tags: ['Online CBT', 'High-Efficiency', 'Mega Finale']
   },
   {
     id: 'mock_49',
     mockNumber: 49,
-    title: 'MECEE Grand Mock 49 (MEC 2027 Pre-Board Rank Predictor)',
-    source: 'National Pre-Board Committee Standard',
-    series: 'Pre-Board Special',
+    title: 'MECEE Grand Mock 49 (MEC Official 2027 Pre-Board Rank Predictor)',
+    source: 'National Pre-Board Committee Standard Blueprint 2027',
+    series: 'CEE Past Year Papers',
     difficulty: 'High-Yield',
     description: 'Comprehensive high-yield paper calibrated to predict percentile ranking in MECEE-BL 2027.',
-    tags: ['Rank Predictor', 'Pre-Board']
+    tags: ['Rank Predictor', 'Pre-Board', 'CEE 2027 Standard']
   },
   {
     id: 'mock_50',
     mockNumber: 50,
-    title: 'MECEE Grand Mock 50 (The Ultimate CEE MBBS 2027 Finale Test)',
-    source: 'Consortium of Top Medical Entrance Tutors & Past Toppers',
-    series: 'Ultimate Finale',
+    title: 'MECEE Grand Mock 50 (The Ultimate CEE MBBS 2027 Finale Test - High Efficiency)',
+    source: 'Consortium of Top Medical Entrance Tutors, Past Toppers & Online CBT',
+    series: 'Highly Efficient Online Mocks',
     difficulty: 'High-Yield',
     description: 'The definitive 200-question master test synthesizing all 32 units for final revision before the official exam.',
-    tags: ['Master Finale', 'Top 200 Highest Yield', 'Complete Revision']
+    tags: ['Master Finale', 'Online CBT', 'High-Efficiency', 'Top 200 Highest Yield']
   }
 ];
 
