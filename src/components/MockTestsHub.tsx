@@ -266,12 +266,27 @@ export const MockTestsHub: React.FC<MockTestsHubProps> = ({
                     <span className="px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/30 text-teal-400 font-mono font-bold text-xs">
                       MOCK #{String(mock.mockNumber).padStart(2, '0')}
                     </span>
-                    {isCeePast && (
+                    {mock.mockNumber === 1 && (
+                      <span className="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-[10px] flex items-center gap-1">
+                        🌾 Dashain Pick
+                      </span>
+                    )}
+                    {(mock.mockNumber === 11 || mock.mockNumber === 12) && (
+                      <span className="px-2 py-0.5 rounded bg-orange-500/20 border border-orange-500/40 text-orange-300 font-bold text-[10px] flex items-center gap-1">
+                        🪔 Deepawali CBT
+                      </span>
+                    )}
+                    {mock.mockNumber === 2 && (
+                      <span className="px-2 py-0.5 rounded bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 font-bold text-[10px] flex items-center gap-1">
+                        ☀️ Chhath Special
+                      </span>
+                    )}
+                    {isCeePast && mock.mockNumber !== 1 && mock.mockNumber !== 2 && (
                       <span className="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold text-[10px]">
                         CEE Past Paper
                       </span>
                     )}
-                    {isOnlineCbt && !isCeePast && (
+                    {isOnlineCbt && !isCeePast && mock.mockNumber !== 11 && mock.mockNumber !== 12 && (
                       <span className="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold text-[10px]">
                         Online High-Efficiency
                       </span>

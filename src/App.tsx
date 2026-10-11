@@ -10,6 +10,8 @@ import { QuestionManager } from './components/QuestionManager';
 import { MockTestsHub } from './components/MockTestsHub';
 import { DailyLeaderboard } from './components/DailyLeaderboard';
 import { CandidateNameModal } from './components/CandidateNameModal';
+import { FestiveToran } from './components/FestiveToran';
+import { FestiveParticles } from './components/FestiveParticles';
 import { Question, ExamAttempt, SubjectType } from './types';
 import { Storage } from './utils/storage';
 import { BIG_PRIORITY_LIST } from './data/syllabus';
@@ -22,6 +24,7 @@ export const App: React.FC = () => {
   const [candidateName, setCandidateName] = useState<string>('');
   const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
   const [dailyMockVersion, setDailyMockVersion] = useState<number>(1);
+  const [isFestiveMode, setIsFestiveMode] = useState<boolean>(() => Storage.isFestiveModeEnabled());
   const [userDailyScore, setUserDailyScore] = useState<{
     score: number;
     correct: number;
@@ -54,7 +57,16 @@ export const App: React.FC = () => {
     setCandidateName(Storage.getCandidateName());
     setUserDailyScore(Storage.getDailyMockScore());
     setDailyMockVersion(Storage.getDailyMockVersion());
+    setIsFestiveMode(Storage.isFestiveModeEnabled());
   }, []);
+
+  const handleToggleFestiveMode = () => {
+    setIsFestiveMode(prev => {
+      const next = !prev;
+      Storage.setFestiveModeEnabled(next);
+      return next;
+    });
+  };
 
   const handleUpdateDailyMockQuestions = () => {
     const nextVer = dailyMockVersion + 1;
@@ -117,8 +129,7 @@ export const App: React.FC = () => {
         filtered = [...allQuestions];
       }
 
-      // If it's a chapter/unit test or unitFilter is specified, remove the 15/20 question limit
-      // and provide ALL questions available for that chapter!
+      // If it's a chapter/unit test or unitFilter is specified, provide all questions
       if (config.type === 'UNIT' || config.unitFilter) {
         selected = [...filtered].sort(() => 0.5 - Math.random());
       } else {
@@ -127,8 +138,6 @@ export const App: React.FC = () => {
       }
     }
 
-    // Allocate sufficient duration based on question count:
-    // For unit tests with all questions, provide ~1 minute per question or at least 30 minutes
     const examDurationMinutes = (config.type === 'UNIT' || config.unitFilter)
       ? Math.max(config.durationMinutes || 30, Math.round(selected.length * 1.0))
       : (config.durationMinutes || Math.max(20, Math.round(selected.length * 0.9)));
@@ -199,7 +208,19 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className={`min-h-screen text-slate-100 flex flex-col font-sans transition-colors duration-300 relative ${
+      isFestiveMode 
+        ? 'bg-gradient-to-b from-[#180a0a] via-slate-950 to-slate-950' 
+        : 'bg-slate-950'
+    }`}>
+      {/* Ambient festive floating petals and kites (active in browsing mode) */}
+      <FestiveParticles enabled={isFestiveMode && activeExamConfig === null} />
+
+      {/* Decorative Auspicious Toran (Garland) on top */}
+      {isFestiveMode && activeExamConfig === null && (
+        <FestiveToran />
+      )}
+
       <Navbar
         activeTab={activeTab}
         onSelectTab={(tab) => {
@@ -207,9 +228,11 @@ export const App: React.FC = () => {
           setReviewAttempt(null);
         }}
         isExamActive={activeExamConfig !== null}
+        isFestiveMode={isFestiveMode}
+        onToggleFestiveMode={handleToggleFestiveMode}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
         {/* Active Test Screen */}
         {activeExamConfig ? (
           <ExamSimulator
@@ -250,6 +273,7 @@ export const App: React.FC = () => {
                 examAttempts={examAttempts}
                 dailyMockVersion={dailyMockVersion}
                 onUpdateDailyQuestions={handleUpdateDailyMockQuestions}
+                isFestiveMode={isFestiveMode}
               />
             )}
 

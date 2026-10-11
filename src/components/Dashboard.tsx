@@ -7,16 +7,19 @@ import {
   ArrowRight, 
   AlertTriangle, 
   FileUp, 
-  Sparkles,
-  TrendingUp,
-  Clock,
-  Trophy,
-  RefreshCw,
-  CheckCircle2
+  Sparkles, 
+  TrendingUp, 
+  Clock, 
+  Trophy, 
+  RefreshCw, 
+  CheckCircle2,
+  Calendar,
+  Zap
 } from 'lucide-react';
 import { ExamAttempt, Question, SubjectType } from '../types';
 import { SUBJECT_INFO, BIG_PRIORITY_LIST } from '../data/syllabus';
 import { MOCK_TESTS_METADATA, getMockTestQuestions } from '../data/mockTestsData';
+import { FestiveBanner } from './FestiveBanner';
 
 interface DashboardProps {
   onStartExam: (config: {
@@ -37,6 +40,7 @@ interface DashboardProps {
   examAttempts: ExamAttempt[];
   dailyMockVersion?: number;
   onUpdateDailyQuestions?: () => void;
+  isFestiveMode?: boolean;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
@@ -47,7 +51,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
   allQuestions,
   examAttempts,
   dailyMockVersion = 1,
-  onUpdateDailyQuestions
+  onUpdateDailyQuestions,
+  isFestiveMode = true
 }) => {
   const [showUpdatedToast, setShowUpdatedToast] = useState(false);
   const totalAttempts = examAttempts.length;
@@ -57,18 +62,42 @@ export const Dashboard: React.FC<DashboardProps> = ({
     : 0;
   const totalNegativePenalty = examAttempts.reduce((acc, a) => acc + a.negativePenalty, 0);
 
+  // Festive highlighted mocks (CEE past paper + NAME/Vibrant high-efficiency CBT tests)
+  const festiveHighlightMocks = [
+    { mockNum: 1, label: '🌾 Dashain Top Pick', sub: 'CEE 2024 Past Paper', color: 'text-amber-400 border-amber-500/30 bg-amber-500/10' },
+    { mockNum: 11, label: '🪔 Tihar Lights of Success', sub: 'NAME Online Mega CBT', color: 'text-orange-400 border-orange-500/30 bg-orange-500/10' },
+    { mockNum: 12, label: '🪔 Deepawali Ultra Mock', sub: 'Vibrant Online MBBS CBT', color: 'text-red-400 border-red-500/30 bg-red-500/10' },
+    { mockNum: 2, label: '☀️ Chhath Arghya Dedicated', sub: 'CEE 2023 Past Paper', color: 'text-yellow-400 border-yellow-500/30 bg-yellow-500/10' },
+  ];
+
   return (
     <div className="space-y-8 pb-12">
+      {/* Festive Banner (Dashain, Tihar, Diwali, Chhath) */}
+      {isFestiveMode && (
+        <FestiveBanner
+          onStartExam={onRequestDailyMock}
+          onExploreMocks={() => onNavigateTab('mocks')}
+        />
+      )}
+
       {/* Hero Grand Mock 200 Card */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-teal-900/40 via-slate-900 to-indigo-950/40 border border-teal-500/30 p-6 sm:p-8 shadow-2xl">
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className={`relative overflow-hidden rounded-2xl border p-6 sm:p-8 shadow-2xl transition-all ${
+        isFestiveMode 
+          ? 'bg-gradient-to-r from-red-950/60 via-slate-900 to-amber-950/60 border-amber-500/40 festive-card-glow' 
+          : 'bg-gradient-to-r from-teal-900/40 via-slate-900 to-indigo-950/40 border-teal-500/30'
+      }`}>
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-500/40 text-teal-300 text-xs font-bold uppercase tracking-wider">
+              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isFestiveMode 
+                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-300' 
+                  : 'bg-teal-500/20 border-teal-500/40 text-teal-300'
+              }`}>
                 <Sparkles className="w-3.5 h-3.5" />
-                Official 2027 MECEE-BL Examination Model
+                {isFestiveMode ? '🌸 Official 2027 MECEE-BL Examination Model' : 'Official 2027 MECEE-BL Examination Model'}
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
@@ -81,10 +110,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   setShowUpdatedToast(true);
                   setTimeout(() => setShowUpdatedToast(false), 3500);
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 hover:bg-teal-500/20 hover:border-teal-500/40 text-slate-300 hover:text-teal-300 border border-slate-700 text-xs font-semibold transition-all active:scale-95"
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 hover:bg-amber-500/20 hover:border-amber-500/40 text-slate-300 hover:text-amber-300 border border-slate-700 text-xs font-semibold transition-all active:scale-95`}
                 title="Generate fresh, newly shuffled 200 questions for today's daily mock"
               >
-                <RefreshCw className="w-3 h-3 text-teal-400" />
+                <RefreshCw className="w-3 h-3 text-amber-400" />
                 Quick Update Questions
               </button>
             </div>
@@ -106,7 +135,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
             <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-slate-400 font-medium">
               <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700">
-                <Timer className="w-3.5 h-3.5 text-teal-400" />
+                <Timer className="w-3.5 h-3.5 text-amber-400" />
                 180 Minutes (3 Hours)
               </span>
               <span className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700">
@@ -123,7 +152,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[220px]">
             <button
               onClick={onRequestDailyMock}
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-teal-500/20 transition-all hover:scale-[1.02]"
+              className={`flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm shadow-lg transition-all hover:scale-[1.02] ${
+                isFestiveMode
+                  ? 'bg-gradient-to-r from-red-600 via-amber-600 to-yellow-500 hover:from-red-500 hover:to-yellow-400 text-slate-950 shadow-amber-500/20'
+                  : 'bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 shadow-teal-500/20'
+              }`}
             >
               <Play className="w-4 h-4 fill-current" />
               Start Daily Mock
@@ -183,11 +216,88 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <Sparkles className="w-4 h-4 text-purple-400" />
           </div>
           <p className="text-2xl font-extrabold text-white">{allQuestions.length}</p>
-          <span className="text-[11px] text-teal-400 font-semibold cursor-pointer hover:underline" onClick={() => onNavigateTab('import')}>
+          <span className="text-[11px] text-amber-400 font-semibold cursor-pointer hover:underline" onClick={() => onNavigateTab('import')}>
             + Extract more from PDF
           </span>
         </div>
       </div>
+
+      {/* Festive Season Special Highlights (Dashain, Tihar, Chhath) */}
+      {isFestiveMode && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🪔</span>
+              <div>
+                <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                  <span>Festive Season High-Efficiency Picks</span>
+                  <span className="bg-gradient-to-r from-red-600/30 to-amber-500/30 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/40">
+                    Dashain • Tihar • Chhath
+                  </span>
+                </h2>
+                <p className="text-xs text-slate-400">
+                  Top recommended full CBT mocks for holiday practice — featuring real CEE past papers & NAME/Vibrant CBT series.
+                </p>
+              </div>
+            </div>
+            <button 
+              onClick={() => onNavigateTab('mocks')}
+              className="text-xs text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 shrink-0"
+            >
+              See All 50 <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            {festiveHighlightMocks.map((item) => {
+              const mock = MOCK_TESTS_METADATA.find(m => m.mockNumber === item.mockNum);
+              if (!mock) return null;
+
+              return (
+                <div 
+                  key={mock.id}
+                  className="bg-slate-900/95 border border-amber-500/30 hover:border-amber-400 p-4 rounded-xl flex flex-col justify-between space-y-3 transition-all shadow-md hover:shadow-amber-500/10 group"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${item.color}`}>
+                        {item.label}
+                      </span>
+                      <span className="text-[10px] text-amber-300 font-mono">Mock #{mock.mockNumber}</span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
+                      {mock.title}
+                    </h4>
+                    <p className="text-[11px] text-slate-400 line-clamp-2">
+                      {mock.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                    <span className="text-[10px] text-slate-400 font-medium">{item.sub}</span>
+                    <button
+                      onClick={() => {
+                        const qs = getMockTestQuestions(mock.mockNumber, allQuestions);
+                        onStartExam({
+                          title: mock.title,
+                          type: 'FULL_200',
+                          questions: qs,
+                          durationMinutes: 180,
+                          isInstantFeedback: false
+                        });
+                      }}
+                      className="px-3 py-1 rounded bg-amber-500/20 hover:bg-gradient-to-r hover:from-red-600 hover:to-amber-500 hover:text-slate-950 text-amber-300 font-bold text-xs transition-all flex items-center gap-1"
+                    >
+                      <Play className="w-3 h-3 fill-current" />
+                      Take Mock
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* 50 Full-Length Mock Test Series Showcase */}
       <div className="space-y-4">
@@ -322,126 +432,47 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     />
                     <h3 className="font-bold text-white text-base">{info.name}</h3>
                   </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                     {info.marks} Marks
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-400">
-                  {subjKey === 'ZOOLOGY' && 'Human Bio (15M / 37.5%), Animals (6M), Diversity (4M)...'}
-                  {subjKey === 'BOTANY' && 'Biodiversity (9M), Genetics (6M), Plant Phys (6M)...'}
-                  {subjKey === 'CHEMISTRY' && 'Physical (17M) + Organic (17M) = 68% of Chemistry!'}
-                  {subjKey === 'PHYSICS' && 'Modern Phys (12M), Mechanics (10M), Electricity (9M)...'}
-                  {subjKey === 'MAT' && 'Verbal (5M), Numerical (5M), Logic (5M), Spatial (5M)'}
-                </p>
-
-                <div className="flex items-center justify-between pt-2 border-t border-slate-800/80 text-xs">
-                  <span className="text-slate-500">{qCount} Questions in bank</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => onStartExam({
-                        title: `${info.name} Practice`,
-                        type: 'SUBJECT',
-                        subjectFilter: subjKey,
-                        questionCount: info.marks,
-                        durationMinutes: Math.round(info.marks * 0.9),
-                        isInstantFeedback: true
-                      })}
-                      className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition-colors"
-                    >
-                      Instant
-                    </button>
-                    <button
-                      onClick={() => onStartExam({
-                        title: `${info.name} Subject Test`,
-                        type: 'SUBJECT',
-                        subjectFilter: subjKey,
-                        questionCount: info.marks,
-                        durationMinutes: Math.round(info.marks * 0.9)
-                      })}
-                      className="px-2.5 py-1 rounded bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold transition-colors"
-                    >
-                      Timed Test
-                    </button>
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between text-slate-400">
+                    <span>Available Qs</span>
+                    <span className="font-mono text-white">{qCount}</span>
                   </div>
+                  <div className="flex justify-between text-slate-400">
+                    <span>Weightage</span>
+                    <span className="font-mono text-teal-400 font-semibold">{`${((info.marks / 200) * 100).toFixed(0)}% (${info.marks} Marks)`}</span>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center gap-2">
+                  <button
+                    onClick={() => onStartExam({
+                      title: `${info.name} Subject Test`,
+                      type: 'SUBJECT',
+                      subjectFilter: subjKey,
+                      questionCount: info.marks,
+                      durationMinutes: Math.round(info.marks * 0.9)
+                    })}
+                    className="flex-1 py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <Play className="w-3 h-3 fill-current" />
+                    Test ({info.marks} Qs)
+                  </button>
+                  <button
+                    onClick={() => onNavigateTab('practice')}
+                    className="py-2 px-3 rounded-lg bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 text-xs font-semibold transition-colors"
+                  >
+                    Units
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
-
-      {/* Recent Tests List */}
-      {examAttempts.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-white">Recent Mock Tests</h2>
-            <button 
-              onClick={() => onNavigateTab('analytics')}
-              className="text-xs text-teal-400 hover:text-teal-300 font-semibold flex items-center gap-1"
-            >
-              View Analytics <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          <div className="space-y-2.5">
-            {examAttempts.slice(0, 3).map((attempt) => (
-              <div 
-                key={attempt.id}
-                onClick={() => onOpenReview(attempt)}
-                className="bg-slate-900 border border-slate-800 hover:border-teal-500/40 p-4 rounded-xl flex items-center justify-between cursor-pointer group transition-all"
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white group-hover:text-teal-300 transition-colors">
-                      {attempt.examTitle}
-                    </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400">
-                      {new Date(attempt.timestamp).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-400">
-                    {attempt.totalQuestions} Questions • Accuracy: {attempt.accuracyPercentage.toFixed(1)}% • Penalty lost: -{attempt.negativePenalty.toFixed(2)}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="text-right">
-                    <span className="text-base font-extrabold text-teal-400">
-                      {attempt.score.toFixed(2)}
-                    </span>
-                    <span className="text-xs text-slate-500"> / {attempt.maxScore}</span>
-                  </div>
-                  <span className="text-xs font-semibold text-slate-400 group-hover:text-white flex items-center gap-1">
-                    Review <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* PDF Upload / Question Manager Banner */}
-      <div 
-        onClick={() => onNavigateTab('import')}
-        className="rounded-xl border border-dashed border-slate-700 hover:border-teal-500/50 p-5 bg-slate-900/40 flex items-center justify-between cursor-pointer group transition-all"
-      >
-        <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
-            <FileUp className="w-5 h-5" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-white group-hover:text-teal-300 transition-colors">
-              Extract Questions from Syllabus PDF or Notes
-            </h4>
-            <p className="text-xs text-slate-400">
-              Copy-paste text from your question sheets to parse and add automatically to your offline storage.
-            </p>
-          </div>
-        </div>
-
-        <ArrowRight className="w-5 h-5 text-slate-500 group-hover:text-teal-400 transition-colors" />
       </div>
     </div>
   );

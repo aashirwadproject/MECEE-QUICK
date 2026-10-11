@@ -7,7 +7,8 @@ const STORAGE_KEYS = {
   ATTEMPTS: 'mecee_exam_attempts',
   CANDIDATE_NAME: 'mecee_candidate_name',
   DAILY_MOCK_SCORE: 'mecee_daily_mock_score',
-  DAILY_MOCK_VERSION: 'mecee_daily_mock_version'
+  DAILY_MOCK_VERSION: 'mecee_daily_mock_version',
+  FESTIVE_MODE: 'mecee_festive_mode'
 };
 
 export const Storage = {
@@ -26,6 +27,16 @@ export const Storage = {
 
   saveCandidateName(name: string) {
     localStorage.setItem(STORAGE_KEYS.CANDIDATE_NAME, name.trim());
+  },
+
+  isFestiveModeEnabled(): boolean {
+    const raw = localStorage.getItem(STORAGE_KEYS.FESTIVE_MODE);
+    if (raw === null) return true; // Enabled by default during festive season
+    return raw === 'true';
+  },
+
+  setFestiveModeEnabled(enabled: boolean) {
+    localStorage.setItem(STORAGE_KEYS.FESTIVE_MODE, enabled ? 'true' : 'false');
   },
 
   getDailyMockScore(): {

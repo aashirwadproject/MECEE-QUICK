@@ -129,6 +129,9 @@ export const DailyLeaderboard: React.FC<DailyLeaderboardProps> = ({
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
                 Live Daily Mock Leaderboard
               </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold">
+                <span>🪔</span> दशैं-तिहार विशेष श्रेणी
+              </span>
               <span className="text-xs text-slate-400 font-medium">
                 {todayFormatted}
               </span>
