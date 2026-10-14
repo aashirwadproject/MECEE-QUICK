@@ -30,51 +30,61 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   if (isExamActive) return null;
 
+  const navItems = [
+    { id: 'dashboard' as NavTab, label: 'Home', icon: LayoutDashboard },
+    { id: 'mocks' as NavTab, label: '50 Mocks', icon: Award, badge: '50' },
+    { id: 'leaderboard' as NavTab, label: 'Leaderboard', icon: Trophy, badge: 'Live', isLive: true },
+    { id: 'practice' as NavTab, label: 'Chapters', icon: BookOpen },
+    { id: 'syllabus' as NavTab, label: 'Syllabus', icon: Flame },
+    { id: 'analytics' as NavTab, label: 'Analytics', icon: BarChart3 },
+    { id: 'import' as NavTab, label: 'PDF Extractor', icon: FileUp },
+  ];
+
   return (
-    <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors duration-300 ${
+    <header className={`sticky top-0 z-40 backdrop-blur-xl border-b transition-all duration-300 ${
       isFestiveMode 
-        ? 'bg-slate-950/95 border-amber-600/40 shadow-lg shadow-amber-950/20' 
-        : 'bg-slate-900/90 border-slate-800'
+        ? 'bg-slate-950/85 border-amber-500/20 shadow-lg shadow-amber-950/10' 
+        : 'bg-slate-950/80 border-slate-800/80'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo & Title */}
+          {/* Logo & Branding */}
           <div 
             onClick={() => onSelectTab('dashboard')} 
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-all ${
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
               isFestiveMode
-                ? 'bg-gradient-to-tr from-amber-600/30 to-red-600/30 border border-amber-400/50 text-amber-300 shadow-md shadow-amber-500/10'
-                : 'bg-teal-500/20 border border-teal-500/30 text-teal-400'
+                ? 'bg-gradient-to-tr from-amber-600/20 to-red-600/20 border border-amber-400/40 text-amber-300 shadow-sm shadow-amber-500/10'
+                : 'bg-teal-500/15 border border-teal-500/30 text-teal-400'
             }`}>
               {isFestiveMode ? (
-                <span className="text-xl">🪔</span>
+                <span className="text-lg animate-pulse-subtle">🪔</span>
               ) : (
-                <GraduationCap className="w-6 h-6" />
+                <GraduationCap className="w-5 h-5" />
               )}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className={`font-extrabold text-lg tracking-tight ${
+                <span className={`font-black tracking-tight text-base sm:text-lg ${
                   isFestiveMode ? 'text-amber-100 font-serif' : 'text-white'
                 }`}>
                   MECEE QUICK
                 </span>
                 {isFestiveMode ? (
-                  <span className="bg-gradient-to-r from-red-600/30 to-amber-500/30 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/40 flex items-center gap-1 shadow-sm">
-                    <span>🌾</span>
-                    <span>दशैं-तिहार विशेष</span>
+                  <span className="bg-red-500/15 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/30 flex items-center gap-1 shadow-sm">
+                    <span className="text-[10px]">🌾</span>
+                    <span>दशैं-तिहार</span>
                   </span>
                 ) : (
-                  <span className="bg-teal-500/20 text-teal-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-teal-500/30">
+                  <span className="bg-teal-500/15 text-teal-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-teal-500/30">
                     2027 MBBS
                   </span>
                 )}
               </div>
-              <p className="text-xs text-slate-400 hidden sm:block">
+              <p className="text-[11px] text-slate-400 hidden sm:block">
                 {isFestiveMode 
-                  ? 'Bada Dashain, Tihar & Chhath Festive Mocks • 2027 Syllabus' 
+                  ? 'Bada Dashain & Tihar Festive Mocks • 200 Marks CBT' 
                   : '50 Full Mock Tests • 2027 Syllabus • Analytics'}
               </p>
             </div>
@@ -82,99 +92,37 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Desktop Nav Items */}
           <nav className="hidden md:flex items-center gap-1">
-            <button
-              onClick={() => onSelectTab('dashboard')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
-                activeTab === 'dashboard' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              Home
-            </button>
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
 
-            <button
-              onClick={() => onSelectTab('mocks')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all relative ${
-                activeTab === 'mocks' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <Award className="w-4 h-4 text-amber-400" />
-              <span>50 Full Mocks</span>
-              <span className="bg-amber-400 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.2 rounded-full">
-                50
-              </span>
-            </button>
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onSelectTab(item.id)}
+                  className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                    isActive 
+                      ? (isFestiveMode 
+                          ? 'bg-gradient-to-r from-red-600/90 to-amber-600/90 text-white shadow-sm shadow-amber-500/20' 
+                          : 'bg-teal-500 text-slate-950 shadow-sm font-bold')
+                      : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  <span>{item.label}</span>
 
-            <button
-              onClick={() => onSelectTab('leaderboard')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all relative ${
-                activeTab === 'leaderboard' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <Trophy className="w-4 h-4 text-amber-400" />
-              <span>Daily Leaderboard</span>
-              <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full border ${
-                isFestiveMode 
-                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' 
-                  : 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-              }`}>
-                Live
-              </span>
-            </button>
-
-            <button
-              onClick={() => onSelectTab('practice')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
-                activeTab === 'practice' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <BookOpen className="w-4 h-4" />
-              Chapters (50+ Qs)
-            </button>
-
-            <button
-              onClick={() => onSelectTab('syllabus')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
-                activeTab === 'syllabus' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <Flame className="w-4 h-4 text-orange-400" />
-              Syllabus
-            </button>
-
-            <button
-              onClick={() => onSelectTab('analytics')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
-                activeTab === 'analytics' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <BarChart3 className="w-4 h-4" />
-              Analytics
-            </button>
-
-            <button
-              onClick={() => onSelectTab('import')}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
-                activeTab === 'import' 
-                  ? (isFestiveMode ? 'bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md' : 'bg-teal-500 text-white shadow-sm')
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
-              }`}
-            >
-              <FileUp className="w-4 h-4" />
-              PDF Extractor
-            </button>
+                  {item.badge && (
+                    <span className={`text-[10px] font-bold px-1.5 py-0.1 rounded-full ${
+                      item.isLive
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-amber-400 text-slate-950 font-extrabold'
+                    }`}>
+                      {item.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Right Action buttons */}
@@ -183,95 +131,48 @@ export const Navbar: React.FC<NavbarProps> = ({
             {onToggleFestiveMode && (
               <button
                 onClick={onToggleFestiveMode}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                   isFestiveMode
-                    ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border-amber-500/50 shadow-sm shadow-amber-500/20'
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-400 border-slate-700'
+                    ? 'bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border-amber-500/40 shadow-sm shadow-amber-500/10'
+                    : 'bg-slate-900 hover:bg-slate-800 text-slate-400 border-white/[0.08]'
                 }`}
                 title="Toggle Festive Dashain-Tihar Theme"
               >
                 <span>{isFestiveMode ? '🪔' : '✨'}</span>
                 <span className="hidden sm:inline">
-                  {isFestiveMode ? 'Festive Mode On' : 'Festive Mode Off'}
+                  {isFestiveMode ? 'Festive Mode' : 'Minimal Dark'}
                 </span>
               </button>
             )}
 
             {/* Marking Scheme Badge */}
-            <div className="flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg text-xs font-mono">
+            <div className="flex items-center gap-1.5 bg-slate-900/60 border border-white/[0.08] px-2.5 py-1.5 rounded-lg text-[11px] font-mono">
               <span className="text-emerald-400 font-bold">+1.0</span>
-              <span className="text-slate-500">/</span>
+              <span className="text-slate-600">/</span>
               <span className="text-rose-400 font-bold">-0.25</span>
-              <span className="text-slate-400 hidden sm:inline ml-1 font-sans">MECEE marking</span>
+              <span className="text-slate-400 hidden lg:inline font-sans ml-0.5">MECEE</span>
             </div>
           </div>
         </div>
 
-        {/* Mobile Nav Bar */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-slate-800 text-[11px]">
-          <button
-            onClick={() => onSelectTab('dashboard')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'dashboard' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <LayoutDashboard className="w-5 h-5 mb-0.5" />
-            Home
-          </button>
-          <button
-            onClick={() => onSelectTab('mocks')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'mocks' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <Award className="w-5 h-5 mb-0.5 text-amber-400" />
-            50 Mocks
-          </button>
-          <button
-            onClick={() => onSelectTab('leaderboard')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'leaderboard' ? 'text-amber-400' : 'text-slate-400'
-            }`}
-          >
-            <Trophy className="w-5 h-5 mb-0.5 text-amber-400" />
-            Ranks
-          </button>
-          <button
-            onClick={() => onSelectTab('practice')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'practice' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <BookOpen className="w-5 h-5 mb-0.5" />
-            Chapters
-          </button>
-          <button
-            onClick={() => onSelectTab('syllabus')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'syllabus' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <Flame className="w-5 h-5 mb-0.5 text-orange-400" />
-            Syllabus
-          </button>
-          <button
-            onClick={() => onSelectTab('analytics')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'analytics' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <BarChart3 className="w-5 h-5 mb-0.5" />
-            Analytics
-          </button>
-          <button
-            onClick={() => onSelectTab('import')}
-            className={`flex flex-col items-center py-1 font-medium ${
-              activeTab === 'import' ? (isFestiveMode ? 'text-amber-400' : 'text-teal-400') : 'text-slate-400'
-            }`}
-          >
-            <FileUp className="w-5 h-5 mb-0.5" />
-            Import
-          </button>
+        {/* Mobile Minimal Navigation Bar */}
+        <div className="flex md:hidden items-center justify-around py-2 border-t border-white/[0.06] text-[10px]">
+          {navItems.slice(0, 5).map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onSelectTab(item.id)}
+                className={`flex flex-col items-center py-1 transition-colors ${
+                  isActive ? (isFestiveMode ? 'text-amber-300 font-bold' : 'text-teal-400 font-bold') : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Icon className="w-4 h-4 mb-0.5" />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </header>

@@ -5,11 +5,7 @@ import {
   AlertTriangle, 
   Lightbulb, 
   ArrowLeft, 
-  Bookmark, 
-  BookmarkCheck,
-  RotateCcw,
-  Award,
-  Clock
+  RotateCcw
 } from 'lucide-react';
 import { ExamAttempt } from '../types';
 import { SUBJECT_INFO } from '../data/syllabus';
@@ -24,11 +20,9 @@ interface ReviewModalProps {
 export const ReviewModal: React.FC<ReviewModalProps> = ({
   attempt,
   onClose,
-  onRetake,
-  onToggleBookmark
+  onRetake
 }) => {
   const [filter, setFilter] = useState<'ALL' | 'INCORRECT' | 'CORRECT' | 'SKIPPED'>('ALL');
-  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
 
   const questions = attempt.questionsSnapshot || [];
 
@@ -48,34 +42,34 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
   return (
     <div className="space-y-6 pb-16">
       {/* Top Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between fade-in-up">
         <button
           onClick={onClose}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold border border-white/[0.08] transition-all hover:-translate-y-0.5 active:scale-95"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Dashboard
         </button>
 
         <button
           onClick={onRetake}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold shadow"
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-red-600 via-amber-500 to-yellow-400 hover:opacity-95 text-slate-950 text-xs font-bold shadow-sm transition-all hover:-translate-y-0.5 active:scale-95"
         >
           <RotateCcw className="w-3.5 h-3.5" /> Retake Test
         </button>
       </div>
 
-      {/* Scorecard Hero Card */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-teal-950/40 border border-slate-800 p-6 sm:p-8 rounded-2xl space-y-6 shadow-xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      {/* Scorecard Hero Card - Minimal & Clean */}
+      <div className="minimal-card p-6 sm:p-8 rounded-2xl space-y-6 shadow-xl border border-white/[0.08] fade-in-up delay-50">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.06] pb-6">
           <div>
-            <span className="text-xs font-bold text-teal-400 uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider font-mono">
               Exam Result Summary
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
               {attempt.examTitle}
             </h2>
             <span className="text-xs text-slate-400">
-              Completed on {new Date(attempt.timestamp).toLocaleString()} • Duration: {minutesSpent} mins
+              Completed on {new Date(attempt.timestamp).toLocaleDateString()} • Duration: {minutesSpent} mins
             </span>
           </div>
 
@@ -83,16 +77,16 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
             <div className="text-right">
               <span className="text-xs text-slate-400 font-medium block">FINAL SCORE</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-3xl sm:text-4xl font-extrabold text-teal-400">
+                <span className="text-3xl sm:text-4xl font-extrabold text-amber-300 font-mono">
                   {attempt.score.toFixed(2)}
                 </span>
-                <span className="text-sm text-slate-500">/ {attempt.maxScore}</span>
+                <span className="text-xs text-slate-500 font-mono">/ {attempt.maxScore}</span>
               </div>
             </div>
 
-            <div className="text-right pl-6 border-l border-slate-800">
+            <div className="text-right pl-6 border-l border-white/[0.08]">
               <span className="text-xs text-slate-400 font-medium block">ACCURACY</span>
-              <span className="text-2xl sm:text-3xl font-extrabold text-white">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
                 {attempt.accuracyPercentage.toFixed(1)}%
               </span>
             </div>
@@ -101,44 +95,44 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
         {/* 4-Stat Breakdown Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl">
+          <div className="minimal-card p-3 rounded-xl">
             <span className="text-xs text-slate-400 block mb-0.5">Correct (+1)</span>
-            <span className="text-xl font-extrabold text-emerald-400">{attempt.correctCount}</span>
+            <span className="text-xl font-extrabold text-emerald-400 font-mono">{attempt.correctCount}</span>
           </div>
 
-          <div className="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl">
+          <div className="minimal-card p-3 rounded-xl">
             <span className="text-xs text-slate-400 block mb-0.5">Incorrect (-0.25)</span>
-            <span className="text-xl font-extrabold text-rose-400">{attempt.incorrectCount}</span>
+            <span className="text-xl font-extrabold text-rose-400 font-mono">{attempt.incorrectCount}</span>
           </div>
 
-          <div className="bg-slate-800/60 border border-slate-700/60 p-3 rounded-xl">
+          <div className="minimal-card p-3 rounded-xl">
             <span className="text-xs text-slate-400 block mb-0.5">Unattempted (0)</span>
-            <span className="text-xl font-extrabold text-slate-300">{attempt.unattemptedCount}</span>
+            <span className="text-xl font-extrabold text-slate-300 font-mono">{attempt.unattemptedCount}</span>
           </div>
 
-          <div className="bg-rose-500/10 border border-rose-500/30 p-3 rounded-xl">
+          <div className="minimal-card p-3 rounded-xl border-rose-500/20">
             <span className="text-xs text-rose-300 block mb-0.5">Penalty Deduction</span>
-            <span className="text-xl font-extrabold text-rose-400">-{attempt.negativePenalty.toFixed(2)}</span>
+            <span className="text-xl font-extrabold text-rose-400 font-mono">-{attempt.negativePenalty.toFixed(2)}</span>
           </div>
         </div>
 
-        {/* Negative Penalty Warning */}
+        {/* Negative Penalty Advice */}
         {attempt.incorrectCount > 0 && (
-          <div className="bg-rose-500/10 border border-rose-500/30 rounded-xl p-4 flex items-center gap-3">
-            <AlertTriangle className="w-5 h-5 text-rose-400 flex-shrink-0" />
-            <p className="text-xs text-rose-200 leading-relaxed">
-              Negative marking reduced your score by <strong className="font-bold text-rose-300">-{attempt.negativePenalty.toFixed(2)} marks</strong> from {attempt.correctCount} raw correct marks down to {attempt.score.toFixed(2)}. Filter by <em>"Incorrect (-0.25)"</em> below to eliminate recurring traps!
+          <div className="minimal-card border border-rose-500/20 rounded-xl p-3.5 flex items-center gap-3">
+            <AlertTriangle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+            <p className="text-xs text-rose-200 leading-relaxed font-normal">
+              Negative marking reduced your score by <strong className="font-bold text-rose-300">-{attempt.negativePenalty.toFixed(2)} marks</strong>. Filter by <em>"Incorrect (-0.25)"</em> below to eliminate recurring concept traps!
             </p>
           </div>
         )}
       </div>
 
       {/* Review Filters */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 fade-in-up delay-100">
         <button
           onClick={() => setFilter('ALL')}
-          className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-            filter === 'ALL' ? 'bg-teal-500 text-slate-950' : 'bg-slate-900 border border-slate-800 text-slate-400'
+          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            filter === 'ALL' ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-slate-900/60 border border-white/[0.06] text-slate-400'
           }`}
         >
           All ({questions.length})
@@ -146,8 +140,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
         <button
           onClick={() => setFilter('INCORRECT')}
-          className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-            filter === 'INCORRECT' ? 'bg-rose-500 text-white' : 'bg-slate-900 border border-slate-800 text-rose-400'
+          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            filter === 'INCORRECT' ? 'bg-rose-500 text-white font-bold' : 'bg-slate-900/60 border border-white/[0.06] text-rose-400'
           }`}
         >
           Incorrect ({attempt.incorrectCount})
@@ -155,8 +149,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
         <button
           onClick={() => setFilter('CORRECT')}
-          className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-            filter === 'CORRECT' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-900 border border-slate-800 text-emerald-400'
+          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            filter === 'CORRECT' ? 'bg-emerald-500 text-slate-950 font-bold' : 'bg-slate-900/60 border border-white/[0.06] text-emerald-400'
           }`}
         >
           Correct ({attempt.correctCount})
@@ -164,8 +158,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
         <button
           onClick={() => setFilter('SKIPPED')}
-          className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-            filter === 'SKIPPED' ? 'bg-slate-700 text-white' : 'bg-slate-900 border border-slate-800 text-slate-400'
+          className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            filter === 'SKIPPED' ? 'bg-slate-700 text-white font-bold' : 'bg-slate-900/60 border border-white/[0.06] text-slate-400'
           }`}
         >
           Skipped ({attempt.unattemptedCount})
@@ -173,7 +167,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
       </div>
 
       {/* Question Details List */}
-      <div className="space-y-4">
+      <div className="space-y-3.5">
         {filteredQuestions.map((q, idx) => {
           const userChoice = attempt.userAnswers[q.id];
           const isCorrect = userChoice === q.correctOptionIndex;
@@ -182,15 +176,15 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
           return (
             <div
               key={q.id}
-              className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 sm:p-6 space-y-4"
+              className="minimal-card rounded-xl p-5 space-y-3.5 border border-white/[0.06] fade-in-up"
             >
               {/* Question Header */}
               <div className="flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <span 
-                    className="font-bold px-2 py-0.5 rounded text-[10px] font-mono uppercase"
+                    className="font-bold px-2.5 py-0.5 rounded text-[10px] font-mono uppercase"
                     style={{ 
-                      backgroundColor: `${SUBJECT_INFO[q.subject]?.color || '#0ea5e9'}20`,
+                      backgroundColor: `${SUBJECT_INFO[q.subject]?.color || '#0ea5e9'}15`,
                       color: SUBJECT_INFO[q.subject]?.color || '#0ea5e9'
                     }}
                   >
@@ -201,17 +195,17 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
 
                 <div className="flex items-center gap-2">
                   {isCorrect && (
-                    <span className="bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                    <span className="bg-emerald-500/15 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-500/30 flex items-center gap-1 text-[11px]">
                       <Check className="w-3 h-3" /> +1.0 Mark
                     </span>
                   )}
                   {!isCorrect && !isSkipped && (
-                    <span className="bg-rose-500/20 text-rose-300 font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                    <span className="bg-rose-500/15 text-rose-300 font-bold px-2 py-0.5 rounded border border-rose-500/30 flex items-center gap-1 text-[11px]">
                       <X className="w-3 h-3" /> -0.25 Penalty
                     </span>
                   )}
                   {isSkipped && (
-                    <span className="bg-slate-800 text-slate-400 font-semibold px-2 py-0.5 rounded">
+                    <span className="bg-slate-800 text-slate-400 font-semibold px-2 py-0.5 rounded text-[11px]">
                       0.0 Skipped
                     </span>
                   )}
@@ -219,8 +213,8 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               </div>
 
               {/* Stem */}
-              <h4 className="text-base font-semibold text-white leading-relaxed">
-                <span className="text-teal-400 font-mono mr-2">{idx + 1}.</span>
+              <h4 className="text-sm sm:text-base font-semibold text-white leading-relaxed">
+                <span className="text-amber-400 font-mono mr-2">{idx + 1}.</span>
                 {q.questionText}
               </h4>
 
@@ -235,13 +229,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                   const isCorrectAnswer = opt.index === q.correctOptionIndex;
                   const isUserSelection = userChoice === opt.index;
 
-                  let optClass = 'bg-slate-800/40 border-slate-800 text-slate-300';
+                  let optClass = 'bg-slate-900/30 border-white/[0.04] text-slate-300';
                   let badgeClass = 'bg-slate-800 text-slate-400';
                   if (isCorrectAnswer) {
-                    optClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-100 ring-1 ring-emerald-500/50 font-semibold';
+                    optClass = 'bg-emerald-500/15 border-emerald-500 text-emerald-100 ring-1 ring-emerald-500/40 font-semibold';
                     badgeClass = 'bg-emerald-500 text-slate-950 font-black';
                   } else if (isUserSelection) {
-                    optClass = 'bg-rose-500/20 border-rose-500 text-rose-100 ring-1 ring-rose-500/50 font-semibold';
+                    optClass = 'bg-rose-500/15 border-rose-500 text-rose-100 ring-1 ring-rose-500/40 font-semibold';
                     badgeClass = 'bg-rose-500 text-white font-black';
                   }
 
@@ -251,19 +245,19 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                       className={`p-3 rounded-lg border flex items-center justify-between text-xs sm:text-sm ${optClass}`}
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className={`w-6 h-6 rounded flex items-center justify-center font-bold text-xs ${badgeClass}`}>{opt.label}</span>
-                        <span>{opt.text}</span>
+                        <span className={`w-5 h-5 rounded flex items-center justify-center font-bold text-[11px] ${badgeClass}`}>{opt.label}</span>
+                        <span className="leading-relaxed">{opt.text}</span>
                       </div>
 
                       {isCorrectAnswer && (
-                        <span className="text-[11px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40 flex items-center gap-1 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
                           {isUserSelection ? 'Correct (+1.0 Mark)' : 'Correct Answer'}
                         </span>
                       )}
                       {isUserSelection && !isCorrectAnswer && (
-                        <span className="text-[11px] font-bold text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/40 flex items-center gap-1">
-                          <X className="w-3.5 h-3.5 text-rose-400" /> Your Choice (Incorrect -0.25)
+                        <span className="text-[10px] font-bold text-rose-300 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/40 flex items-center gap-1 shrink-0">
+                          <X className="w-3 h-3 text-rose-400" /> Your Choice (-0.25)
                         </span>
                       )}
                     </div>
@@ -272,12 +266,12 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
               </div>
 
               {/* Explanation Box */}
-              <div className="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3.5 space-y-1.5">
+              <div className="minimal-card rounded-xl p-3.5 space-y-1 border border-white/[0.06]">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300">
-                  <Lightbulb className="w-4 h-4 text-amber-400" />
+                  <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
                   Key Medical Concept & Explanation
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
                   {q.explanation}
                 </p>
               </div>
