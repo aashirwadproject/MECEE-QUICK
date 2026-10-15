@@ -191,6 +191,11 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
                     {SUBJECT_INFO[q.subject]?.name || q.subject}
                   </span>
                   <span className="text-slate-400 font-medium">{q.unit}</span>
+                  {(q.year || q.sourceType) && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold font-mono text-[10px]">
+                      📜 {q.year || ''} {q.sourceType ? `(${q.sourceType})` : ''}
+                    </span>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-2">

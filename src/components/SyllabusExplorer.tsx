@@ -6,7 +6,7 @@ import {
   Sparkles,
   Info
 } from 'lucide-react';
-import { SubjectType } from '../types';
+import { SubjectType, Question } from '../types';
 import { SYLLABUS_UNITS, SUBJECT_INFO, BIG_PRIORITY_LIST } from '../data/syllabus';
 
 interface SyllabusExplorerProps {
@@ -19,11 +19,13 @@ interface SyllabusExplorerProps {
     durationMinutes?: number;
   }) => void;
   onBack: () => void;
+  allQuestions?: Question[];
 }
 
 export const SyllabusExplorer: React.FC<SyllabusExplorerProps> = ({
   onStartExam,
-  onBack
+  onBack,
+  allQuestions = []
 }) => {
   const [activeTab, setActiveTab] = useState<'PRIORITY' | SubjectType>('PRIORITY');
 
@@ -95,44 +97,61 @@ export const SyllabusExplorer: React.FC<SyllabusExplorerProps> = ({
             {BIG_PRIORITY_LIST.map((item, idx) => {
               const matchedUnit = SYLLABUS_UNITS.find(u => u.name.toLowerCase() === item.name.toLowerCase());
               const subjectColor = matchedUnit ? SUBJECT_INFO[matchedUnit.subject].color : '#0ea5e9';
+              const countInBank = allQuestions.filter(q => q.unit.toLowerCase() === item.name.toLowerCase()).length;
+              const pyqCount = allQuestions.filter(q => q.unit.toLowerCase() === item.name.toLowerCase() && (q.sourceType === 'PYQ' || q.year)).length;
 
               return (
                 <div
                   key={item.name}
-                  className="minimal-card-interactive p-4 rounded-xl flex items-center justify-between"
+                  className="minimal-card-interactive p-4 rounded-xl flex flex-col justify-between gap-3"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-lg bg-slate-800/80 border border-white/[0.08] text-amber-400 font-bold font-mono text-xs flex items-center justify-center">
-                      #{idx + 1}
-                    </span>
-                    <div>
-                      <h4 className="text-sm font-bold text-white group-hover:text-amber-200 transition-colors">{item.name}</h4>
-                      {matchedUnit && (
-                        <span 
-                          className="text-[10px] font-bold font-mono uppercase"
-                          style={{ color: subjectColor }}
-                        >
-                          {SUBJECT_INFO[matchedUnit.subject].name}
-                        </span>
-                      )}
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-lg bg-slate-800/80 border border-white/[0.08] text-amber-400 font-bold font-mono text-xs flex items-center justify-center shrink-0">
+                        #{idx + 1}
+                      </span>
+                      <div>
+                        <h4 className="text-sm font-bold text-white group-hover:text-amber-200 transition-colors">{item.name}</h4>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          {matchedUnit && (
+                            <span 
+                              className="text-[10px] font-bold font-mono uppercase"
+                              style={{ color: subjectColor }}
+                            >
+                              {SUBJECT_INFO[matchedUnit.subject].name}
+                            </span>
+                          )}
+                          <span className="text-[11px] text-slate-400 font-medium">
+                            {countInBank > 0 ? `${countInBank} Qs` : 'Curated'}
+                          </span>
+                          {pyqCount > 0 && (
+                            <span className="px-1.5 py-0.2 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[10px] font-bold font-mono">
+                              {pyqCount} PYQs & QADs
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs sm:text-sm font-extrabold text-amber-300 font-mono">
+                    <span className="text-xs sm:text-sm font-extrabold text-amber-300 font-mono shrink-0">
                       {item.marks} Marks
                     </span>
+                  </div>
 
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-white/[0.05]">
                     <button
                       onClick={() => onStartExam({
-                        title: `${item.name} Unit Test (All Questions)`,
+                        title: `${item.name} Priority Quiz (${countInBank} Qs)`,
                         type: 'UNIT',
-                        unitFilter: item.name
+                        unitFilter: item.name,
+                        questionCount: countInBank,
+                        durationMinutes: Math.max(30, Math.round(countInBank * 1.1))
                       })}
-                      className="p-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 hover:text-slate-950 text-amber-300 transition-all active:scale-95"
-                      title="Practice this unit (All questions)"
+                      className="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500 hover:text-slate-950 text-amber-300 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95"
+                      title="Practice this unit with all available questions"
                     >
                       <Play className="w-3.5 h-3.5 fill-current" />
+                      Start All {countInBank} Qs
                     </button>
                   </div>
                 </div>

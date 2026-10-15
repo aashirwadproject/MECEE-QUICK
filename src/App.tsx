@@ -313,6 +313,7 @@ export const App: React.FC = () => {
               <SyllabusExplorer
                 onStartExam={handleStartExam}
                 onBack={() => setActiveTab('dashboard')}
+                allQuestions={allQuestions}
               />
             )}
 

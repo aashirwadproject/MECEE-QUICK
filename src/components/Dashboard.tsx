@@ -375,37 +375,47 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {BIG_PRIORITY_LIST.slice(0, 6).map((item, idx) => (
-            <div 
-              key={item.name}
-              className="minimal-card-interactive p-3.5 rounded-xl flex items-center justify-between group"
-            >
-              <div className="space-y-0.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-amber-400 font-mono">#{idx + 1}</span>
-                  <span className="text-[11px] font-bold px-2 py-0.2 rounded bg-slate-800 text-slate-300 border border-white/[0.06]">
-                    {item.marks} Marks
-                  </span>
-                </div>
-                <h3 className="text-xs sm:text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
-                  {item.name}
-                </h3>
-              </div>
+          {BIG_PRIORITY_LIST.slice(0, 6).map((item, idx) => {
+            const qCount = allQuestions.filter(q => q.unit.toLowerCase() === item.name.toLowerCase()).length;
+            const pyqCount = allQuestions.filter(q => q.unit.toLowerCase() === item.name.toLowerCase() && (q.sourceType === 'PYQ' || q.year)).length;
 
-              <button
-                onClick={() => onStartExam({
-                  title: `${item.name} Chapter Test`,
-                  type: 'UNIT',
-                  unitFilter: item.name,
-                  isInstantFeedback: true
-                })}
-                className="p-2 rounded-lg bg-teal-500/10 text-teal-400 hover:bg-teal-500 hover:text-slate-950 transition-all active:scale-95"
-                title="Practice Unit (All Questions)"
+            return (
+              <div 
+                key={item.name}
+                className="minimal-card-interactive p-3.5 rounded-xl flex items-center justify-between group"
               >
-                <Play className="w-3.5 h-3.5 fill-current" />
-              </button>
-            </div>
-          ))}
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-amber-400 font-mono">#{idx + 1}</span>
+                    <span className="text-[11px] font-bold px-2 py-0.2 rounded bg-slate-800 text-slate-300 border border-white/[0.06]">
+                      {item.marks} Marks
+                    </span>
+                    <span className="text-[10px] text-amber-400 font-mono font-semibold">
+                      {qCount} Qs ({pyqCount} PYQs)
+                    </span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
+                    {item.name}
+                  </h3>
+                </div>
+
+                <button
+                  onClick={() => onStartExam({
+                    title: `${item.name} Priority Test (${qCount} Qs)`,
+                    type: 'UNIT',
+                    unitFilter: item.name,
+                    questionCount: qCount,
+                    durationMinutes: Math.max(30, Math.round(qCount * 1.1)),
+                    isInstantFeedback: true
+                  })}
+                  className="p-2 rounded-lg bg-teal-500/10 text-teal-400 hover:bg-teal-500 hover:text-slate-950 transition-all active:scale-95"
+                  title={`Practice ${item.name} (${qCount} Questions with Exam Years)`}
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 

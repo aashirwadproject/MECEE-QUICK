@@ -23,6 +23,8 @@ export interface Question {
   optionD: string;
   correctOptionIndex: number; // 0: A, 1: B, 2: C, 3: D
   explanation: string;
+  year?: string; // e.g. 'CEE 2024', 'CEE 2023', 'IOM 2020', 'NAME QAD 2024', etc.
+  sourceType?: 'PYQ' | 'QAD' | 'MODEL';
   isBookmarked?: boolean;
   isUserAdded?: boolean;
   createdAt?: number;

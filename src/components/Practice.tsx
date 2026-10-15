@@ -138,9 +138,21 @@ export const Practice: React.FC<PracticeProps> = ({
               </div>
 
               <div className="flex items-center justify-between pt-3 border-t border-white/[0.06] text-xs">
-                <span className="text-slate-400 text-[11px]">
-                  {countInBank > 0 ? `${countInBank} questions available` : 'Curated question pool'}
-                </span>
+                {(() => {
+                  const pyqCount = allQuestions.filter(q => q.unit.toLowerCase() === unit.name.toLowerCase() && (q.sourceType === 'PYQ' || q.year)).length;
+                  return (
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-slate-300 font-semibold text-[11px]">
+                        {countInBank > 0 ? `${countInBank} Qs available` : 'Curated question pool'}
+                      </span>
+                      {pyqCount > 0 && (
+                        <span className="text-amber-400 font-mono text-[10px] font-bold">
+                          📜 {pyqCount} PYQs & QADs
+                        </span>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 <div className="flex items-center gap-2">
                   <button

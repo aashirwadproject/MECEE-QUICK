@@ -207,8 +207,8 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
       {/* Main Question Card */}
       <div key={currentIndex} className="minimal-card rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl border border-white/[0.08] fade-in-scale">
         {/* Question Metadata Row */}
-        <div className="flex items-center justify-between text-xs border-b border-white/[0.06] pb-4">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs border-b border-white/[0.06] pb-4">
+          <div className="flex flex-wrap items-center gap-2">
             <span 
               className="font-bold px-2.5 py-0.5 rounded text-[11px] font-mono uppercase"
               style={{ 
@@ -221,6 +221,11 @@ export const ExamSimulator: React.FC<ExamSimulatorProps> = ({
             <span className="bg-slate-800/80 px-2.5 py-0.5 rounded text-slate-300 font-medium text-[11px]">
               {currentQ.unit}
             </span>
+            {(currentQ.year || currentQ.sourceType) && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-bold font-mono text-[10px]">
+                📜 {currentQ.year || ''} {currentQ.sourceType ? `(${currentQ.sourceType})` : ''}
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-2">

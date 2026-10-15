@@ -6,6 +6,12 @@ import { PHYSICS_QUESTIONS } from './questions/physicsQuestions';
 import { MAT_QUESTIONS } from './questions/matQuestions';
 import { CEE_PAST_YEAR_QUESTIONS } from './questions/ceePastYearQuestions';
 import { generateSyllabusQuestions } from './questionGenerator';
+import { PYQ_QAD_PHYSICS } from './questions/pyqQadPhysics';
+import { PYQ_QAD_CHEMISTRY } from './questions/pyqQadChemistry';
+import { PYQ_QAD_BOTANY } from './questions/pyqQadBotany';
+import { PYQ_QAD_ZOOLOGY } from './questions/pyqQadZoology';
+import { PYQ_QAD_MAT } from './questions/pyqQadMat';
+import { COMPREHENSIVE_PYQ_QAD_BANK } from './questions/comprehensiveBank';
 
 // Ensures all questions have their correct option evenly distributed across A, B, C, D (25% each)
 export function balanceQuestionOptionOrder(q: Question): Question {
@@ -42,7 +48,13 @@ const rawSeedPool: Question[] = [
   ...PHYSICS_QUESTIONS,
   ...MAT_QUESTIONS,
   ...CEE_PAST_YEAR_QUESTIONS,
-  ...generateSyllabusQuestions()
+  ...generateSyllabusQuestions(),
+  ...PYQ_QAD_PHYSICS,
+  ...PYQ_QAD_CHEMISTRY,
+  ...PYQ_QAD_BOTANY,
+  ...PYQ_QAD_ZOOLOGY,
+  ...PYQ_QAD_MAT,
+  ...COMPREHENSIVE_PYQ_QAD_BANK
 ];
 
 export const SEED_QUESTIONS: Question[] = rawSeedPool.map(balanceQuestionOptionOrder);
